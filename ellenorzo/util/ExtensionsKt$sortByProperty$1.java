@@ -1,0 +1,32 @@
+package p289hu.ekreta.ellenorzo.util;
+
+import java.text.Collator;
+import java.util.Comparator;
+import java.util.Locale;
+import kotlin.Metadata;
+import kotlin.reflect.KProperty1;
+
+@Metadata(mo17461bv = {1, 0, 3}, mo17462d1 = {"\u0000\u0013\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0004*\u0001\u0000\b\n\u0018\u00002\b\u0012\u0004\u0012\u00028\u00000\u0001J!\u0010\u0002\u001a\u00020\u00032\b\u0010\u0004\u001a\u0004\u0018\u00018\u00002\b\u0010\u0005\u001a\u0004\u0018\u00018\u0000H\u0016¢\u0006\u0002\u0010\u0006¨\u0006\u0007"}, mo17463d2 = {"hu/ekreta/ellenorzo/util/ExtensionsKt$sortByProperty$1", "Ljava/util/Comparator;", "compare", "", "obj0", "obj1", "(Ljava/lang/Object;Ljava/lang/Object;)I", "app_studentProdRelease"}, mo17464k = 1, mo17465mv = {1, 1, 15})
+/* renamed from: hu.ekreta.ellenorzo.util.ExtensionsKt$sortByProperty$1 */
+/* compiled from: Extensions.kt */
+public final class ExtensionsKt$sortByProperty$1 implements Comparator<E> {
+
+    /* renamed from: c */
+    public final /* synthetic */ Locale f15350c;
+
+    /* renamed from: e */
+    public final /* synthetic */ KProperty1 f15351e;
+
+    public ExtensionsKt$sortByProperty$1(Locale locale, KProperty1 kProperty1) {
+        this.f15350c = locale;
+        this.f15351e = kProperty1;
+    }
+
+    public int compare(E e, E e2) {
+        Collator instance = Collator.getInstance(this.f15350c);
+        if (e != null && e2 != null) {
+            return instance.compare((String) this.f15351e.get(e), (String) this.f15351e.get(e2));
+        }
+        throw new RuntimeException("sortable item is null");
+    }
+}

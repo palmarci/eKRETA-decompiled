@@ -1,0 +1,4178 @@
+package p289hu.ekreta.ellenorzo.p290di;
+
+import android.app.Application;
+import android.content.ContentResolver;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import androidx.fragment.app.Fragment;
+import dagger.android.DispatchingAndroidInjector;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import p000a.p173k.p174a.C2676c;
+import p000a.p180n.p181a.C2723b;
+import p211h.p238i.p239e.C3535m;
+import p211h.p282w.C3984v;
+import p289hu.ekreta.ellenorzo.about.AboutFragment;
+import p289hu.ekreta.ellenorzo.about.AboutFragmentModule;
+import p289hu.ekreta.ellenorzo.about.AboutFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.about.AboutFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDao;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDaoImpl;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDetailActivity;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDetailActivityModule;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDetailViewModel;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestRepository;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestRepositoryImpl;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestsFragment;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestsFragmentModule;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestsFragmentModule_ProvideReminderRepositoriesFactory;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestsFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.announcedTest.AnnouncedTestsFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.attachment.AttachmentService;
+import p289hu.ekreta.ellenorzo.attachment.AttachmentServiceImpl;
+import p289hu.ekreta.ellenorzo.attachment.AttachmentServiceImpl_Factory;
+import p289hu.ekreta.ellenorzo.authentication.AuthenticationService;
+import p289hu.ekreta.ellenorzo.authentication.AuthenticationServiceImpl;
+import p289hu.ekreta.ellenorzo.authentication.AuthenticationServiceImpl_Factory;
+import p289hu.ekreta.ellenorzo.authentication.SupportedRole;
+import p289hu.ekreta.ellenorzo.cases.CaseDao;
+import p289hu.ekreta.ellenorzo.cases.CaseDaoImpl;
+import p289hu.ekreta.ellenorzo.cases.CaseDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.CaseRepository;
+import p289hu.ekreta.ellenorzo.cases.CaseRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.CaseRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.CasesFragment;
+import p289hu.ekreta.ellenorzo.cases.CasesFragmentModule;
+import p289hu.ekreta.ellenorzo.cases.CasesFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.cases.CasesFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.cases.CasesViewModel;
+import p289hu.ekreta.ellenorzo.cases.CasesViewModelImpl;
+import p289hu.ekreta.ellenorzo.cases.CasesViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.decision.DecisionDetailActivity;
+import p289hu.ekreta.ellenorzo.cases.decision.DecisionDetailActivityModule;
+import p289hu.ekreta.ellenorzo.cases.decision.DecisionDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.cases.decision.DecisionDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.cases.decision.DecisionDetailViewModel;
+import p289hu.ekreta.ellenorzo.cases.decision.DecisionDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.cases.decision.DecisionDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.detail.CaseDetailsActivity;
+import p289hu.ekreta.ellenorzo.cases.detail.CaseDetailsActivityModule;
+import p289hu.ekreta.ellenorzo.cases.detail.CaseDetailsActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.cases.detail.CaseDetailsActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.cases.detail.CaseDetailsViewModel;
+import p289hu.ekreta.ellenorzo.cases.detail.CaseDetailsViewModelImpl;
+import p289hu.ekreta.ellenorzo.cases.detail.CaseDetailsViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.factory.CaseFactory;
+import p289hu.ekreta.ellenorzo.cases.factory.CaseFactoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.AttachmentRepository;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.AttachmentRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.AttachmentRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.CaseTypeRepository;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.CaseTypeRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.CaseTypeRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.ChildrenRepository;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.ChildrenRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.ChildrenRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.DecisionRepository;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.DecisionRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.DecisionRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.SignerRepository;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.SignerRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.SignerRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.TmgiCaseTypeRepository;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.TmgiCaseTypeRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.subModelRepositories.TmgiCaseTypeRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormActivity;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormFragment;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormFragmentModule;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormViewModel;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormViewModelImpl;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiFormViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiRepository;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiRepositoryImpl;
+import p289hu.ekreta.ellenorzo.cases.tmgi.TmgiRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterActivity;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterActivityModule;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterDao;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterDaoImpl;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterRepository;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterRepositoryImpl;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterViewModel;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterViewModelImpl;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMasterViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMastersFragment;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMastersFragmentModule;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMastersFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMastersFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMastersViewModel;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMastersViewModelImpl;
+import p289hu.ekreta.ellenorzo.classmaster.ClassMastersViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.configSettings.ConfigurationProvider;
+import p289hu.ekreta.ellenorzo.configSettings.ConfigurationProvider_Factory;
+import p289hu.ekreta.ellenorzo.configSettings.NotSupportedAppActivity;
+import p289hu.ekreta.ellenorzo.configSettings.NotSupportedAppActivityModule;
+import p289hu.ekreta.ellenorzo.configSettings.NotSupportedAppActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.configSettings.NotSupportedAppActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.configSettings.NotSupportedAppViewModel;
+import p289hu.ekreta.ellenorzo.configSettings.NotSupportedAppViewModelImpl;
+import p289hu.ekreta.ellenorzo.configSettings.NotSupportedAppViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.eKretaApp;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDao;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDaoImpl;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDetailsActivity;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDetailsActivityModule;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDetailsActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDetailsActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDetailsViewModel;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDetailsViewModelImpl;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationDetailsViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationRepository;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationRepositoryImpl;
+import p289hu.ekreta.ellenorzo.evaluation.EvaluationRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.file.FileAdapter;
+import p289hu.ekreta.ellenorzo.file.FileAdapterImpl_Factory;
+import p289hu.ekreta.ellenorzo.group.GroupDao;
+import p289hu.ekreta.ellenorzo.group.GroupDaoImpl;
+import p289hu.ekreta.ellenorzo.group.GroupDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.group.GroupRepository;
+import p289hu.ekreta.ellenorzo.group.GroupRepositoryImpl;
+import p289hu.ekreta.ellenorzo.group.GroupRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.home.HomeFragment;
+import p289hu.ekreta.ellenorzo.home.HomeFragmentModule;
+import p289hu.ekreta.ellenorzo.home.HomeFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.home.HomeFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.home.HomeViewModel;
+import p289hu.ekreta.ellenorzo.home.HomeViewModelImpl;
+import p289hu.ekreta.ellenorzo.home.HomeViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDao;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDaoImpl;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDetailActivity;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDetailActivityModule;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDetailViewModel;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.homework.HomeworkDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.homework.HomeworkRepository;
+import p289hu.ekreta.ellenorzo.homework.HomeworkRepositoryImpl;
+import p289hu.ekreta.ellenorzo.homework.HomeworkRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.homework.HomeworksFragment;
+import p289hu.ekreta.ellenorzo.homework.HomeworksFragmentModule;
+import p289hu.ekreta.ellenorzo.homework.HomeworksFragmentModule_ProvideReminderRepositoriesFactory;
+import p289hu.ekreta.ellenorzo.homework.HomeworksFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.homework.HomeworksFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.homework.comment.HomeworkCommentActivityModule;
+import p289hu.ekreta.ellenorzo.homework.comment.HomeworkCommentActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.homework.comment.HomeworkCommentFormActivity;
+import p289hu.ekreta.ellenorzo.homework.comment.HomeworkCommentFormActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.homework.comment.HomeworkCommentFormViewModel;
+import p289hu.ekreta.ellenorzo.homework.comment.HomeworkCommentFormViewModelImpl;
+import p289hu.ekreta.ellenorzo.homework.comment.HomeworkCommentFormViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.institute.InstitutePickerActivity;
+import p289hu.ekreta.ellenorzo.institute.InstitutePickerActivityModule;
+import p289hu.ekreta.ellenorzo.institute.InstitutePickerActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.institute.InstitutePickerActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.institute.InstitutePickerViewModel;
+import p289hu.ekreta.ellenorzo.institute.InstitutePickerViewModelImpl;
+import p289hu.ekreta.ellenorzo.institute.InstitutePickerViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.institute.InstituteRepository;
+import p289hu.ekreta.ellenorzo.institute.InstituteRepositoryImpl;
+import p289hu.ekreta.ellenorzo.institute.InstituteRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.login.LoginActivity;
+import p289hu.ekreta.ellenorzo.login.LoginActivityModule;
+import p289hu.ekreta.ellenorzo.login.LoginActivityModule_ProvideRxActivityResultFactory;
+import p289hu.ekreta.ellenorzo.login.LoginActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.login.LoginActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.login.LoginViewModel;
+import p289hu.ekreta.ellenorzo.login.LoginViewModelImpl;
+import p289hu.ekreta.ellenorzo.login.LoginViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.main.MainActivity;
+import p289hu.ekreta.ellenorzo.main.MainActivityModule;
+import p289hu.ekreta.ellenorzo.main.MainActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.main.MainActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.main.MainViewModel;
+import p289hu.ekreta.ellenorzo.main.MainViewModelImpl;
+import p289hu.ekreta.ellenorzo.main.MainViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.main.more.MoreFragment;
+import p289hu.ekreta.ellenorzo.main.more.MoreFragmentModule;
+import p289hu.ekreta.ellenorzo.main.more.MoreFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.main.more.MoreFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.message.MessageDao;
+import p289hu.ekreta.ellenorzo.message.MessageDaoImpl;
+import p289hu.ekreta.ellenorzo.message.MessageDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.message.MessageDetailActivity;
+import p289hu.ekreta.ellenorzo.message.MessageDetailActivityModule;
+import p289hu.ekreta.ellenorzo.message.MessageDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.message.MessageDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.message.MessageDetailViewModel;
+import p289hu.ekreta.ellenorzo.message.MessageDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.message.MessageDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.message.MessageRepository;
+import p289hu.ekreta.ellenorzo.message.MessageRepositoryImpl;
+import p289hu.ekreta.ellenorzo.message.MessageRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.message.MessagesFragment;
+import p289hu.ekreta.ellenorzo.message.MessagesFragmentModule;
+import p289hu.ekreta.ellenorzo.message.MessagesFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.message.MessagesFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.message.MessagesService;
+import p289hu.ekreta.ellenorzo.message.MessagesServiceImpl;
+import p289hu.ekreta.ellenorzo.message.MessagesServiceImpl_Factory;
+import p289hu.ekreta.ellenorzo.message.MessagesViewModel;
+import p289hu.ekreta.ellenorzo.message.MessagesViewModelImpl;
+import p289hu.ekreta.ellenorzo.message.MessagesViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.newmessage.model.NewMessageService;
+import p289hu.ekreta.ellenorzo.newmessage.model.NewMessageServiceImpl;
+import p289hu.ekreta.ellenorzo.newmessage.model.NewMessageServiceImpl_Factory;
+import p289hu.ekreta.ellenorzo.newmessage.view.NewMessageActivity;
+import p289hu.ekreta.ellenorzo.newmessage.view.NewMessageActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.newmessage.viewmodel.NewMessageViewModel;
+import p289hu.ekreta.ellenorzo.newmessage.viewmodel.NewMessageViewModelImpl;
+import p289hu.ekreta.ellenorzo.newmessage.viewmodel.NewMessageViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.newmessage.viewmodel.NewMessagesModule;
+import p289hu.ekreta.ellenorzo.newmessage.viewmodel.NewMessagesModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.notes.NoteDao;
+import p289hu.ekreta.ellenorzo.notes.NoteDaoImpl;
+import p289hu.ekreta.ellenorzo.notes.NoteDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.notes.NoteDetailsActivity;
+import p289hu.ekreta.ellenorzo.notes.NoteDetailsActivityModule;
+import p289hu.ekreta.ellenorzo.notes.NoteDetailsActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.notes.NoteDetailsActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.notes.NoteDetailsViewModel;
+import p289hu.ekreta.ellenorzo.notes.NoteDetailsViewModelImpl;
+import p289hu.ekreta.ellenorzo.notes.NoteDetailsViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.notes.NotesFragment;
+import p289hu.ekreta.ellenorzo.notes.NotesFragmentModule;
+import p289hu.ekreta.ellenorzo.notes.NotesFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.notes.NotesFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.notes.NotesRepository;
+import p289hu.ekreta.ellenorzo.notes.NotesRepositoryImpl;
+import p289hu.ekreta.ellenorzo.notes.NotesRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.notes.NotesViewModel;
+import p289hu.ekreta.ellenorzo.notes.NotesViewModelImpl;
+import p289hu.ekreta.ellenorzo.notes.NotesViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardFragment;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardFragmentModule;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardItemDao;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardItemDaoImpl;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardItemDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardItemRepository;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardItemRepositoryImpl;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardItemRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardViewModel;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardViewModelImpl;
+import p289hu.ekreta.ellenorzo.noticeboard.NoticeBoardViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.noticeboard.detail.NoticeBoardItemDetailActivity;
+import p289hu.ekreta.ellenorzo.noticeboard.detail.NoticeBoardItemDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.noticeboard.detail.NoticeBoardItemDetailViewModel;
+import p289hu.ekreta.ellenorzo.noticeboard.detail.NoticeBoardItemDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.noticeboard.detail.NoticeBoardItemDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.noticeboard.detail.NoticeBoardItemDetailsActivityModule;
+import p289hu.ekreta.ellenorzo.noticeboard.detail.NoticeBoardItemDetailsActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.notification.EllenorzoFirebaseMessagingService;
+import p289hu.ekreta.ellenorzo.notification.EllenorzoFirebaseMessagingService_MembersInjector;
+import p289hu.ekreta.ellenorzo.notification.NotificationDao;
+import p289hu.ekreta.ellenorzo.notification.NotificationDaoImpl;
+import p289hu.ekreta.ellenorzo.notification.NotificationDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.notification.NotificationRepository;
+import p289hu.ekreta.ellenorzo.notification.NotificationRepositoryImpl;
+import p289hu.ekreta.ellenorzo.notification.NotificationRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.notification.NotificationStrategy;
+import p289hu.ekreta.ellenorzo.notification.NotificationStrategyImpl;
+import p289hu.ekreta.ellenorzo.notification.NotificationStrategyImpl_Factory;
+import p289hu.ekreta.ellenorzo.omission.DailyOmissionsActivity;
+import p289hu.ekreta.ellenorzo.omission.DailyOmissionsActivityModule;
+import p289hu.ekreta.ellenorzo.omission.DailyOmissionsActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.omission.DailyOmissionsActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.omission.DailyOmissionsViewModel;
+import p289hu.ekreta.ellenorzo.omission.DailyOmissionsViewModelImpl;
+import p289hu.ekreta.ellenorzo.omission.DailyOmissionsViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.omission.OmissionDao;
+import p289hu.ekreta.ellenorzo.omission.OmissionDaoImpl;
+import p289hu.ekreta.ellenorzo.omission.OmissionDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.omission.OmissionDetailActivity;
+import p289hu.ekreta.ellenorzo.omission.OmissionDetailActivityModule;
+import p289hu.ekreta.ellenorzo.omission.OmissionDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.omission.OmissionDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.omission.OmissionDetailViewModel;
+import p289hu.ekreta.ellenorzo.omission.OmissionDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.omission.OmissionDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.omission.OmissionFragmentModule;
+import p289hu.ekreta.ellenorzo.omission.OmissionFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.omission.OmissionRepository;
+import p289hu.ekreta.ellenorzo.omission.OmissionRepositoryImpl;
+import p289hu.ekreta.ellenorzo.omission.OmissionRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.omission.OmissionsPerDayFragment;
+import p289hu.ekreta.ellenorzo.omission.OmissionsPerDayFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.omission.OmissionsPerDayViewModel;
+import p289hu.ekreta.ellenorzo.omission.OmissionsPerDayViewModelImpl;
+import p289hu.ekreta.ellenorzo.omission.OmissionsPerDayViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.p290di.C4131xe87d6744.DailyOmissionsActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4132xe537265.EvaluationDetailsActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4133xd2367bce.HomeworkCommentFormActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4134xa896e468.HomeworkDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4135xe3382b02.InstitutePickerActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4136x3860f192.NewMessageActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4137x9cadb05.NotSupportedAppActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4138xef493768.NoticeBoardItemDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4139x83e39e75.OmissionDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4140xcc3072e0.RootedDeviceDetectedActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4141x32329c2d.AnnouncedTestsFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4142x1e551236.OmissionsPerDayFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.C4143xebf5e6.EllenorzoFirebaseMessagingServiceSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCaseDetailsActivityInjector.CaseDetailsActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCasesActivityInjector.CasesFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeExamDetailActivityInjector.AnnouncedTestDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLessonDetailActivityInjector.TimeTableItemDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLoginActivityInjector.LoginActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMainActivityInjector.MainActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMessageDetailActivityInjector.MessageDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeNoteDetailsActivityInjector.NoteDetailsActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileDetailActivityInjector.ProfileDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileListActivityInjector.ProfileListActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeRectificationActivityInjector.DecisionDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSenderActivityInjector.ClassMasterActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSettingsActivityInjector.SettingsActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSplashActivityInjector.SplashActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSubjectDetailActivityInjector.SubjectDetailActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeTgmiFormActivityInjector.TmgiFormActivitySubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAboutFragmentInjector.AboutFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAveragesFragmentInjector.AveragesFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeClassMastersFragmentInjector.ClassMastersFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeEndOfYearFragmentInjector.EndOfYearFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHalfYearFragmentInjector.HalfYearFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeFragmentInjector.HomeFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeworksFragmentInjector.HomeworksFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMessagesFragmentInjector.MessagesFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMoreFragmentInjector.MoreFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNotesFragmentInjector.NotesFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNoticeBoardFragmentInjector.NoticeBoardFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeQuarterlyFragmentInjector.QuarterlyFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeRemindersFragmentInjector.RemindersFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeSubjectsFragmentInjector.SubjectsFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTimeTableFragmentInjector.TimeTableFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTmgiFormFragmentInjector.TmgiFormFragmentSubcomponent;
+import p289hu.ekreta.ellenorzo.profile.DeleteProfileStrategy;
+import p289hu.ekreta.ellenorzo.profile.DeleteProfileStrategyImpl;
+import p289hu.ekreta.ellenorzo.profile.DeleteProfileStrategyImpl_Factory;
+import p289hu.ekreta.ellenorzo.profile.GuardianDao;
+import p289hu.ekreta.ellenorzo.profile.GuardianDaoImpl;
+import p289hu.ekreta.ellenorzo.profile.GuardianDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.profile.ProfileDao;
+import p289hu.ekreta.ellenorzo.profile.ProfileDaoImpl;
+import p289hu.ekreta.ellenorzo.profile.ProfileDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.profile.ProfileRepository;
+import p289hu.ekreta.ellenorzo.profile.ProfileRepositoryImpl;
+import p289hu.ekreta.ellenorzo.profile.ProfileRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.profile.ProfileService;
+import p289hu.ekreta.ellenorzo.profile.ProfileServiceImpl;
+import p289hu.ekreta.ellenorzo.profile.ProfileServiceImpl_Factory;
+import p289hu.ekreta.ellenorzo.profile.UpdateProfileStrategy;
+import p289hu.ekreta.ellenorzo.profile.UpdateProfileStrategyImpl;
+import p289hu.ekreta.ellenorzo.profile.UpdateProfileStrategyImpl_Factory;
+import p289hu.ekreta.ellenorzo.profile.detail.ProfileDetailActivity;
+import p289hu.ekreta.ellenorzo.profile.detail.ProfileDetailActivityModule;
+import p289hu.ekreta.ellenorzo.profile.detail.ProfileDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.profile.detail.ProfileDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.profile.detail.ProfileDetailViewModel;
+import p289hu.ekreta.ellenorzo.profile.detail.ProfileDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.profile.detail.ProfileDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.profile.list.ProfileListActivity;
+import p289hu.ekreta.ellenorzo.profile.list.ProfileListActivityModule;
+import p289hu.ekreta.ellenorzo.profile.list.ProfileListActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.profile.list.ProfileListActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.profile.list.ProfileListViewModel;
+import p289hu.ekreta.ellenorzo.profile.list.ProfileListViewModelImpl;
+import p289hu.ekreta.ellenorzo.profile.list.ProfileListViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.reminder.ReminderRepository;
+import p289hu.ekreta.ellenorzo.reminder.RemindersFragment;
+import p289hu.ekreta.ellenorzo.reminder.RemindersFragmentModule;
+import p289hu.ekreta.ellenorzo.reminder.RemindersFragmentModule_ProvideReminderRepositoriesFactory;
+import p289hu.ekreta.ellenorzo.reminder.RemindersFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.reminder.RemindersFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.reminder.RemindersViewModel;
+import p289hu.ekreta.ellenorzo.reminder.RemindersViewModelImpl;
+import p289hu.ekreta.ellenorzo.reminder.RemindersViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.rest.EAdminApi;
+import p289hu.ekreta.ellenorzo.rest.GlobalMobileApi;
+import p289hu.ekreta.ellenorzo.rest.Idp;
+import p289hu.ekreta.ellenorzo.rest.MobileApiV3;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.DetectRootedDevice;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.DetectRootedDeviceImpl;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.DetectRootedDeviceImpl_Factory;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.RootedDeviceDetectedActivity;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.RootedDeviceDetectedActivityModule;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.RootedDeviceDetectedActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.RootedDeviceDetectedActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.RootedDeviceDetectedViewModel;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.RootedDeviceDetectedViewModelImpl;
+import p289hu.ekreta.ellenorzo.rootedDeviceDetected.RootedDeviceDetectedViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.schoolYearCalendar.SchoolYearCalendarDao;
+import p289hu.ekreta.ellenorzo.schoolYearCalendar.SchoolYearCalendarDaoImpl;
+import p289hu.ekreta.ellenorzo.schoolYearCalendar.SchoolYearCalendarDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.schoolYearCalendar.SchoolYearCalendarRepository;
+import p289hu.ekreta.ellenorzo.schoolYearCalendar.SchoolYearCalendarRepositoryImpl;
+import p289hu.ekreta.ellenorzo.schoolYearCalendar.SchoolYearCalendarRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.secure.KeyStoreAdapter;
+import p289hu.ekreta.ellenorzo.secure.RealmSecureStore;
+import p289hu.ekreta.ellenorzo.secure.RealmSecureStoreImpl;
+import p289hu.ekreta.ellenorzo.secure.RealmSecureStoreImpl_Factory;
+import p289hu.ekreta.ellenorzo.settings.SettingsActivity;
+import p289hu.ekreta.ellenorzo.settings.SettingsActivityModule;
+import p289hu.ekreta.ellenorzo.settings.SettingsActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.settings.SettingsActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.settings.SettingsViewModel;
+import p289hu.ekreta.ellenorzo.settings.SettingsViewModelImpl;
+import p289hu.ekreta.ellenorzo.settings.SettingsViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.splash.SplashActivity;
+import p289hu.ekreta.ellenorzo.splash.SplashActivityModule;
+import p289hu.ekreta.ellenorzo.splash.SplashActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.splash.SplashActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.splash.SplashViewModel;
+import p289hu.ekreta.ellenorzo.splash.SplashViewModelImpl;
+import p289hu.ekreta.ellenorzo.splash.SplashViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.SubjectDao;
+import p289hu.ekreta.ellenorzo.subject.SubjectDaoImpl;
+import p289hu.ekreta.ellenorzo.subject.SubjectDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.SubjectsFragment;
+import p289hu.ekreta.ellenorzo.subject.SubjectsFragmentModule;
+import p289hu.ekreta.ellenorzo.subject.SubjectsFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.subject.SubjectsFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.subject.SubjectsRepository;
+import p289hu.ekreta.ellenorzo.subject.SubjectsRepositoryImpl;
+import p289hu.ekreta.ellenorzo.subject.SubjectsRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.SubjectsViewModel;
+import p289hu.ekreta.ellenorzo.subject.SubjectsViewModelImpl;
+import p289hu.ekreta.ellenorzo.subject.SubjectsViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.averages.AveragesFragment;
+import p289hu.ekreta.ellenorzo.subject.averages.AveragesFragmentModule;
+import p289hu.ekreta.ellenorzo.subject.averages.AveragesFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.subject.averages.AveragesFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.subject.averages.AveragesViewModel;
+import p289hu.ekreta.ellenorzo.subject.averages.AveragesViewModelImpl;
+import p289hu.ekreta.ellenorzo.subject.averages.AveragesViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.certificate.endofyear.EndOfYearFragment;
+import p289hu.ekreta.ellenorzo.subject.certificate.endofyear.EndOfYearFragmentModule;
+import p289hu.ekreta.ellenorzo.subject.certificate.endofyear.EndOfYearFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.subject.certificate.endofyear.EndOfYearFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.subject.certificate.endofyear.EndOfYearViewModel;
+import p289hu.ekreta.ellenorzo.subject.certificate.endofyear.EndOfYearViewModelImpl;
+import p289hu.ekreta.ellenorzo.subject.certificate.endofyear.EndOfYearViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.certificate.halfyear.HalfYearFragment;
+import p289hu.ekreta.ellenorzo.subject.certificate.halfyear.HalfYearFragmentModule;
+import p289hu.ekreta.ellenorzo.subject.certificate.halfyear.HalfYearFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.subject.certificate.halfyear.HalfYearFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.subject.certificate.halfyear.HalfYearViewModel;
+import p289hu.ekreta.ellenorzo.subject.certificate.halfyear.HalfYearViewModelImpl;
+import p289hu.ekreta.ellenorzo.subject.certificate.halfyear.HalfYearViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.certificate.quarterly.QuarterlyFragment;
+import p289hu.ekreta.ellenorzo.subject.certificate.quarterly.QuarterlyFragmentModule;
+import p289hu.ekreta.ellenorzo.subject.certificate.quarterly.QuarterlyFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.subject.certificate.quarterly.QuarterlyFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.subject.certificate.quarterly.QuarterlyViewModel;
+import p289hu.ekreta.ellenorzo.subject.certificate.quarterly.QuarterlyViewModelImpl;
+import p289hu.ekreta.ellenorzo.subject.certificate.quarterly.QuarterlyViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.subject.detail.SubjectDetailActivity;
+import p289hu.ekreta.ellenorzo.subject.detail.SubjectDetailActivityModule;
+import p289hu.ekreta.ellenorzo.subject.detail.SubjectDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.subject.detail.SubjectDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.subject.detail.SubjectDetailViewModel;
+import p289hu.ekreta.ellenorzo.subject.detail.SubjectDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.subject.detail.SubjectDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableFragment;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableFragmentModule;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableFragmentModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableFragment_MembersInjector;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemDao;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemDaoImpl;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemDaoImpl_Factory;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemRepository;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemRepositoryImpl;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemRepositoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemService;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemServiceImpl;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableItemServiceImpl_Factory;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableViewModel;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableViewModelImpl;
+import p289hu.ekreta.ellenorzo.timetable.TimeTableViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailActivity;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailActivityModule;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailActivityModule_ProvideRxActivityResultFactory;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailActivityModule_ProvideViewModelFactory;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailActivity_MembersInjector;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailViewModel;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailViewModelImpl;
+import p289hu.ekreta.ellenorzo.timetable.detail.TimeTableItemDetailViewModelImpl_Factory;
+import p289hu.ekreta.ellenorzo.util.datetime.DateTimeFactory;
+import p289hu.ekreta.ellenorzo.util.datetime.DateTimeFactoryImpl_Factory;
+import p289hu.ekreta.ellenorzo.util.firebase.FirebaseContainer;
+import p289hu.ekreta.ellenorzo.util.firebase.FirebaseContainerImpl;
+import p289hu.ekreta.ellenorzo.util.firebase.FirebaseContainerImpl_Factory;
+import p289hu.ekreta.ellenorzo.util.powersaver.PowerSaverChecker;
+import p289hu.ekreta.ellenorzo.util.powersaver.PowerSaverCheckerImpl;
+import p289hu.ekreta.ellenorzo.util.powersaver.PowerSaverCheckerImpl_Factory;
+import p289hu.ekreta.ellenorzo.util.realm.RealmWrapper;
+import p289hu.ekreta.ellenorzo.util.realm.RealmWrapperImpl;
+import p289hu.ekreta.ellenorzo.util.realm.RealmWrapperImpl_Factory;
+import p289hu.ekreta.ellenorzo.util.viewmodel.ExecuteOnceUiCommandSource_Factory;
+import p289hu.ekreta.ellenorzo.util.viewmodel.ObservableImpl_Factory;
+import p292i.p293c.C4448a.C4450b;
+import p292i.p293c.C4451b;
+import p292i.p293c.p294h.C4458b;
+import p292i.p295d.C4461a;
+import p292i.p295d.C4462b;
+import p292i.p295d.C4464d;
+import p300k.p340c.C5061c0;
+import p351l.p352a.C5431a;
+import p353m.C5581y.C5583b;
+import p380p.C5788o.C5790b;
+
+/* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent */
+public final class DaggerAppComponent implements AppComponent {
+
+    /* renamed from: A */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMoreFragmentInjector.MoreFragmentSubcomponent.Builder> f12623A = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMoreFragmentInjector.MoreFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMoreFragmentInjector.MoreFragmentSubcomponent.Builder get() {
+            return new MoreFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: A0 */
+    public C5431a<SchoolYearCalendarDaoImpl> f12624A0;
+
+    /* renamed from: A1 */
+    public C5431a<AnnouncedTestRepositoryImpl> f12625A1;
+
+    /* renamed from: B */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAveragesFragmentInjector.AveragesFragmentSubcomponent.Builder> f12626B = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAveragesFragmentInjector.AveragesFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAveragesFragmentInjector.AveragesFragmentSubcomponent.Builder get() {
+            return new AveragesFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: B0 */
+    public C5431a<SchoolYearCalendarDao> f12627B0;
+
+    /* renamed from: B1 */
+    public C5431a<AnnouncedTestRepository> f12628B1;
+
+    /* renamed from: C */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeSubjectsFragmentInjector.SubjectsFragmentSubcomponent.Builder> f12629C = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeSubjectsFragmentInjector.SubjectsFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeSubjectsFragmentInjector.SubjectsFragmentSubcomponent.Builder get() {
+            return new SubjectsFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: C0 */
+    public C5431a<SchoolYearCalendarRepositoryImpl> f12630C0;
+
+    /* renamed from: C1 */
+    public C5431a<TimeTableItemDaoImpl> f12631C1;
+
+    /* renamed from: D */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHalfYearFragmentInjector.HalfYearFragmentSubcomponent.Builder> f12632D = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHalfYearFragmentInjector.HalfYearFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHalfYearFragmentInjector.HalfYearFragmentSubcomponent.Builder get() {
+            return new HalfYearFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: D0 */
+    public C5431a<SchoolYearCalendarRepository> f12633D0;
+
+    /* renamed from: D1 */
+    public C5431a<TimeTableItemDao> f12634D1;
+
+    /* renamed from: E */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeEndOfYearFragmentInjector.EndOfYearFragmentSubcomponent.Builder> f12635E = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeEndOfYearFragmentInjector.EndOfYearFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeEndOfYearFragmentInjector.EndOfYearFragmentSubcomponent.Builder get() {
+            return new EndOfYearFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: E0 */
+    public C5431a<String> f12636E0;
+
+    /* renamed from: E1 */
+    public C5431a<TimeTableItemServiceImpl> f12637E1;
+
+    /* renamed from: F */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeQuarterlyFragmentInjector.QuarterlyFragmentSubcomponent.Builder> f12638F = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeQuarterlyFragmentInjector.QuarterlyFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeQuarterlyFragmentInjector.QuarterlyFragmentSubcomponent.Builder get() {
+            return new QuarterlyFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: F0 */
+    public C5431a<EAdminApi> f12639F0;
+
+    /* renamed from: F1 */
+    public C5431a<TimeTableItemService> f12640F1;
+
+    /* renamed from: G */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTimeTableFragmentInjector.TimeTableFragmentSubcomponent.Builder> f12641G = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTimeTableFragmentInjector.TimeTableFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTimeTableFragmentInjector.TimeTableFragmentSubcomponent.Builder get() {
+            return new TimeTableFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: G0 */
+    public C5431a<ProfileServiceImpl> f12642G0;
+
+    /* renamed from: G1 */
+    public C5431a<TimeTableItemRepositoryImpl> f12643G1;
+
+    /* renamed from: H */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNotesFragmentInjector.NotesFragmentSubcomponent.Builder> f12644H = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNotesFragmentInjector.NotesFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNotesFragmentInjector.NotesFragmentSubcomponent.Builder get() {
+            return new NotesFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: H0 */
+    public C5431a<ProfileService> f12645H0;
+
+    /* renamed from: H1 */
+    public C5431a<TimeTableItemRepository> f12646H1;
+
+    /* renamed from: I */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeRemindersFragmentInjector.RemindersFragmentSubcomponent.Builder> f12647I = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeRemindersFragmentInjector.RemindersFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeRemindersFragmentInjector.RemindersFragmentSubcomponent.Builder get() {
+            return new RemindersFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: I0 */
+    public C5431a<GroupDaoImpl> f12648I0;
+
+    /* renamed from: I1 */
+    public C5431a<FileAdapter> f12649I1;
+
+    /* renamed from: J */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4142x1e551236.OmissionsPerDayFragmentSubcomponent.Builder> f12650J = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4142x1e551236.OmissionsPerDayFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4142x1e551236.OmissionsPerDayFragmentSubcomponent.Builder get() {
+            return new OmissionsPerDayFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: J0 */
+    public C5431a<GroupDao> f12651J0;
+
+    /* renamed from: J1 */
+    public C5431a<AttachmentServiceImpl> f12652J1;
+
+    /* renamed from: K */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMessagesFragmentInjector.MessagesFragmentSubcomponent.Builder> f12653K = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMessagesFragmentInjector.MessagesFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMessagesFragmentInjector.MessagesFragmentSubcomponent.Builder get() {
+            return new MessagesFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: K0 */
+    public C5431a<GroupRepositoryImpl> f12654K0;
+
+    /* renamed from: K1 */
+    public C5431a<AttachmentService> f12655K1;
+
+    /* renamed from: L */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNoticeBoardFragmentInjector.NoticeBoardFragmentSubcomponent.Builder> f12656L = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNoticeBoardFragmentInjector.NoticeBoardFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNoticeBoardFragmentInjector.NoticeBoardFragmentSubcomponent.Builder get() {
+            return new NoticeBoardFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: L0 */
+    public C5431a<GroupRepository> f12657L0;
+
+    /* renamed from: L1 */
+    public C5431a<ClassMasterDaoImpl> f12658L1;
+
+    /* renamed from: M */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeFragmentInjector.HomeFragmentSubcomponent.Builder> f12659M = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeFragmentInjector.HomeFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeFragmentInjector.HomeFragmentSubcomponent.Builder get() {
+            return new HomeFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: M0 */
+    public C5431a<UpdateProfileStrategyImpl> f12660M0;
+
+    /* renamed from: M1 */
+    public C5431a<ClassMasterDao> f12661M1;
+
+    /* renamed from: N */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAboutFragmentInjector.AboutFragmentSubcomponent.Builder> f12662N = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAboutFragmentInjector.AboutFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAboutFragmentInjector.AboutFragmentSubcomponent.Builder get() {
+            return new AboutFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: N0 */
+    public C5431a<UpdateProfileStrategy> f12663N0;
+
+    /* renamed from: N1 */
+    public C5431a<ClassMasterRepositoryImpl> f12664N1;
+
+    /* renamed from: O */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeworksFragmentInjector.HomeworksFragmentSubcomponent.Builder> f12665O = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeworksFragmentInjector.HomeworksFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeworksFragmentInjector.HomeworksFragmentSubcomponent.Builder get() {
+            return new HomeworksFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: O0 */
+    public C5431a<DateTimeFactory> f12666O0;
+
+    /* renamed from: O1 */
+    public C5431a<ClassMasterRepository> f12667O1;
+
+    /* renamed from: P */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4141x32329c2d.AnnouncedTestsFragmentSubcomponent.Builder> f12668P = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4141x32329c2d.AnnouncedTestsFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4141x32329c2d.AnnouncedTestsFragmentSubcomponent.Builder get() {
+            return new AnnouncedTestsFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: P0 */
+    public C5431a<List<SupportedRole>> f12669P0;
+
+    /* renamed from: P1 */
+    public C5431a<CaseFactory> f12670P1;
+
+    /* renamed from: Q */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTmgiFormFragmentInjector.TmgiFormFragmentSubcomponent.Builder> f12671Q = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTmgiFormFragmentInjector.TmgiFormFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTmgiFormFragmentInjector.TmgiFormFragmentSubcomponent.Builder get() {
+            return new TmgiFormFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: Q0 */
+    public C5431a<AuthenticationServiceImpl> f12672Q0;
+
+    /* renamed from: Q1 */
+    public C5431a<CaseDaoImpl> f12673Q1;
+
+    /* renamed from: R */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeClassMastersFragmentInjector.ClassMastersFragmentSubcomponent.Builder> f12674R = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeClassMastersFragmentInjector.ClassMastersFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeClassMastersFragmentInjector.ClassMastersFragmentSubcomponent.Builder get() {
+            return new ClassMastersFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: R0 */
+    public C5431a<InstituteRepositoryImpl> f12675R0;
+
+    /* renamed from: R1 */
+    public C5431a<CaseDao> f12676R1;
+
+    /* renamed from: S */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4143xebf5e6.EllenorzoFirebaseMessagingServiceSubcomponent.Builder> f12677S = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4143xebf5e6.EllenorzoFirebaseMessagingServiceSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4143xebf5e6.EllenorzoFirebaseMessagingServiceSubcomponent.Builder get() {
+            return new EllenorzoFirebaseMessagingServiceSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: S0 */
+    public C5431a<InstituteRepository> f12678S0;
+
+    /* renamed from: S1 */
+    public C5431a<CaseRepositoryImpl> f12679S1;
+
+    /* renamed from: T */
+    public C5431a<eKretaApp> f12680T;
+
+    /* renamed from: T0 */
+    public C5431a<Long> f12681T0;
+
+    /* renamed from: T1 */
+    public C5431a<CaseRepository> f12682T1;
+
+    /* renamed from: U */
+    public C5431a<Application> f12683U;
+
+    /* renamed from: U0 */
+    public C5431a<String> f12684U0;
+
+    /* renamed from: U1 */
+    public C5431a<SignerRepositoryImpl> f12685U1;
+
+    /* renamed from: V */
+    public C5431a<String> f12686V;
+
+    /* renamed from: V0 */
+    public C5431a<ConfigurationProvider> f12687V0;
+
+    /* renamed from: V1 */
+    public C5431a<SignerRepository> f12688V1;
+
+    /* renamed from: W */
+    public C5431a<C5790b> f12689W;
+
+    /* renamed from: W0 */
+    public C5431a<PowerSaverCheckerImpl> f12690W0;
+
+    /* renamed from: W1 */
+    public C5431a<ContentResolver> f12691W1;
+
+    /* renamed from: X */
+    public C5431a<PackageInfo> f12692X;
+
+    /* renamed from: X0 */
+    public C5431a<PowerSaverChecker> f12693X0;
+
+    /* renamed from: X1 */
+    public C5431a<AttachmentRepositoryImpl> f12694X1;
+
+    /* renamed from: Y */
+    public C5431a<String> f12695Y;
+
+    /* renamed from: Y0 */
+    public C5431a<C2723b> f12696Y0;
+
+    /* renamed from: Y1 */
+    public C5431a<AttachmentRepository> f12697Y1;
+
+    /* renamed from: Z */
+    public C5431a<String> f12698Z;
+
+    /* renamed from: Z0 */
+    public C5431a<DetectRootedDeviceImpl> f12699Z0;
+
+    /* renamed from: Z1 */
+    public C5431a<DecisionRepositoryImpl> f12700Z1;
+
+    /* renamed from: a */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLoginActivityInjector.LoginActivitySubcomponent.Builder> f12701a = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLoginActivityInjector.LoginActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLoginActivityInjector.LoginActivitySubcomponent.Builder get() {
+            return new LoginActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: a0 */
+    public C5431a<C5583b> f12702a0;
+
+    /* renamed from: a1 */
+    public C5431a<DetectRootedDevice> f12703a1;
+
+    /* renamed from: a2 */
+    public C5431a<DecisionRepository> f12704a2;
+
+    /* renamed from: b */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4135xe3382b02.InstitutePickerActivitySubcomponent.Builder> f12705b = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4135xe3382b02.InstitutePickerActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4135xe3382b02.InstitutePickerActivitySubcomponent.Builder get() {
+            return new InstitutePickerActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: b0 */
+    public C5431a<String> f12706b0;
+
+    /* renamed from: b1 */
+    public C5431a<Boolean> f12707b1;
+
+    /* renamed from: b2 */
+    public C5431a<CaseTypeRepositoryImpl> f12708b2;
+
+    /* renamed from: c */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSplashActivityInjector.SplashActivitySubcomponent.Builder> f12709c = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSplashActivityInjector.SplashActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSplashActivityInjector.SplashActivitySubcomponent.Builder get() {
+            return new SplashActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: c0 */
+    public C5431a<Idp> f12710c0;
+
+    /* renamed from: c1 */
+    public C5431a<RealmWrapperImpl> f12711c1;
+
+    /* renamed from: c2 */
+    public C5431a<CaseTypeRepository> f12712c2;
+
+    /* renamed from: d */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMainActivityInjector.MainActivitySubcomponent.Builder> f12713d = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMainActivityInjector.MainActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMainActivityInjector.MainActivitySubcomponent.Builder get() {
+            return new MainActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: d0 */
+    public C5431a<KeyStoreAdapter> f12714d0;
+
+    /* renamed from: d1 */
+    public C5431a<RealmWrapper> f12715d1;
+
+    /* renamed from: d2 */
+    public C5431a<NewMessageServiceImpl> f12716d2;
+
+    /* renamed from: e */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileListActivityInjector.ProfileListActivitySubcomponent.Builder> f12717e = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileListActivityInjector.ProfileListActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileListActivityInjector.ProfileListActivitySubcomponent.Builder get() {
+            return new ProfileListActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: e0 */
+    public C5431a<SharedPreferences> f12718e0;
+
+    /* renamed from: e1 */
+    public C5431a<OmissionDaoImpl> f12719e1;
+
+    /* renamed from: e2 */
+    public C5431a<NewMessageService> f12720e2;
+
+    /* renamed from: f */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileDetailActivityInjector.ProfileDetailActivitySubcomponent.Builder> f12721f = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileDetailActivityInjector.ProfileDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileDetailActivityInjector.ProfileDetailActivitySubcomponent.Builder get() {
+            return new ProfileDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: f0 */
+    public C5431a<RealmSecureStoreImpl> f12722f0;
+
+    /* renamed from: f1 */
+    public C5431a<OmissionDao> f12723f1;
+
+    /* renamed from: f2 */
+    public C5431a<NoteDaoImpl> f12724f2;
+
+    /* renamed from: g */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSettingsActivityInjector.SettingsActivitySubcomponent.Builder> f12725g = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSettingsActivityInjector.SettingsActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSettingsActivityInjector.SettingsActivitySubcomponent.Builder get() {
+            return new SettingsActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: g0 */
+    public C5431a<RealmSecureStore> f12726g0;
+
+    /* renamed from: g1 */
+    public C5431a<OmissionRepositoryImpl> f12727g1;
+
+    /* renamed from: g2 */
+    public C5431a<NoteDao> f12728g2;
+
+    /* renamed from: h */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSubjectDetailActivityInjector.SubjectDetailActivitySubcomponent.Builder> f12729h = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSubjectDetailActivityInjector.SubjectDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSubjectDetailActivityInjector.SubjectDetailActivitySubcomponent.Builder get() {
+            return new SubjectDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: h0 */
+    public C5431a<C5061c0> f12730h0;
+
+    /* renamed from: h1 */
+    public C5431a<OmissionRepository> f12731h1;
+
+    /* renamed from: h2 */
+    public C5431a<NotesRepositoryImpl> f12732h2;
+
+    /* renamed from: i */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4132xe537265.EvaluationDetailsActivitySubcomponent.Builder> f12733i = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4132xe537265.EvaluationDetailsActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4132xe537265.EvaluationDetailsActivitySubcomponent.Builder get() {
+            return new EvaluationDetailsActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: i0 */
+    public C5431a<ProfileDaoImpl> f12734i0;
+
+    /* renamed from: i1 */
+    public C5431a<MessageDaoImpl> f12735i1;
+
+    /* renamed from: i2 */
+    public C5431a<NotesRepository> f12736i2;
+
+    /* renamed from: j */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLessonDetailActivityInjector.TimeTableItemDetailActivitySubcomponent.Builder> f12737j = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLessonDetailActivityInjector.TimeTableItemDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLessonDetailActivityInjector.TimeTableItemDetailActivitySubcomponent.Builder get() {
+            return new TimeTableItemDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: j0 */
+    public C5431a<ProfileDao> f12738j0;
+
+    /* renamed from: j1 */
+    public C5431a<MessageDao> f12739j1;
+
+    /* renamed from: j2 */
+    public C5431a<MessagesServiceImpl> f12740j2;
+
+    /* renamed from: k */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMessageDetailActivityInjector.MessageDetailActivitySubcomponent.Builder> f12741k = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMessageDetailActivityInjector.MessageDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMessageDetailActivityInjector.MessageDetailActivitySubcomponent.Builder get() {
+            return new MessageDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: k0 */
+    public C5431a<GuardianDaoImpl> f12742k0;
+
+    /* renamed from: k1 */
+    public C5431a<MessageRepositoryImpl> f12743k1;
+
+    /* renamed from: k2 */
+    public C5431a<MessagesService> f12744k2;
+
+    /* renamed from: l */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeNoteDetailsActivityInjector.NoteDetailsActivitySubcomponent.Builder> f12745l = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeNoteDetailsActivityInjector.NoteDetailsActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeNoteDetailsActivityInjector.NoteDetailsActivitySubcomponent.Builder get() {
+            return new NoteDetailsActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: l0 */
+    public C5431a<GuardianDao> f12746l0;
+
+    /* renamed from: l1 */
+    public C5431a<MessageRepository> f12747l1;
+
+    /* renamed from: l2 */
+    public C5431a<NoticeBoardItemDaoImpl> f12748l2;
+
+    /* renamed from: m */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4138xef493768.NoticeBoardItemDetailActivitySubcomponent.Builder> f12749m = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4138xef493768.NoticeBoardItemDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4138xef493768.NoticeBoardItemDetailActivitySubcomponent.Builder get() {
+            return new NoticeBoardItemDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: m0 */
+    public C5431a<GlobalMobileApi> f12750m0;
+
+    /* renamed from: m1 */
+    public C5431a<SubjectDaoImpl> f12751m1;
+
+    /* renamed from: m2 */
+    public C5431a<NoticeBoardItemDao> f12752m2;
+
+    /* renamed from: n */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4131xe87d6744.DailyOmissionsActivitySubcomponent.Builder> f12753n = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4131xe87d6744.DailyOmissionsActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4131xe87d6744.DailyOmissionsActivitySubcomponent.Builder get() {
+            return new DailyOmissionsActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: n0 */
+    public C5431a<NotificationDaoImpl> f12754n0;
+
+    /* renamed from: n1 */
+    public C5431a<SubjectDao> f12755n1;
+
+    /* renamed from: n2 */
+    public C5431a<NoticeBoardItemRepositoryImpl> f12756n2;
+
+    /* renamed from: o */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4139x83e39e75.OmissionDetailActivitySubcomponent.Builder> f12757o = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4139x83e39e75.OmissionDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4139x83e39e75.OmissionDetailActivitySubcomponent.Builder get() {
+            return new OmissionDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: o0 */
+    public C5431a<NotificationDao> f12758o0;
+
+    /* renamed from: o1 */
+    public C5431a<SubjectsRepositoryImpl> f12759o1;
+
+    /* renamed from: o2 */
+    public C5431a<NoticeBoardItemRepository> f12760o2;
+
+    /* renamed from: p */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4133xd2367bce.HomeworkCommentFormActivitySubcomponent.Builder> f12761p = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4133xd2367bce.HomeworkCommentFormActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4133xd2367bce.HomeworkCommentFormActivitySubcomponent.Builder get() {
+            return new HomeworkCommentFormActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: p0 */
+    public C5431a<FirebaseContainerImpl> f12762p0;
+
+    /* renamed from: p1 */
+    public C5431a<SubjectsRepository> f12763p1;
+
+    /* renamed from: p2 */
+    public C5431a<TmgiCaseTypeRepositoryImpl> f12764p2;
+
+    /* renamed from: q */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSenderActivityInjector.ClassMasterActivitySubcomponent.Builder> f12765q = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSenderActivityInjector.ClassMasterActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSenderActivityInjector.ClassMasterActivitySubcomponent.Builder get() {
+            return new ClassMasterActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: q0 */
+    public C5431a<FirebaseContainer> f12766q0;
+
+    /* renamed from: q1 */
+    public C5431a<EvaluationDaoImpl> f12767q1;
+
+    /* renamed from: q2 */
+    public C5431a<TmgiCaseTypeRepository> f12768q2;
+
+    /* renamed from: r */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4134xa896e468.HomeworkDetailActivitySubcomponent.Builder> f12769r = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4134xa896e468.HomeworkDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4134xa896e468.HomeworkDetailActivitySubcomponent.Builder get() {
+            return new HomeworkDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: r0 */
+    public C5431a<String> f12770r0;
+
+    /* renamed from: r1 */
+    public C5431a<EvaluationDao> f12771r1;
+
+    /* renamed from: r2 */
+    public C5431a<ChildrenRepositoryImpl> f12772r2;
+
+    /* renamed from: s */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeExamDetailActivityInjector.AnnouncedTestDetailActivitySubcomponent.Builder> f12773s = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeExamDetailActivityInjector.AnnouncedTestDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeExamDetailActivityInjector.AnnouncedTestDetailActivitySubcomponent.Builder get() {
+            return new AnnouncedTestDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: s0 */
+    public C5431a<NotificationRepositoryImpl> f12774s0;
+
+    /* renamed from: s1 */
+    public C5431a<EvaluationRepositoryImpl> f12775s1;
+
+    /* renamed from: s2 */
+    public C5431a<ChildrenRepository> f12776s2;
+
+    /* renamed from: t */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4140xcc3072e0.RootedDeviceDetectedActivitySubcomponent.Builder> f12777t = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4140xcc3072e0.RootedDeviceDetectedActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4140xcc3072e0.RootedDeviceDetectedActivitySubcomponent.Builder get() {
+            return new RootedDeviceDetectedActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: t0 */
+    public C5431a<NotificationRepository> f12778t0;
+
+    /* renamed from: t1 */
+    public C5431a<EvaluationRepository> f12779t1;
+
+    /* renamed from: t2 */
+    public C5431a<TmgiRepositoryImpl> f12780t2;
+
+    /* renamed from: u */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4137x9cadb05.NotSupportedAppActivitySubcomponent.Builder> f12781u = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4137x9cadb05.NotSupportedAppActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4137x9cadb05.NotSupportedAppActivitySubcomponent.Builder get() {
+            return new NotSupportedAppActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: u0 */
+    public C5431a<DeleteProfileStrategyImpl> f12782u0;
+
+    /* renamed from: u1 */
+    public C5431a<HomeworkDaoImpl> f12783u1;
+
+    /* renamed from: u2 */
+    public C5431a<TmgiRepository> f12784u2;
+
+    /* renamed from: v */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCasesActivityInjector.CasesFragmentSubcomponent.Builder> f12785v = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCasesActivityInjector.CasesFragmentSubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCasesActivityInjector.CasesFragmentSubcomponent.Builder get() {
+            return new CasesFragmentSubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: v0 */
+    public C5431a<DeleteProfileStrategy> f12786v0;
+
+    /* renamed from: v1 */
+    public C5431a<HomeworkDao> f12787v1;
+
+    /* renamed from: v2 */
+    public C5431a<C3535m> f12788v2;
+
+    /* renamed from: w */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCaseDetailsActivityInjector.CaseDetailsActivitySubcomponent.Builder> f12789w = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCaseDetailsActivityInjector.CaseDetailsActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCaseDetailsActivityInjector.CaseDetailsActivitySubcomponent.Builder get() {
+            return new CaseDetailsActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: w0 */
+    public C5431a<ProfileRepositoryImpl> f12790w0;
+
+    /* renamed from: w1 */
+    public C5431a<HomeworkRepositoryImpl> f12791w1;
+
+    /* renamed from: w2 */
+    public C5431a<NotificationStrategyImpl> f12792w2;
+
+    /* renamed from: x */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeTgmiFormActivityInjector.TmgiFormActivitySubcomponent.Builder> f12793x = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeTgmiFormActivityInjector.TmgiFormActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeTgmiFormActivityInjector.TmgiFormActivitySubcomponent.Builder get() {
+            return new TmgiFormActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: x0 */
+    public C5431a<ProfileRepository> f12794x0;
+
+    /* renamed from: x1 */
+    public C5431a<HomeworkRepository> f12795x1;
+
+    /* renamed from: x2 */
+    public C5431a<NotificationStrategy> f12796x2;
+
+    /* renamed from: y */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeRectificationActivityInjector.DecisionDetailActivitySubcomponent.Builder> f12797y = new C5431a<p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeRectificationActivityInjector.DecisionDetailActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeRectificationActivityInjector.DecisionDetailActivitySubcomponent.Builder get() {
+            return new DecisionDetailActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: y0 */
+    public C5431a<AuthenticationService> f12798y0;
+
+    /* renamed from: y1 */
+    public C5431a<AnnouncedTestDaoImpl> f12799y1;
+
+    /* renamed from: z */
+    public C5431a<p289hu.ekreta.ellenorzo.p290di.C4136x3860f192.NewMessageActivitySubcomponent.Builder> f12800z = new C5431a<p289hu.ekreta.ellenorzo.p290di.C4136x3860f192.NewMessageActivitySubcomponent.Builder>() {
+        public p289hu.ekreta.ellenorzo.p290di.C4136x3860f192.NewMessageActivitySubcomponent.Builder get() {
+            return new NewMessageActivitySubcomponentBuilder(null);
+        }
+    };
+
+    /* renamed from: z0 */
+    public C5431a<MobileApiV3> f12801z0;
+
+    /* renamed from: z1 */
+    public C5431a<AnnouncedTestDao> f12802z1;
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AboutFragmentSubcomponentBuilder */
+    public final class AboutFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAboutFragmentInjector.AboutFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public AboutFragmentModule f12848a;
+
+        /* renamed from: b */
+        public AboutFragment f12849b;
+
+        public /* synthetic */ AboutFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(AboutFragment aboutFragment) {
+            if (aboutFragment != null) {
+                this.f12849b = aboutFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public AboutFragmentSubcomponent build() {
+            if (this.f12848a == null) {
+                this.f12848a = new AboutFragmentModule();
+            }
+            C3984v.m10237a(this.f12849b, AboutFragment.class);
+            return new AboutFragmentSubcomponentImpl(this.f12848a, this.f12849b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AboutFragmentSubcomponentImpl */
+    public final class AboutFragmentSubcomponentImpl implements AboutFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<AboutFragment> f12851a;
+
+        /* renamed from: b */
+        public C5431a<MainViewModelImpl> f12852b;
+
+        /* renamed from: c */
+        public C5431a<MainViewModel> f12853c;
+
+        public /* synthetic */ AboutFragmentSubcomponentImpl(AboutFragmentModule aboutFragmentModule, AboutFragment aboutFragment, C41441 r13) {
+            this.f12851a = C4464d.m14952a(aboutFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f12852b = MainViewModelImpl_Factory.m12839a(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12683U, daggerAppComponent.f12794x0, daggerAppComponent.f12731h1, daggerAppComponent.f12747l1, daggerAppComponent.f12639F0, daggerAppComponent.f12684U0);
+            this.f12853c = C4462b.m14951a(new AboutFragmentModule_ProvideViewModelFactory(aboutFragmentModule, this.f12851a, this.f12852b));
+        }
+
+        /* renamed from: a */
+        public void inject(AboutFragment aboutFragment) {
+            aboutFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            AboutFragment_MembersInjector.m10451a(aboutFragment, (MainViewModel) this.f12853c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AnnouncedTestDetailActivitySubcomponentBuilder */
+    public final class AnnouncedTestDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeExamDetailActivityInjector.AnnouncedTestDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public AnnouncedTestDetailActivityModule f12855a;
+
+        /* renamed from: b */
+        public AnnouncedTestDetailActivity f12856b;
+
+        public /* synthetic */ AnnouncedTestDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(AnnouncedTestDetailActivity announcedTestDetailActivity) {
+            if (announcedTestDetailActivity != null) {
+                this.f12856b = announcedTestDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public AnnouncedTestDetailActivitySubcomponent build() {
+            if (this.f12855a == null) {
+                this.f12855a = new AnnouncedTestDetailActivityModule();
+            }
+            C3984v.m10237a(this.f12856b, AnnouncedTestDetailActivity.class);
+            return new AnnouncedTestDetailActivitySubcomponentImpl(this.f12855a, this.f12856b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AnnouncedTestDetailActivitySubcomponentImpl */
+    public final class AnnouncedTestDetailActivitySubcomponentImpl implements AnnouncedTestDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<AnnouncedTestDetailActivity> f12858a;
+
+        /* renamed from: b */
+        public C5431a<AnnouncedTestDetailViewModelImpl> f12859b;
+
+        /* renamed from: c */
+        public C5431a<AnnouncedTestDetailViewModel> f12860c;
+
+        public /* synthetic */ AnnouncedTestDetailActivitySubcomponentImpl(AnnouncedTestDetailActivityModule announcedTestDetailActivityModule, AnnouncedTestDetailActivity announcedTestDetailActivity, C41441 r10) {
+            this.f12858a = C4464d.m14952a(announcedTestDetailActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            AnnouncedTestDetailViewModelImpl_Factory announcedTestDetailViewModelImpl_Factory = new AnnouncedTestDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12683U, daggerAppComponent.f12657L0);
+            this.f12859b = announcedTestDetailViewModelImpl_Factory;
+            this.f12860c = C4462b.m14951a(new AnnouncedTestDetailActivityModule_ProvideViewModelFactory(announcedTestDetailActivityModule, this.f12858a, this.f12859b));
+        }
+
+        /* renamed from: a */
+        public void inject(AnnouncedTestDetailActivity announcedTestDetailActivity) {
+            announcedTestDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            announcedTestDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            AnnouncedTestDetailActivity_MembersInjector.m10476a(announcedTestDetailActivity, (AnnouncedTestDetailViewModel) this.f12860c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AnnouncedTestsFragmentSubcomponentBuilder */
+    public final class AnnouncedTestsFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4141x32329c2d.AnnouncedTestsFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public AnnouncedTestsFragmentModule f12862a;
+
+        /* renamed from: b */
+        public AnnouncedTestsFragment f12863b;
+
+        public /* synthetic */ AnnouncedTestsFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(AnnouncedTestsFragment announcedTestsFragment) {
+            if (announcedTestsFragment != null) {
+                this.f12863b = announcedTestsFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public AnnouncedTestsFragmentSubcomponent build() {
+            if (this.f12862a == null) {
+                this.f12862a = new AnnouncedTestsFragmentModule();
+            }
+            C3984v.m10237a(this.f12863b, AnnouncedTestsFragment.class);
+            return new AnnouncedTestsFragmentSubcomponentImpl(this.f12862a, this.f12863b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AnnouncedTestsFragmentSubcomponentImpl */
+    public final class AnnouncedTestsFragmentSubcomponentImpl implements AnnouncedTestsFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<AnnouncedTestsFragment> f12865a;
+
+        /* renamed from: b */
+        public C5431a<ArrayList<ReminderRepository>> f12866b;
+
+        /* renamed from: c */
+        public C5431a<RemindersViewModelImpl> f12867c;
+
+        /* renamed from: d */
+        public C5431a<RemindersViewModel> f12868d;
+
+        public /* synthetic */ AnnouncedTestsFragmentSubcomponentImpl(AnnouncedTestsFragmentModule announcedTestsFragmentModule, AnnouncedTestsFragment announcedTestsFragment, C41441 r10) {
+            this.f12865a = C4464d.m14952a(announcedTestsFragment);
+            this.f12866b = new AnnouncedTestsFragmentModule_ProvideReminderRepositoriesFactory(announcedTestsFragmentModule, DaggerAppComponent.this.f12628B1);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f12867c = RemindersViewModelImpl_Factory.m14005a(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, this.f12866b, daggerAppComponent.f12683U);
+            this.f12868d = C4462b.m14951a(new AnnouncedTestsFragmentModule_ProvideViewModelFactory(announcedTestsFragmentModule, this.f12865a, this.f12867c));
+        }
+
+        /* renamed from: a */
+        public void inject(AnnouncedTestsFragment announcedTestsFragment) {
+            announcedTestsFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            AnnouncedTestsFragment_MembersInjector.m10568a(announcedTestsFragment, (RemindersViewModel) this.f12868d.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AveragesFragmentSubcomponentBuilder */
+    public final class AveragesFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeAveragesFragmentInjector.AveragesFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public AveragesFragmentModule f12870a;
+
+        /* renamed from: b */
+        public AveragesFragment f12871b;
+
+        public /* synthetic */ AveragesFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(AveragesFragment averagesFragment) {
+            if (averagesFragment != null) {
+                this.f12871b = averagesFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public AveragesFragmentSubcomponent build() {
+            if (this.f12870a == null) {
+                this.f12870a = new AveragesFragmentModule();
+            }
+            C3984v.m10237a(this.f12871b, AveragesFragment.class);
+            return new AveragesFragmentSubcomponentImpl(this.f12870a, this.f12871b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$AveragesFragmentSubcomponentImpl */
+    public final class AveragesFragmentSubcomponentImpl implements AveragesFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<AveragesFragment> f12873a;
+
+        /* renamed from: b */
+        public C5431a<AveragesViewModelImpl> f12874b;
+
+        /* renamed from: c */
+        public C5431a<AveragesViewModel> f12875c;
+
+        public /* synthetic */ AveragesFragmentSubcomponentImpl(AveragesFragmentModule averagesFragmentModule, AveragesFragment averagesFragment, C41441 r10) {
+            this.f12873a = C4464d.m14952a(averagesFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            AveragesViewModelImpl_Factory averagesViewModelImpl_Factory = new AveragesViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12763p1);
+            this.f12874b = averagesViewModelImpl_Factory;
+            this.f12875c = C4462b.m14951a(new AveragesFragmentModule_ProvideViewModelFactory(averagesFragmentModule, this.f12873a, this.f12874b));
+        }
+
+        /* renamed from: a */
+        public void inject(AveragesFragment averagesFragment) {
+            averagesFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            AveragesFragment_MembersInjector.m14220a(averagesFragment, (AveragesViewModel) this.f12875c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$Builder */
+    public static final class Builder extends p289hu.ekreta.ellenorzo.p290di.AppComponent.Builder {
+
+        /* renamed from: a */
+        public AppModule f12877a;
+
+        /* renamed from: b */
+        public eKretaApp f12878b;
+
+        public Builder() {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(eKretaApp ekretaapp) {
+            if (ekretaapp != null) {
+                this.f12878b = ekretaapp;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public /* synthetic */ Builder(C41441 r1) {
+        }
+
+        public AppComponent build() {
+            if (this.f12877a == null) {
+                this.f12877a = new AppModule();
+            }
+            C3984v.m10237a(this.f12878b, eKretaApp.class);
+            return new DaggerAppComponent(this.f12877a, this.f12878b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$CaseDetailsActivitySubcomponentBuilder */
+    public final class CaseDetailsActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCaseDetailsActivityInjector.CaseDetailsActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public CaseDetailsActivityModule f12879a;
+
+        /* renamed from: b */
+        public CaseDetailsActivity f12880b;
+
+        public /* synthetic */ CaseDetailsActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(CaseDetailsActivity caseDetailsActivity) {
+            if (caseDetailsActivity != null) {
+                this.f12880b = caseDetailsActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public CaseDetailsActivitySubcomponent build() {
+            if (this.f12879a == null) {
+                this.f12879a = new CaseDetailsActivityModule();
+            }
+            C3984v.m10237a(this.f12880b, CaseDetailsActivity.class);
+            return new CaseDetailsActivitySubcomponentImpl(this.f12879a, this.f12880b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$CaseDetailsActivitySubcomponentImpl */
+    public final class CaseDetailsActivitySubcomponentImpl implements CaseDetailsActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<CaseDetailsActivity> f12882a;
+
+        /* renamed from: b */
+        public C5431a<CaseDetailsViewModelImpl> f12883b;
+
+        /* renamed from: c */
+        public C5431a<CaseDetailsViewModel> f12884c;
+
+        public /* synthetic */ CaseDetailsActivitySubcomponentImpl(CaseDetailsActivityModule caseDetailsActivityModule, CaseDetailsActivity caseDetailsActivity, C41441 r12) {
+            this.f12882a = C4464d.m14952a(caseDetailsActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            CaseDetailsViewModelImpl_Factory caseDetailsViewModelImpl_Factory = new CaseDetailsViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12683U, daggerAppComponent.f12794x0, daggerAppComponent.f12682T1, DaggerAppComponent.this.f12655K1);
+            this.f12883b = caseDetailsViewModelImpl_Factory;
+            this.f12884c = C4462b.m14951a(new CaseDetailsActivityModule_ProvideViewModelFactory(caseDetailsActivityModule, this.f12882a, this.f12883b));
+        }
+
+        /* renamed from: a */
+        public void inject(CaseDetailsActivity caseDetailsActivity) {
+            caseDetailsActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            caseDetailsActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            CaseDetailsActivity_MembersInjector.m10919a(caseDetailsActivity, (CaseDetailsViewModel) this.f12884c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$CasesFragmentSubcomponentBuilder */
+    public final class CasesFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeCasesActivityInjector.CasesFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public CasesFragmentModule f12886a;
+
+        /* renamed from: b */
+        public CasesFragment f12887b;
+
+        public /* synthetic */ CasesFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(CasesFragment casesFragment) {
+            if (casesFragment != null) {
+                this.f12887b = casesFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public CasesFragmentSubcomponent build() {
+            if (this.f12886a == null) {
+                this.f12886a = new CasesFragmentModule();
+            }
+            C3984v.m10237a(this.f12887b, CasesFragment.class);
+            return new CasesFragmentSubcomponentImpl(this.f12886a, this.f12887b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$CasesFragmentSubcomponentImpl */
+    public final class CasesFragmentSubcomponentImpl implements CasesFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<CasesFragment> f12889a;
+
+        /* renamed from: b */
+        public C5431a<CasesViewModelImpl> f12890b;
+
+        /* renamed from: c */
+        public C5431a<CasesViewModel> f12891c;
+
+        public /* synthetic */ CasesFragmentSubcomponentImpl(CasesFragmentModule casesFragmentModule, CasesFragment casesFragment, C41441 r10) {
+            this.f12889a = C4464d.m14952a(casesFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            CasesViewModelImpl_Factory casesViewModelImpl_Factory = new CasesViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12682T1);
+            this.f12890b = casesViewModelImpl_Factory;
+            this.f12891c = C4462b.m14951a(new CasesFragmentModule_ProvideViewModelFactory(casesFragmentModule, this.f12889a, this.f12890b));
+        }
+
+        /* renamed from: a */
+        public void inject(CasesFragment casesFragment) {
+            casesFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            CasesFragment_MembersInjector.m10815a(casesFragment, (CasesViewModel) this.f12891c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ClassMasterActivitySubcomponentBuilder */
+    public final class ClassMasterActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSenderActivityInjector.ClassMasterActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public ClassMasterActivityModule f12893a;
+
+        /* renamed from: b */
+        public ClassMasterActivity f12894b;
+
+        public /* synthetic */ ClassMasterActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(ClassMasterActivity classMasterActivity) {
+            if (classMasterActivity != null) {
+                this.f12894b = classMasterActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public ClassMasterActivitySubcomponent build() {
+            if (this.f12893a == null) {
+                this.f12893a = new ClassMasterActivityModule();
+            }
+            C3984v.m10237a(this.f12894b, ClassMasterActivity.class);
+            return new ClassMasterActivitySubcomponentImpl(this.f12893a, this.f12894b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ClassMasterActivitySubcomponentImpl */
+    public final class ClassMasterActivitySubcomponentImpl implements ClassMasterActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<ClassMasterActivity> f12896a;
+
+        /* renamed from: b */
+        public C5431a<ClassMasterViewModelImpl> f12897b;
+
+        /* renamed from: c */
+        public C5431a<ClassMasterViewModel> f12898c;
+
+        public /* synthetic */ ClassMasterActivitySubcomponentImpl(ClassMasterActivityModule classMasterActivityModule, ClassMasterActivity classMasterActivity, C41441 r11) {
+            this.f12896a = C4464d.m14952a(classMasterActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            ClassMasterViewModelImpl_Factory classMasterViewModelImpl_Factory = new ClassMasterViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12683U, daggerAppComponent.f12667O1);
+            this.f12897b = classMasterViewModelImpl_Factory;
+            this.f12898c = C4462b.m14951a(new ClassMasterActivityModule_ProvideViewModelFactory(classMasterActivityModule, this.f12896a, this.f12897b));
+        }
+
+        /* renamed from: a */
+        public void inject(ClassMasterActivity classMasterActivity) {
+            classMasterActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            classMasterActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            ClassMasterActivity_MembersInjector.m11339a(classMasterActivity, (ClassMasterViewModel) this.f12898c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ClassMastersFragmentSubcomponentBuilder */
+    public final class ClassMastersFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeClassMastersFragmentInjector.ClassMastersFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public ClassMastersFragmentModule f12900a;
+
+        /* renamed from: b */
+        public ClassMastersFragment f12901b;
+
+        public /* synthetic */ ClassMastersFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(ClassMastersFragment classMastersFragment) {
+            if (classMastersFragment != null) {
+                this.f12901b = classMastersFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public ClassMastersFragmentSubcomponent build() {
+            if (this.f12900a == null) {
+                this.f12900a = new ClassMastersFragmentModule();
+            }
+            C3984v.m10237a(this.f12901b, ClassMastersFragment.class);
+            return new ClassMastersFragmentSubcomponentImpl(this.f12900a, this.f12901b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ClassMastersFragmentSubcomponentImpl */
+    public final class ClassMastersFragmentSubcomponentImpl implements ClassMastersFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<ClassMastersFragment> f12903a;
+
+        /* renamed from: b */
+        public C5431a<ClassMastersViewModelImpl> f12904b;
+
+        /* renamed from: c */
+        public C5431a<ClassMastersViewModel> f12905c;
+
+        public /* synthetic */ ClassMastersFragmentSubcomponentImpl(ClassMastersFragmentModule classMastersFragmentModule, ClassMastersFragment classMastersFragment, C41441 r11) {
+            this.f12903a = C4464d.m14952a(classMastersFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            ClassMastersViewModelImpl_Factory classMastersViewModelImpl_Factory = new ClassMastersViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12657L0, daggerAppComponent.f12667O1);
+            this.f12904b = classMastersViewModelImpl_Factory;
+            this.f12905c = C4462b.m14951a(new ClassMastersFragmentModule_ProvideViewModelFactory(classMastersFragmentModule, this.f12903a, this.f12904b));
+        }
+
+        /* renamed from: a */
+        public void inject(ClassMastersFragment classMastersFragment) {
+            classMastersFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            ClassMastersFragment_MembersInjector.m11406a(classMastersFragment, (ClassMastersViewModel) this.f12905c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$DailyOmissionsActivitySubcomponentBuilder */
+    public final class DailyOmissionsActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4131xe87d6744.DailyOmissionsActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public DailyOmissionsActivityModule f12907a;
+
+        /* renamed from: b */
+        public DailyOmissionsActivity f12908b;
+
+        public /* synthetic */ DailyOmissionsActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(DailyOmissionsActivity dailyOmissionsActivity) {
+            if (dailyOmissionsActivity != null) {
+                this.f12908b = dailyOmissionsActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public DailyOmissionsActivitySubcomponent build() {
+            if (this.f12907a == null) {
+                this.f12907a = new DailyOmissionsActivityModule();
+            }
+            C3984v.m10237a(this.f12908b, DailyOmissionsActivity.class);
+            return new DailyOmissionsActivitySubcomponentImpl(this.f12907a, this.f12908b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$DailyOmissionsActivitySubcomponentImpl */
+    public final class DailyOmissionsActivitySubcomponentImpl implements DailyOmissionsActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<DailyOmissionsActivity> f12910a;
+
+        /* renamed from: b */
+        public C5431a<DailyOmissionsViewModelImpl> f12911b = new DailyOmissionsViewModelImpl_Factory(ObservableImpl_Factory.f15471a, ExecuteOnceUiCommandSource_Factory.f15468a, DaggerAppComponent.this.f12683U);
+
+        /* renamed from: c */
+        public C5431a<DailyOmissionsViewModel> f12912c;
+
+        public /* synthetic */ DailyOmissionsActivitySubcomponentImpl(DailyOmissionsActivityModule dailyOmissionsActivityModule, DailyOmissionsActivity dailyOmissionsActivity, C41441 r5) {
+            this.f12910a = C4464d.m14952a(dailyOmissionsActivity);
+            this.f12912c = C4462b.m14951a(new DailyOmissionsActivityModule_ProvideViewModelFactory(dailyOmissionsActivityModule, this.f12910a, this.f12911b));
+        }
+
+        /* renamed from: a */
+        public void inject(DailyOmissionsActivity dailyOmissionsActivity) {
+            dailyOmissionsActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            dailyOmissionsActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            DailyOmissionsActivity_MembersInjector.m13475a(dailyOmissionsActivity, (DailyOmissionsViewModel) this.f12912c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$DecisionDetailActivitySubcomponentBuilder */
+    public final class DecisionDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeRectificationActivityInjector.DecisionDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public DecisionDetailActivityModule f12914a;
+
+        /* renamed from: b */
+        public DecisionDetailActivity f12915b;
+
+        public /* synthetic */ DecisionDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(DecisionDetailActivity decisionDetailActivity) {
+            if (decisionDetailActivity != null) {
+                this.f12915b = decisionDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public DecisionDetailActivitySubcomponent build() {
+            if (this.f12914a == null) {
+                this.f12914a = new DecisionDetailActivityModule();
+            }
+            C3984v.m10237a(this.f12915b, DecisionDetailActivity.class);
+            return new DecisionDetailActivitySubcomponentImpl(DaggerAppComponent.this, this.f12914a, this.f12915b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$DecisionDetailActivitySubcomponentImpl */
+    public final class DecisionDetailActivitySubcomponentImpl implements DecisionDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<DecisionDetailActivity> f12917a;
+
+        /* renamed from: b */
+        public C5431a<DecisionDetailViewModelImpl> f12918b;
+
+        /* renamed from: c */
+        public C5431a<DecisionDetailViewModel> f12919c;
+
+        /* renamed from: d */
+        public final /* synthetic */ DaggerAppComponent f12920d;
+
+        public /* synthetic */ DecisionDetailActivitySubcomponentImpl(DaggerAppComponent daggerAppComponent, DecisionDetailActivityModule decisionDetailActivityModule, DecisionDetailActivity decisionDetailActivity, C41441 r18) {
+            this.f12920d = daggerAppComponent;
+            this.f12917a = C4464d.m14952a(decisionDetailActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent2 = this.f12920d;
+            DecisionDetailViewModelImpl_Factory decisionDetailViewModelImpl_Factory = new DecisionDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent2.f12798y0, daggerAppComponent2.f12683U, daggerAppComponent2.f12794x0, daggerAppComponent2.f12688V1, daggerAppComponent2.f12655K1, daggerAppComponent2.f12691W1, daggerAppComponent2.f12697Y1, daggerAppComponent2.f12704a2, daggerAppComponent2.f12712c2);
+            this.f12918b = decisionDetailViewModelImpl_Factory;
+            this.f12919c = C4462b.m14951a(new DecisionDetailActivityModule_ProvideViewModelFactory(decisionDetailActivityModule, this.f12917a, this.f12918b));
+        }
+
+        /* renamed from: a */
+        public void inject(DecisionDetailActivity decisionDetailActivity) {
+            decisionDetailActivity.f15496v = this.f12920d.mo12484b();
+            decisionDetailActivity.f15497w = this.f12920d.mo12481a();
+            DecisionDetailActivity_MembersInjector.m10837a(decisionDetailActivity, (DecisionDetailViewModel) this.f12919c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$EllenorzoFirebaseMessagingServiceSubcomponentBuilder */
+    public final class EllenorzoFirebaseMessagingServiceSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4143xebf5e6.EllenorzoFirebaseMessagingServiceSubcomponent.Builder {
+
+        /* renamed from: a */
+        public EllenorzoFirebaseMessagingService f12921a;
+
+        public /* synthetic */ EllenorzoFirebaseMessagingServiceSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(EllenorzoFirebaseMessagingService ellenorzoFirebaseMessagingService) {
+            if (ellenorzoFirebaseMessagingService != null) {
+                this.f12921a = ellenorzoFirebaseMessagingService;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public EllenorzoFirebaseMessagingServiceSubcomponent build() {
+            C3984v.m10237a(this.f12921a, EllenorzoFirebaseMessagingService.class);
+            return new EllenorzoFirebaseMessagingServiceSubcomponentImpl(this.f12921a);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$EllenorzoFirebaseMessagingServiceSubcomponentImpl */
+    public final class EllenorzoFirebaseMessagingServiceSubcomponentImpl implements EllenorzoFirebaseMessagingServiceSubcomponent {
+        public /* synthetic */ EllenorzoFirebaseMessagingServiceSubcomponentImpl(EllenorzoFirebaseMessagingService ellenorzoFirebaseMessagingService) {
+        }
+
+        /* renamed from: a */
+        public void inject(EllenorzoFirebaseMessagingService ellenorzoFirebaseMessagingService) {
+            EllenorzoFirebaseMessagingService_MembersInjector.m13395a(ellenorzoFirebaseMessagingService, (NotificationStrategy) DaggerAppComponent.this.f12796x2.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$EndOfYearFragmentSubcomponentBuilder */
+    public final class EndOfYearFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeEndOfYearFragmentInjector.EndOfYearFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public EndOfYearFragmentModule f12924a;
+
+        /* renamed from: b */
+        public EndOfYearFragment f12925b;
+
+        public /* synthetic */ EndOfYearFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(EndOfYearFragment endOfYearFragment) {
+            if (endOfYearFragment != null) {
+                this.f12925b = endOfYearFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public EndOfYearFragmentSubcomponent build() {
+            if (this.f12924a == null) {
+                this.f12924a = new EndOfYearFragmentModule();
+            }
+            C3984v.m10237a(this.f12925b, EndOfYearFragment.class);
+            return new EndOfYearFragmentSubcomponentImpl(this.f12924a, this.f12925b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$EndOfYearFragmentSubcomponentImpl */
+    public final class EndOfYearFragmentSubcomponentImpl implements EndOfYearFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<EndOfYearFragment> f12927a;
+
+        /* renamed from: b */
+        public C5431a<EndOfYearViewModelImpl> f12928b;
+
+        /* renamed from: c */
+        public C5431a<EndOfYearViewModel> f12929c;
+
+        public /* synthetic */ EndOfYearFragmentSubcomponentImpl(EndOfYearFragmentModule endOfYearFragmentModule, EndOfYearFragment endOfYearFragment, C41441 r10) {
+            this.f12927a = C4464d.m14952a(endOfYearFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            EndOfYearViewModelImpl_Factory endOfYearViewModelImpl_Factory = new EndOfYearViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12779t1);
+            this.f12928b = endOfYearViewModelImpl_Factory;
+            this.f12929c = C4462b.m14951a(new EndOfYearFragmentModule_ProvideViewModelFactory(endOfYearFragmentModule, this.f12927a, this.f12928b));
+        }
+
+        /* renamed from: a */
+        public void inject(EndOfYearFragment endOfYearFragment) {
+            endOfYearFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            EndOfYearFragment_MembersInjector.m14273a(endOfYearFragment, (EndOfYearViewModel) this.f12929c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$EvaluationDetailsActivitySubcomponentBuilder */
+    public final class EvaluationDetailsActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4132xe537265.EvaluationDetailsActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public EvaluationDetailsActivityModule f12931a;
+
+        /* renamed from: b */
+        public EvaluationDetailsActivity f12932b;
+
+        public /* synthetic */ EvaluationDetailsActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(EvaluationDetailsActivity evaluationDetailsActivity) {
+            if (evaluationDetailsActivity != null) {
+                this.f12932b = evaluationDetailsActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public EvaluationDetailsActivitySubcomponent build() {
+            if (this.f12931a == null) {
+                this.f12931a = new EvaluationDetailsActivityModule();
+            }
+            C3984v.m10237a(this.f12932b, EvaluationDetailsActivity.class);
+            return new EvaluationDetailsActivitySubcomponentImpl(this.f12931a, this.f12932b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$EvaluationDetailsActivitySubcomponentImpl */
+    public final class EvaluationDetailsActivitySubcomponentImpl implements EvaluationDetailsActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<EvaluationDetailsActivity> f12934a;
+
+        /* renamed from: b */
+        public C5431a<EvaluationDetailsViewModelImpl> f12935b;
+
+        /* renamed from: c */
+        public C5431a<EvaluationDetailsViewModel> f12936c;
+
+        public /* synthetic */ EvaluationDetailsActivitySubcomponentImpl(EvaluationDetailsActivityModule evaluationDetailsActivityModule, EvaluationDetailsActivity evaluationDetailsActivity, C41441 r6) {
+            this.f12934a = C4464d.m14952a(evaluationDetailsActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f12935b = new EvaluationDetailsViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12683U, daggerAppComponent.f12657L0);
+            this.f12936c = C4462b.m14951a(new EvaluationDetailsActivityModule_ProvideViewModelFactory(evaluationDetailsActivityModule, this.f12934a, this.f12935b));
+        }
+
+        /* renamed from: a */
+        public void inject(EvaluationDetailsActivity evaluationDetailsActivity) {
+            evaluationDetailsActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            evaluationDetailsActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            EvaluationDetailsActivity_MembersInjector.m12171a(evaluationDetailsActivity, (EvaluationDetailsViewModel) this.f12936c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HalfYearFragmentSubcomponentBuilder */
+    public final class HalfYearFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHalfYearFragmentInjector.HalfYearFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public HalfYearFragmentModule f12938a;
+
+        /* renamed from: b */
+        public HalfYearFragment f12939b;
+
+        public /* synthetic */ HalfYearFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(HalfYearFragment halfYearFragment) {
+            if (halfYearFragment != null) {
+                this.f12939b = halfYearFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public HalfYearFragmentSubcomponent build() {
+            if (this.f12938a == null) {
+                this.f12938a = new HalfYearFragmentModule();
+            }
+            C3984v.m10237a(this.f12939b, HalfYearFragment.class);
+            return new HalfYearFragmentSubcomponentImpl(this.f12938a, this.f12939b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HalfYearFragmentSubcomponentImpl */
+    public final class HalfYearFragmentSubcomponentImpl implements HalfYearFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<HalfYearFragment> f12941a;
+
+        /* renamed from: b */
+        public C5431a<HalfYearViewModelImpl> f12942b;
+
+        /* renamed from: c */
+        public C5431a<HalfYearViewModel> f12943c;
+
+        public /* synthetic */ HalfYearFragmentSubcomponentImpl(HalfYearFragmentModule halfYearFragmentModule, HalfYearFragment halfYearFragment, C41441 r10) {
+            this.f12941a = C4464d.m14952a(halfYearFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            HalfYearViewModelImpl_Factory halfYearViewModelImpl_Factory = new HalfYearViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12779t1);
+            this.f12942b = halfYearViewModelImpl_Factory;
+            this.f12943c = C4462b.m14951a(new HalfYearFragmentModule_ProvideViewModelFactory(halfYearFragmentModule, this.f12941a, this.f12942b));
+        }
+
+        /* renamed from: a */
+        public void inject(HalfYearFragment halfYearFragment) {
+            halfYearFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            HalfYearFragment_MembersInjector.m14286a(halfYearFragment, (HalfYearViewModel) this.f12943c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeFragmentSubcomponentBuilder */
+    public final class HomeFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeFragmentInjector.HomeFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public HomeFragmentModule f12945a;
+
+        /* renamed from: b */
+        public HomeFragment f12946b;
+
+        public /* synthetic */ HomeFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(HomeFragment homeFragment) {
+            if (homeFragment != null) {
+                this.f12946b = homeFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public HomeFragmentSubcomponent build() {
+            if (this.f12945a == null) {
+                this.f12945a = new HomeFragmentModule();
+            }
+            C3984v.m10237a(this.f12946b, HomeFragment.class);
+            return new HomeFragmentSubcomponentImpl(DaggerAppComponent.this, this.f12945a, this.f12946b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeFragmentSubcomponentImpl */
+    public final class HomeFragmentSubcomponentImpl implements HomeFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<HomeFragment> f12948a;
+
+        /* renamed from: b */
+        public C5431a<HomeViewModelImpl> f12949b;
+
+        /* renamed from: c */
+        public C5431a<HomeViewModel> f12950c;
+
+        /* renamed from: d */
+        public final /* synthetic */ DaggerAppComponent f12951d;
+
+        public /* synthetic */ HomeFragmentSubcomponentImpl(DaggerAppComponent daggerAppComponent, HomeFragmentModule homeFragmentModule, HomeFragment homeFragment, C41441 r18) {
+            this.f12951d = daggerAppComponent;
+            this.f12948a = C4464d.m14952a(homeFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent2 = this.f12951d;
+            C5431a<AuthenticationService> aVar = daggerAppComponent2.f12798y0;
+            C5431a<Application> aVar2 = daggerAppComponent2.f12683U;
+            C5431a<EvaluationRepository> aVar3 = daggerAppComponent2.f12779t1;
+            C5431a b = daggerAppComponent2.f12736i2;
+            DaggerAppComponent daggerAppComponent3 = this.f12951d;
+            HomeViewModelImpl_Factory homeViewModelImpl_Factory = new HomeViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, aVar, aVar2, aVar3, b, daggerAppComponent3.f12731h1, daggerAppComponent3.f12628B1, daggerAppComponent3.f12795x1, daggerAppComponent3.f12794x0, daggerAppComponent3.f12760o2);
+            this.f12949b = homeViewModelImpl_Factory;
+            this.f12950c = C4462b.m14951a(new HomeFragmentModule_ProvideViewModelFactory(homeFragmentModule, this.f12948a, this.f12949b));
+        }
+
+        /* renamed from: a */
+        public void inject(HomeFragment homeFragment) {
+            homeFragment.f15499Z = this.f12951d.mo12484b();
+            HomeFragment_MembersInjector.m12392a(homeFragment, (HomeViewModel) this.f12950c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeworkCommentFormActivitySubcomponentBuilder */
+    public final class HomeworkCommentFormActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4133xd2367bce.HomeworkCommentFormActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public HomeworkCommentActivityModule f12952a;
+
+        /* renamed from: b */
+        public HomeworkCommentFormActivity f12953b;
+
+        public /* synthetic */ HomeworkCommentFormActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(HomeworkCommentFormActivity homeworkCommentFormActivity) {
+            if (homeworkCommentFormActivity != null) {
+                this.f12953b = homeworkCommentFormActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public HomeworkCommentFormActivitySubcomponent build() {
+            if (this.f12952a == null) {
+                this.f12952a = new HomeworkCommentActivityModule();
+            }
+            C3984v.m10237a(this.f12953b, HomeworkCommentFormActivity.class);
+            return new HomeworkCommentFormActivitySubcomponentImpl(this.f12952a, this.f12953b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeworkCommentFormActivitySubcomponentImpl */
+    public final class HomeworkCommentFormActivitySubcomponentImpl implements HomeworkCommentFormActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<HomeworkCommentFormActivity> f12955a;
+
+        /* renamed from: b */
+        public C5431a<HomeworkCommentFormViewModelImpl> f12956b;
+
+        /* renamed from: c */
+        public C5431a<HomeworkCommentFormViewModel> f12957c;
+
+        public /* synthetic */ HomeworkCommentFormActivitySubcomponentImpl(HomeworkCommentActivityModule homeworkCommentActivityModule, HomeworkCommentFormActivity homeworkCommentFormActivity, C41441 r11) {
+            this.f12955a = C4464d.m14952a(homeworkCommentFormActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            HomeworkCommentFormViewModelImpl_Factory homeworkCommentFormViewModelImpl_Factory = new HomeworkCommentFormViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12795x1, daggerAppComponent.f12666O0);
+            this.f12956b = homeworkCommentFormViewModelImpl_Factory;
+            this.f12957c = C4462b.m14951a(new HomeworkCommentActivityModule_ProvideViewModelFactory(homeworkCommentActivityModule, this.f12955a, this.f12956b));
+        }
+
+        /* renamed from: a */
+        public void inject(HomeworkCommentFormActivity homeworkCommentFormActivity) {
+            homeworkCommentFormActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            homeworkCommentFormActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            HomeworkCommentFormActivity_MembersInjector.m12655a(homeworkCommentFormActivity, (HomeworkCommentFormViewModel) this.f12957c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeworkDetailActivitySubcomponentBuilder */
+    public final class HomeworkDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4134xa896e468.HomeworkDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public HomeworkDetailActivityModule f12959a;
+
+        /* renamed from: b */
+        public HomeworkDetailActivity f12960b;
+
+        public /* synthetic */ HomeworkDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(HomeworkDetailActivity homeworkDetailActivity) {
+            if (homeworkDetailActivity != null) {
+                this.f12960b = homeworkDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public HomeworkDetailActivitySubcomponent build() {
+            if (this.f12959a == null) {
+                this.f12959a = new HomeworkDetailActivityModule();
+            }
+            C3984v.m10237a(this.f12960b, HomeworkDetailActivity.class);
+            return new HomeworkDetailActivitySubcomponentImpl(this.f12959a, this.f12960b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeworkDetailActivitySubcomponentImpl */
+    public final class HomeworkDetailActivitySubcomponentImpl implements HomeworkDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<HomeworkDetailActivity> f12962a;
+
+        /* renamed from: b */
+        public C5431a<HomeworkDetailViewModelImpl> f12963b;
+
+        /* renamed from: c */
+        public C5431a<HomeworkDetailViewModel> f12964c;
+
+        public /* synthetic */ HomeworkDetailActivitySubcomponentImpl(HomeworkDetailActivityModule homeworkDetailActivityModule, HomeworkDetailActivity homeworkDetailActivity, C41441 r11) {
+            this.f12962a = C4464d.m14952a(homeworkDetailActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            HomeworkDetailViewModelImpl_Factory homeworkDetailViewModelImpl_Factory = new HomeworkDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12795x1, daggerAppComponent.f12657L0);
+            this.f12963b = homeworkDetailViewModelImpl_Factory;
+            this.f12964c = C4462b.m14951a(new HomeworkDetailActivityModule_ProvideViewModelFactory(homeworkDetailActivityModule, this.f12962a, this.f12963b));
+        }
+
+        /* renamed from: a */
+        public void inject(HomeworkDetailActivity homeworkDetailActivity) {
+            homeworkDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            homeworkDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            HomeworkDetailActivity_MembersInjector.m12523a(homeworkDetailActivity, (HomeworkDetailViewModel) this.f12964c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeworksFragmentSubcomponentBuilder */
+    public final class HomeworksFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeHomeworksFragmentInjector.HomeworksFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public HomeworksFragmentModule f12966a;
+
+        /* renamed from: b */
+        public HomeworksFragment f12967b;
+
+        public /* synthetic */ HomeworksFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(HomeworksFragment homeworksFragment) {
+            if (homeworksFragment != null) {
+                this.f12967b = homeworksFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public HomeworksFragmentSubcomponent build() {
+            if (this.f12966a == null) {
+                this.f12966a = new HomeworksFragmentModule();
+            }
+            C3984v.m10237a(this.f12967b, HomeworksFragment.class);
+            return new HomeworksFragmentSubcomponentImpl(this.f12966a, this.f12967b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$HomeworksFragmentSubcomponentImpl */
+    public final class HomeworksFragmentSubcomponentImpl implements HomeworksFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<HomeworksFragment> f12969a;
+
+        /* renamed from: b */
+        public C5431a<ArrayList<ReminderRepository>> f12970b;
+
+        /* renamed from: c */
+        public C5431a<RemindersViewModelImpl> f12971c;
+
+        /* renamed from: d */
+        public C5431a<RemindersViewModel> f12972d;
+
+        public /* synthetic */ HomeworksFragmentSubcomponentImpl(HomeworksFragmentModule homeworksFragmentModule, HomeworksFragment homeworksFragment, C41441 r10) {
+            this.f12969a = C4464d.m14952a(homeworksFragment);
+            this.f12970b = new HomeworksFragmentModule_ProvideReminderRepositoriesFactory(homeworksFragmentModule, DaggerAppComponent.this.f12795x1);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f12971c = RemindersViewModelImpl_Factory.m14005a(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, this.f12970b, daggerAppComponent.f12683U);
+            this.f12972d = C4462b.m14951a(new HomeworksFragmentModule_ProvideViewModelFactory(homeworksFragmentModule, this.f12969a, this.f12971c));
+        }
+
+        /* renamed from: a */
+        public void inject(HomeworksFragment homeworksFragment) {
+            homeworksFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            HomeworksFragment_MembersInjector.m12644a(homeworksFragment, (RemindersViewModel) this.f12972d.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$InstitutePickerActivitySubcomponentBuilder */
+    public final class InstitutePickerActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4135xe3382b02.InstitutePickerActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public InstitutePickerActivityModule f12974a;
+
+        /* renamed from: b */
+        public InstitutePickerActivity f12975b;
+
+        public /* synthetic */ InstitutePickerActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(InstitutePickerActivity institutePickerActivity) {
+            if (institutePickerActivity != null) {
+                this.f12975b = institutePickerActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public InstitutePickerActivitySubcomponent build() {
+            if (this.f12974a == null) {
+                this.f12974a = new InstitutePickerActivityModule();
+            }
+            C3984v.m10237a(this.f12975b, InstitutePickerActivity.class);
+            return new InstitutePickerActivitySubcomponentImpl(this.f12974a, this.f12975b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$InstitutePickerActivitySubcomponentImpl */
+    public final class InstitutePickerActivitySubcomponentImpl implements InstitutePickerActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<InstitutePickerActivity> f12977a;
+
+        /* renamed from: b */
+        public C5431a<InstitutePickerViewModelImpl> f12978b = new InstitutePickerViewModelImpl_Factory(ObservableImpl_Factory.f15471a, ExecuteOnceUiCommandSource_Factory.f15468a, DaggerAppComponent.this.f12678S0);
+
+        /* renamed from: c */
+        public C5431a<InstitutePickerViewModel> f12979c;
+
+        public /* synthetic */ InstitutePickerActivitySubcomponentImpl(InstitutePickerActivityModule institutePickerActivityModule, InstitutePickerActivity institutePickerActivity, C41441 r5) {
+            this.f12977a = C4464d.m14952a(institutePickerActivity);
+            this.f12979c = C4462b.m14951a(new InstitutePickerActivityModule_ProvideViewModelFactory(institutePickerActivityModule, this.f12977a, this.f12978b));
+        }
+
+        /* renamed from: a */
+        public void inject(InstitutePickerActivity institutePickerActivity) {
+            institutePickerActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            institutePickerActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            InstitutePickerActivity_MembersInjector.m12689a(institutePickerActivity, (InstitutePickerViewModel) this.f12979c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$LoginActivitySubcomponentBuilder */
+    public final class LoginActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLoginActivityInjector.LoginActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public LoginActivityModule f12981a;
+
+        /* renamed from: b */
+        public LoginActivity f12982b;
+
+        public /* synthetic */ LoginActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(LoginActivity loginActivity) {
+            if (loginActivity != null) {
+                this.f12982b = loginActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public LoginActivitySubcomponent build() {
+            if (this.f12981a == null) {
+                this.f12981a = new LoginActivityModule();
+            }
+            C3984v.m10237a(this.f12982b, LoginActivity.class);
+            return new LoginActivitySubcomponentImpl(this.f12981a, this.f12982b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$LoginActivitySubcomponentImpl */
+    public final class LoginActivitySubcomponentImpl implements LoginActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<LoginActivity> f12984a;
+
+        /* renamed from: b */
+        public C5431a<C2676c> f12985b;
+
+        /* renamed from: c */
+        public C5431a<LoginViewModelImpl> f12986c;
+
+        /* renamed from: d */
+        public C5431a<LoginViewModel> f12987d;
+
+        public /* synthetic */ LoginActivitySubcomponentImpl(LoginActivityModule loginActivityModule, LoginActivity loginActivity, C41441 r14) {
+            this.f12984a = C4464d.m14952a(loginActivity);
+            this.f12985b = new LoginActivityModule_ProvideRxActivityResultFactory(loginActivityModule, this.f12984a);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            C5431a<Application> aVar = daggerAppComponent.f12683U;
+            C5431a d = daggerAppComponent.f12678S0;
+            DaggerAppComponent daggerAppComponent2 = DaggerAppComponent.this;
+            LoginViewModelImpl_Factory loginViewModelImpl_Factory = new LoginViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, aVar, d, daggerAppComponent2.f12798y0, daggerAppComponent2.f12684U0, daggerAppComponent2.f12657L0, daggerAppComponent2.f12693X0, this.f12985b);
+            this.f12986c = loginViewModelImpl_Factory;
+            this.f12987d = C4462b.m14951a(new LoginActivityModule_ProvideViewModelFactory(loginActivityModule, this.f12984a, this.f12986c));
+        }
+
+        /* renamed from: a */
+        public void inject(LoginActivity loginActivity) {
+            loginActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            loginActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            LoginActivity_MembersInjector.m12715a(loginActivity, (LoginViewModel) this.f12987d.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MainActivitySubcomponentBuilder */
+    public final class MainActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMainActivityInjector.MainActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public MainActivityModule f12989a;
+
+        /* renamed from: b */
+        public MainActivity f12990b;
+
+        public /* synthetic */ MainActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(MainActivity mainActivity) {
+            if (mainActivity != null) {
+                this.f12990b = mainActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public MainActivitySubcomponent build() {
+            if (this.f12989a == null) {
+                this.f12989a = new MainActivityModule();
+            }
+            C3984v.m10237a(this.f12990b, MainActivity.class);
+            return new MainActivitySubcomponentImpl(this.f12989a, this.f12990b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MainActivitySubcomponentImpl */
+    public final class MainActivitySubcomponentImpl implements MainActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<MainActivity> f12992a;
+
+        /* renamed from: b */
+        public C5431a<MainViewModelImpl> f12993b;
+
+        /* renamed from: c */
+        public C5431a<MainViewModel> f12994c;
+
+        public /* synthetic */ MainActivitySubcomponentImpl(MainActivityModule mainActivityModule, MainActivity mainActivity, C41441 r13) {
+            this.f12992a = C4464d.m14952a(mainActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f12993b = MainViewModelImpl_Factory.m12839a(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12683U, daggerAppComponent.f12794x0, daggerAppComponent.f12731h1, daggerAppComponent.f12747l1, daggerAppComponent.f12639F0, daggerAppComponent.f12684U0);
+            this.f12994c = C4462b.m14951a(new MainActivityModule_ProvideViewModelFactory(mainActivityModule, this.f12992a, this.f12993b));
+        }
+
+        /* renamed from: a */
+        public void inject(MainActivity mainActivity) {
+            mainActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            mainActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            MainActivity_MembersInjector.m12793a(mainActivity, (MainViewModel) this.f12994c.get());
+            MainActivity_MembersInjector.m12794a(mainActivity, (FirebaseContainer) DaggerAppComponent.this.f12766q0.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MessageDetailActivitySubcomponentBuilder */
+    public final class MessageDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeMessageDetailActivityInjector.MessageDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public MessageDetailActivityModule f12996a;
+
+        /* renamed from: b */
+        public MessageDetailActivity f12997b;
+
+        public /* synthetic */ MessageDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(MessageDetailActivity messageDetailActivity) {
+            if (messageDetailActivity != null) {
+                this.f12997b = messageDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public MessageDetailActivitySubcomponent build() {
+            if (this.f12996a == null) {
+                this.f12996a = new MessageDetailActivityModule();
+            }
+            C3984v.m10237a(this.f12997b, MessageDetailActivity.class);
+            return new MessageDetailActivitySubcomponentImpl(this.f12996a, this.f12997b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MessageDetailActivitySubcomponentImpl */
+    public final class MessageDetailActivitySubcomponentImpl implements MessageDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<MessageDetailActivity> f12999a;
+
+        /* renamed from: b */
+        public C5431a<MessageDetailViewModelImpl> f13000b;
+
+        /* renamed from: c */
+        public C5431a<MessageDetailViewModel> f13001c;
+
+        public /* synthetic */ MessageDetailActivitySubcomponentImpl(MessageDetailActivityModule messageDetailActivityModule, MessageDetailActivity messageDetailActivity, C41441 r11) {
+            this.f12999a = C4464d.m14952a(messageDetailActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            MessageDetailViewModelImpl_Factory messageDetailViewModelImpl_Factory = new MessageDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12655K1, daggerAppComponent.f12747l1, daggerAppComponent.f12794x0);
+            this.f13000b = messageDetailViewModelImpl_Factory;
+            this.f13001c = C4462b.m14951a(new MessageDetailActivityModule_ProvideViewModelFactory(messageDetailActivityModule, this.f12999a, this.f13000b));
+        }
+
+        /* renamed from: a */
+        public void inject(MessageDetailActivity messageDetailActivity) {
+            messageDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            messageDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            MessageDetailActivity_MembersInjector.m12936a(messageDetailActivity, (MessageDetailViewModel) this.f13001c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MessagesFragmentSubcomponentBuilder */
+    public final class MessagesFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMessagesFragmentInjector.MessagesFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public MessagesFragmentModule f13003a;
+
+        /* renamed from: b */
+        public MessagesFragment f13004b;
+
+        public /* synthetic */ MessagesFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(MessagesFragment messagesFragment) {
+            if (messagesFragment != null) {
+                this.f13004b = messagesFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public MessagesFragmentSubcomponent build() {
+            if (this.f13003a == null) {
+                this.f13003a = new MessagesFragmentModule();
+            }
+            C3984v.m10237a(this.f13004b, MessagesFragment.class);
+            return new MessagesFragmentSubcomponentImpl(this.f13003a, this.f13004b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MessagesFragmentSubcomponentImpl */
+    public final class MessagesFragmentSubcomponentImpl implements MessagesFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<MessagesFragment> f13006a;
+
+        /* renamed from: b */
+        public C5431a<MessagesViewModelImpl> f13007b;
+
+        /* renamed from: c */
+        public C5431a<MessagesViewModel> f13008c;
+
+        public /* synthetic */ MessagesFragmentSubcomponentImpl(MessagesFragmentModule messagesFragmentModule, MessagesFragment messagesFragment, C41441 r11) {
+            this.f13006a = C4464d.m14952a(messagesFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            MessagesViewModelImpl_Factory messagesViewModelImpl_Factory = new MessagesViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12747l1, daggerAppComponent.f12744k2);
+            this.f13007b = messagesViewModelImpl_Factory;
+            this.f13008c = C4462b.m14951a(new MessagesFragmentModule_ProvideViewModelFactory(messagesFragmentModule, this.f13006a, this.f13007b));
+        }
+
+        /* renamed from: a */
+        public void inject(MessagesFragment messagesFragment) {
+            messagesFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            MessagesFragment_MembersInjector.m13086a(messagesFragment, (MessagesViewModel) this.f13008c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MoreFragmentSubcomponentBuilder */
+    public final class MoreFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeMoreFragmentInjector.MoreFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public MoreFragmentModule f13010a;
+
+        /* renamed from: b */
+        public MoreFragment f13011b;
+
+        public /* synthetic */ MoreFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(MoreFragment moreFragment) {
+            if (moreFragment != null) {
+                this.f13011b = moreFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public MoreFragmentSubcomponent build() {
+            if (this.f13010a == null) {
+                this.f13010a = new MoreFragmentModule();
+            }
+            C3984v.m10237a(this.f13011b, MoreFragment.class);
+            return new MoreFragmentSubcomponentImpl(this.f13010a, this.f13011b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$MoreFragmentSubcomponentImpl */
+    public final class MoreFragmentSubcomponentImpl implements MoreFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<MoreFragment> f13013a;
+
+        /* renamed from: b */
+        public C5431a<MainViewModelImpl> f13014b;
+
+        /* renamed from: c */
+        public C5431a<MainViewModel> f13015c;
+
+        public /* synthetic */ MoreFragmentSubcomponentImpl(MoreFragmentModule moreFragmentModule, MoreFragment moreFragment, C41441 r13) {
+            this.f13013a = C4464d.m14952a(moreFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f13014b = MainViewModelImpl_Factory.m12839a(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12683U, daggerAppComponent.f12794x0, daggerAppComponent.f12731h1, daggerAppComponent.f12747l1, daggerAppComponent.f12639F0, daggerAppComponent.f12684U0);
+            this.f13015c = C4462b.m14951a(new MoreFragmentModule_ProvideViewModelFactory(moreFragmentModule, this.f13013a, this.f13014b));
+        }
+
+        /* renamed from: a */
+        public void inject(MoreFragment moreFragment) {
+            moreFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            MoreFragment_MembersInjector.m12855a(moreFragment, (MainViewModel) this.f13015c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NewMessageActivitySubcomponentBuilder */
+    public final class NewMessageActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4136x3860f192.NewMessageActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public NewMessagesModule f13017a;
+
+        /* renamed from: b */
+        public NewMessageActivity f13018b;
+
+        public /* synthetic */ NewMessageActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(NewMessageActivity newMessageActivity) {
+            if (newMessageActivity != null) {
+                this.f13018b = newMessageActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public NewMessageActivitySubcomponent build() {
+            if (this.f13017a == null) {
+                this.f13017a = new NewMessagesModule();
+            }
+            C3984v.m10237a(this.f13018b, NewMessageActivity.class);
+            return new NewMessageActivitySubcomponentImpl(DaggerAppComponent.this, this.f13017a, this.f13018b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NewMessageActivitySubcomponentImpl */
+    public final class NewMessageActivitySubcomponentImpl implements NewMessageActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<NewMessageActivity> f13020a;
+
+        /* renamed from: b */
+        public C5431a<NewMessageViewModelImpl> f13021b;
+
+        /* renamed from: c */
+        public C5431a<NewMessageViewModel> f13022c;
+
+        /* renamed from: d */
+        public final /* synthetic */ DaggerAppComponent f13023d;
+
+        public /* synthetic */ NewMessageActivitySubcomponentImpl(DaggerAppComponent daggerAppComponent, NewMessagesModule newMessagesModule, NewMessageActivity newMessageActivity, C41441 r18) {
+            this.f13023d = daggerAppComponent;
+            this.f13020a = C4464d.m14952a(newMessageActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent2 = this.f13023d;
+            NewMessageViewModelImpl_Factory newMessageViewModelImpl_Factory = new NewMessageViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent2.f12798y0, daggerAppComponent2.f12667O1, daggerAppComponent2.f12794x0, daggerAppComponent2.f12720e2, daggerAppComponent2.f12666O0, daggerAppComponent2.f12697Y1, daggerAppComponent2.f12655K1, daggerAppComponent2.f12691W1, daggerAppComponent2.f12683U);
+            this.f13021b = newMessageViewModelImpl_Factory;
+            this.f13022c = C4462b.m14951a(new NewMessagesModule_ProvideViewModelFactory(newMessagesModule, this.f13020a, this.f13021b));
+        }
+
+        /* renamed from: a */
+        public void inject(NewMessageActivity newMessageActivity) {
+            newMessageActivity.f15496v = this.f13023d.mo12484b();
+            newMessageActivity.f15497w = this.f13023d.mo12481a();
+            NewMessageActivity_MembersInjector.m13155a(newMessageActivity, (NewMessageViewModel) this.f13022c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NotSupportedAppActivitySubcomponentBuilder */
+    public final class NotSupportedAppActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4137x9cadb05.NotSupportedAppActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public NotSupportedAppActivityModule f13024a;
+
+        /* renamed from: b */
+        public NotSupportedAppActivity f13025b;
+
+        public /* synthetic */ NotSupportedAppActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(NotSupportedAppActivity notSupportedAppActivity) {
+            if (notSupportedAppActivity != null) {
+                this.f13025b = notSupportedAppActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public NotSupportedAppActivitySubcomponent build() {
+            if (this.f13024a == null) {
+                this.f13024a = new NotSupportedAppActivityModule();
+            }
+            C3984v.m10237a(this.f13025b, NotSupportedAppActivity.class);
+            return new NotSupportedAppActivitySubcomponentImpl(this.f13024a, this.f13025b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NotSupportedAppActivitySubcomponentImpl */
+    public final class NotSupportedAppActivitySubcomponentImpl implements NotSupportedAppActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<NotSupportedAppActivity> f13027a;
+
+        /* renamed from: b */
+        public C5431a<NotSupportedAppViewModelImpl> f13028b = new NotSupportedAppViewModelImpl_Factory(ObservableImpl_Factory.f15471a, DaggerAppComponent.this.f12687V0, ExecuteOnceUiCommandSource_Factory.f15468a);
+
+        /* renamed from: c */
+        public C5431a<NotSupportedAppViewModel> f13029c;
+
+        public /* synthetic */ NotSupportedAppActivitySubcomponentImpl(NotSupportedAppActivityModule notSupportedAppActivityModule, NotSupportedAppActivity notSupportedAppActivity, C41441 r5) {
+            this.f13027a = C4464d.m14952a(notSupportedAppActivity);
+            this.f13029c = C4462b.m14951a(new NotSupportedAppActivityModule_ProvideViewModelFactory(notSupportedAppActivityModule, this.f13027a, this.f13028b));
+        }
+
+        /* renamed from: a */
+        public void inject(NotSupportedAppActivity notSupportedAppActivity) {
+            notSupportedAppActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            notSupportedAppActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            NotSupportedAppActivity_MembersInjector.m11433a(notSupportedAppActivity, (NotSupportedAppViewModel) this.f13029c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NoteDetailsActivitySubcomponentBuilder */
+    public final class NoteDetailsActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeNoteDetailsActivityInjector.NoteDetailsActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public NoteDetailsActivityModule f13031a;
+
+        /* renamed from: b */
+        public NoteDetailsActivity f13032b;
+
+        public /* synthetic */ NoteDetailsActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(NoteDetailsActivity noteDetailsActivity) {
+            if (noteDetailsActivity != null) {
+                this.f13032b = noteDetailsActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public NoteDetailsActivitySubcomponent build() {
+            if (this.f13031a == null) {
+                this.f13031a = new NoteDetailsActivityModule();
+            }
+            C3984v.m10237a(this.f13032b, NoteDetailsActivity.class);
+            return new NoteDetailsActivitySubcomponentImpl(this.f13031a, this.f13032b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NoteDetailsActivitySubcomponentImpl */
+    public final class NoteDetailsActivitySubcomponentImpl implements NoteDetailsActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<NoteDetailsActivity> f13034a;
+
+        /* renamed from: b */
+        public C5431a<NoteDetailsViewModelImpl> f13035b = new NoteDetailsViewModelImpl_Factory(ObservableImpl_Factory.f15471a, ExecuteOnceUiCommandSource_Factory.f15468a, DaggerAppComponent.this.f12657L0);
+
+        /* renamed from: c */
+        public C5431a<NoteDetailsViewModel> f13036c;
+
+        public /* synthetic */ NoteDetailsActivitySubcomponentImpl(NoteDetailsActivityModule noteDetailsActivityModule, NoteDetailsActivity noteDetailsActivity, C41441 r5) {
+            this.f13034a = C4464d.m14952a(noteDetailsActivity);
+            this.f13036c = C4462b.m14951a(new NoteDetailsActivityModule_ProvideViewModelFactory(noteDetailsActivityModule, this.f13034a, this.f13035b));
+        }
+
+        /* renamed from: a */
+        public void inject(NoteDetailsActivity noteDetailsActivity) {
+            noteDetailsActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            noteDetailsActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            NoteDetailsActivity_MembersInjector.m13226a(noteDetailsActivity, (NoteDetailsViewModel) this.f13036c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NotesFragmentSubcomponentBuilder */
+    public final class NotesFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNotesFragmentInjector.NotesFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public NotesFragmentModule f13038a;
+
+        /* renamed from: b */
+        public NotesFragment f13039b;
+
+        public /* synthetic */ NotesFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(NotesFragment notesFragment) {
+            if (notesFragment != null) {
+                this.f13039b = notesFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public NotesFragmentSubcomponent build() {
+            if (this.f13038a == null) {
+                this.f13038a = new NotesFragmentModule();
+            }
+            C3984v.m10237a(this.f13039b, NotesFragment.class);
+            return new NotesFragmentSubcomponentImpl(this.f13038a, this.f13039b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NotesFragmentSubcomponentImpl */
+    public final class NotesFragmentSubcomponentImpl implements NotesFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<NotesFragment> f13041a;
+
+        /* renamed from: b */
+        public C5431a<NotesViewModelImpl> f13042b;
+
+        /* renamed from: c */
+        public C5431a<NotesViewModel> f13043c;
+
+        public /* synthetic */ NotesFragmentSubcomponentImpl(NotesFragmentModule notesFragmentModule, NotesFragment notesFragment, C41441 r11) {
+            this.f13041a = C4464d.m14952a(notesFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            NotesViewModelImpl_Factory notesViewModelImpl_Factory = new NotesViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12736i2, DaggerAppComponent.this.f12683U);
+            this.f13042b = notesViewModelImpl_Factory;
+            this.f13043c = C4462b.m14951a(new NotesFragmentModule_ProvideViewModelFactory(notesFragmentModule, this.f13041a, this.f13042b));
+        }
+
+        /* renamed from: a */
+        public void inject(NotesFragment notesFragment) {
+            notesFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            NotesFragment_MembersInjector.m13294a(notesFragment, (NotesViewModel) this.f13043c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NoticeBoardFragmentSubcomponentBuilder */
+    public final class NoticeBoardFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeNoticeBoardFragmentInjector.NoticeBoardFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public NoticeBoardFragmentModule f13045a;
+
+        /* renamed from: b */
+        public NoticeBoardFragment f13046b;
+
+        public /* synthetic */ NoticeBoardFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(NoticeBoardFragment noticeBoardFragment) {
+            if (noticeBoardFragment != null) {
+                this.f13046b = noticeBoardFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public NoticeBoardFragmentSubcomponent build() {
+            if (this.f13045a == null) {
+                this.f13045a = new NoticeBoardFragmentModule();
+            }
+            C3984v.m10237a(this.f13046b, NoticeBoardFragment.class);
+            return new NoticeBoardFragmentSubcomponentImpl(this.f13045a, this.f13046b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NoticeBoardFragmentSubcomponentImpl */
+    public final class NoticeBoardFragmentSubcomponentImpl implements NoticeBoardFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<NoticeBoardFragment> f13048a;
+
+        /* renamed from: b */
+        public C5431a<NoticeBoardViewModelImpl> f13049b;
+
+        /* renamed from: c */
+        public C5431a<NoticeBoardViewModel> f13050c;
+
+        public /* synthetic */ NoticeBoardFragmentSubcomponentImpl(NoticeBoardFragmentModule noticeBoardFragmentModule, NoticeBoardFragment noticeBoardFragment, C41441 r10) {
+            this.f13048a = C4464d.m14952a(noticeBoardFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            NoticeBoardViewModelImpl_Factory noticeBoardViewModelImpl_Factory = new NoticeBoardViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12760o2);
+            this.f13049b = noticeBoardViewModelImpl_Factory;
+            this.f13050c = C4462b.m14951a(new NoticeBoardFragmentModule_ProvideViewModelFactory(noticeBoardFragmentModule, this.f13048a, this.f13049b));
+        }
+
+        /* renamed from: a */
+        public void inject(NoticeBoardFragment noticeBoardFragment) {
+            noticeBoardFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            NoticeBoardFragment_MembersInjector.m13329a(noticeBoardFragment, (NoticeBoardViewModel) this.f13050c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NoticeBoardItemDetailActivitySubcomponentBuilder */
+    public final class NoticeBoardItemDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4138xef493768.NoticeBoardItemDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public NoticeBoardItemDetailsActivityModule f13052a;
+
+        /* renamed from: b */
+        public NoticeBoardItemDetailActivity f13053b;
+
+        public /* synthetic */ NoticeBoardItemDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(NoticeBoardItemDetailActivity noticeBoardItemDetailActivity) {
+            if (noticeBoardItemDetailActivity != null) {
+                this.f13053b = noticeBoardItemDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public NoticeBoardItemDetailActivitySubcomponent build() {
+            if (this.f13052a == null) {
+                this.f13052a = new NoticeBoardItemDetailsActivityModule();
+            }
+            C3984v.m10237a(this.f13053b, NoticeBoardItemDetailActivity.class);
+            return new NoticeBoardItemDetailActivitySubcomponentImpl(this.f13052a, this.f13053b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$NoticeBoardItemDetailActivitySubcomponentImpl */
+    public final class NoticeBoardItemDetailActivitySubcomponentImpl implements NoticeBoardItemDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<NoticeBoardItemDetailActivity> f13055a;
+
+        /* renamed from: b */
+        public C5431a<NoticeBoardItemDetailViewModelImpl> f13056b = new NoticeBoardItemDetailViewModelImpl_Factory(ObservableImpl_Factory.f15471a, ExecuteOnceUiCommandSource_Factory.f15468a);
+
+        /* renamed from: c */
+        public C5431a<NoticeBoardItemDetailViewModel> f13057c;
+
+        public /* synthetic */ NoticeBoardItemDetailActivitySubcomponentImpl(NoticeBoardItemDetailsActivityModule noticeBoardItemDetailsActivityModule, NoticeBoardItemDetailActivity noticeBoardItemDetailActivity, C41441 r4) {
+            this.f13055a = C4464d.m14952a(noticeBoardItemDetailActivity);
+            this.f13057c = C4462b.m14951a(new NoticeBoardItemDetailsActivityModule_ProvideViewModelFactory(noticeBoardItemDetailsActivityModule, this.f13055a, this.f13056b));
+        }
+
+        /* renamed from: a */
+        public void inject(NoticeBoardItemDetailActivity noticeBoardItemDetailActivity) {
+            noticeBoardItemDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            noticeBoardItemDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            NoticeBoardItemDetailActivity_MembersInjector.m13383a(noticeBoardItemDetailActivity, (NoticeBoardItemDetailViewModel) this.f13057c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$OmissionDetailActivitySubcomponentBuilder */
+    public final class OmissionDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4139x83e39e75.OmissionDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public OmissionDetailActivityModule f13059a;
+
+        /* renamed from: b */
+        public OmissionDetailActivity f13060b;
+
+        public /* synthetic */ OmissionDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(OmissionDetailActivity omissionDetailActivity) {
+            if (omissionDetailActivity != null) {
+                this.f13060b = omissionDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public OmissionDetailActivitySubcomponent build() {
+            if (this.f13059a == null) {
+                this.f13059a = new OmissionDetailActivityModule();
+            }
+            C3984v.m10237a(this.f13060b, OmissionDetailActivity.class);
+            return new OmissionDetailActivitySubcomponentImpl(this.f13059a, this.f13060b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$OmissionDetailActivitySubcomponentImpl */
+    public final class OmissionDetailActivitySubcomponentImpl implements OmissionDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<OmissionDetailActivity> f13062a;
+
+        /* renamed from: b */
+        public C5431a<OmissionDetailViewModelImpl> f13063b;
+
+        /* renamed from: c */
+        public C5431a<OmissionDetailViewModel> f13064c;
+
+        public /* synthetic */ OmissionDetailActivitySubcomponentImpl(OmissionDetailActivityModule omissionDetailActivityModule, OmissionDetailActivity omissionDetailActivity, C41441 r6) {
+            this.f13062a = C4464d.m14952a(omissionDetailActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f13063b = new OmissionDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12683U, daggerAppComponent.f12657L0);
+            this.f13064c = C4462b.m14951a(new OmissionDetailActivityModule_ProvideViewModelFactory(omissionDetailActivityModule, this.f13062a, this.f13063b));
+        }
+
+        /* renamed from: a */
+        public void inject(OmissionDetailActivity omissionDetailActivity) {
+            omissionDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            omissionDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            OmissionDetailActivity_MembersInjector.m13523a(omissionDetailActivity, (OmissionDetailViewModel) this.f13064c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$OmissionsPerDayFragmentSubcomponentBuilder */
+    public final class OmissionsPerDayFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4142x1e551236.OmissionsPerDayFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public OmissionFragmentModule f13066a;
+
+        /* renamed from: b */
+        public OmissionsPerDayFragment f13067b;
+
+        public /* synthetic */ OmissionsPerDayFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(OmissionsPerDayFragment omissionsPerDayFragment) {
+            if (omissionsPerDayFragment != null) {
+                this.f13067b = omissionsPerDayFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public OmissionsPerDayFragmentSubcomponent build() {
+            if (this.f13066a == null) {
+                this.f13066a = new OmissionFragmentModule();
+            }
+            C3984v.m10237a(this.f13067b, OmissionsPerDayFragment.class);
+            return new OmissionsPerDayFragmentSubcomponentImpl(this.f13066a, this.f13067b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$OmissionsPerDayFragmentSubcomponentImpl */
+    public final class OmissionsPerDayFragmentSubcomponentImpl implements OmissionsPerDayFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<OmissionsPerDayFragment> f13069a;
+
+        /* renamed from: b */
+        public C5431a<OmissionsPerDayViewModelImpl> f13070b;
+
+        /* renamed from: c */
+        public C5431a<OmissionsPerDayViewModel> f13071c;
+
+        public /* synthetic */ OmissionsPerDayFragmentSubcomponentImpl(OmissionFragmentModule omissionFragmentModule, OmissionsPerDayFragment omissionsPerDayFragment, C41441 r10) {
+            this.f13069a = C4464d.m14952a(omissionsPerDayFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            OmissionsPerDayViewModelImpl_Factory omissionsPerDayViewModelImpl_Factory = new OmissionsPerDayViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12731h1);
+            this.f13070b = omissionsPerDayViewModelImpl_Factory;
+            this.f13071c = C4462b.m14951a(new OmissionFragmentModule_ProvideViewModelFactory(omissionFragmentModule, this.f13069a, this.f13070b));
+        }
+
+        /* renamed from: a */
+        public void inject(OmissionsPerDayFragment omissionsPerDayFragment) {
+            omissionsPerDayFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            OmissionsPerDayFragment_MembersInjector.m13652a(omissionsPerDayFragment, (OmissionsPerDayViewModel) this.f13071c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ProfileDetailActivitySubcomponentBuilder */
+    public final class ProfileDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileDetailActivityInjector.ProfileDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public ProfileDetailActivityModule f13073a;
+
+        /* renamed from: b */
+        public ProfileDetailActivity f13074b;
+
+        public /* synthetic */ ProfileDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(ProfileDetailActivity profileDetailActivity) {
+            if (profileDetailActivity != null) {
+                this.f13074b = profileDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public ProfileDetailActivitySubcomponent build() {
+            if (this.f13073a == null) {
+                this.f13073a = new ProfileDetailActivityModule();
+            }
+            C3984v.m10237a(this.f13074b, ProfileDetailActivity.class);
+            return new ProfileDetailActivitySubcomponentImpl(this.f13073a, this.f13074b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ProfileDetailActivitySubcomponentImpl */
+    public final class ProfileDetailActivitySubcomponentImpl implements ProfileDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<ProfileDetailActivity> f13076a;
+
+        /* renamed from: b */
+        public C5431a<ProfileDetailViewModelImpl> f13077b;
+
+        /* renamed from: c */
+        public C5431a<ProfileDetailViewModel> f13078c;
+
+        public /* synthetic */ ProfileDetailActivitySubcomponentImpl(ProfileDetailActivityModule profileDetailActivityModule, ProfileDetailActivity profileDetailActivity, C41441 r6) {
+            this.f13076a = C4464d.m14952a(profileDetailActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f13077b = new ProfileDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0);
+            this.f13078c = C4462b.m14951a(new ProfileDetailActivityModule_ProvideViewModelFactory(profileDetailActivityModule, this.f13076a, this.f13077b));
+        }
+
+        /* renamed from: a */
+        public void inject(ProfileDetailActivity profileDetailActivity) {
+            profileDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            profileDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            ProfileDetailActivity_MembersInjector.m13885a(profileDetailActivity, (ProfileDetailViewModel) this.f13078c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ProfileListActivitySubcomponentBuilder */
+    public final class ProfileListActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeProfileListActivityInjector.ProfileListActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public ProfileListActivityModule f13080a;
+
+        /* renamed from: b */
+        public ProfileListActivity f13081b;
+
+        public /* synthetic */ ProfileListActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(ProfileListActivity profileListActivity) {
+            if (profileListActivity != null) {
+                this.f13081b = profileListActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public ProfileListActivitySubcomponent build() {
+            if (this.f13080a == null) {
+                this.f13080a = new ProfileListActivityModule();
+            }
+            C3984v.m10237a(this.f13081b, ProfileListActivity.class);
+            return new ProfileListActivitySubcomponentImpl(this.f13080a, this.f13081b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$ProfileListActivitySubcomponentImpl */
+    public final class ProfileListActivitySubcomponentImpl implements ProfileListActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<ProfileListActivity> f13083a;
+
+        /* renamed from: b */
+        public C5431a<ProfileListViewModelImpl> f13084b;
+
+        /* renamed from: c */
+        public C5431a<ProfileListViewModel> f13085c;
+
+        public /* synthetic */ ProfileListActivitySubcomponentImpl(ProfileListActivityModule profileListActivityModule, ProfileListActivity profileListActivity, C41441 r10) {
+            this.f13083a = C4464d.m14952a(profileListActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            ProfileListViewModelImpl_Factory profileListViewModelImpl_Factory = new ProfileListViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12683U);
+            this.f13084b = profileListViewModelImpl_Factory;
+            this.f13085c = C4462b.m14951a(new ProfileListActivityModule_ProvideViewModelFactory(profileListActivityModule, this.f13083a, this.f13084b));
+        }
+
+        /* renamed from: a */
+        public void inject(ProfileListActivity profileListActivity) {
+            profileListActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            profileListActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            ProfileListActivity_MembersInjector.m13922a(profileListActivity, (ProfileListViewModel) this.f13085c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$QuarterlyFragmentSubcomponentBuilder */
+    public final class QuarterlyFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeQuarterlyFragmentInjector.QuarterlyFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public QuarterlyFragmentModule f13087a;
+
+        /* renamed from: b */
+        public QuarterlyFragment f13088b;
+
+        public /* synthetic */ QuarterlyFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(QuarterlyFragment quarterlyFragment) {
+            if (quarterlyFragment != null) {
+                this.f13088b = quarterlyFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public QuarterlyFragmentSubcomponent build() {
+            if (this.f13087a == null) {
+                this.f13087a = new QuarterlyFragmentModule();
+            }
+            C3984v.m10237a(this.f13088b, QuarterlyFragment.class);
+            return new QuarterlyFragmentSubcomponentImpl(this.f13087a, this.f13088b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$QuarterlyFragmentSubcomponentImpl */
+    public final class QuarterlyFragmentSubcomponentImpl implements QuarterlyFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<QuarterlyFragment> f13090a;
+
+        /* renamed from: b */
+        public C5431a<QuarterlyViewModelImpl> f13091b;
+
+        /* renamed from: c */
+        public C5431a<QuarterlyViewModel> f13092c;
+
+        public /* synthetic */ QuarterlyFragmentSubcomponentImpl(QuarterlyFragmentModule quarterlyFragmentModule, QuarterlyFragment quarterlyFragment, C41441 r11) {
+            this.f13090a = C4464d.m14952a(quarterlyFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            QuarterlyViewModelImpl_Factory quarterlyViewModelImpl_Factory = new QuarterlyViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12779t1, daggerAppComponent.f12683U);
+            this.f13091b = quarterlyViewModelImpl_Factory;
+            this.f13092c = C4462b.m14951a(new QuarterlyFragmentModule_ProvideViewModelFactory(quarterlyFragmentModule, this.f13090a, this.f13091b));
+        }
+
+        /* renamed from: a */
+        public void inject(QuarterlyFragment quarterlyFragment) {
+            quarterlyFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            QuarterlyFragment_MembersInjector.m14299a(quarterlyFragment, (QuarterlyViewModel) this.f13092c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$RemindersFragmentSubcomponentBuilder */
+    public final class RemindersFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeRemindersFragmentInjector.RemindersFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public RemindersFragmentModule f13094a;
+
+        /* renamed from: b */
+        public RemindersFragment f13095b;
+
+        public /* synthetic */ RemindersFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(RemindersFragment remindersFragment) {
+            if (remindersFragment != null) {
+                this.f13095b = remindersFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public RemindersFragmentSubcomponent build() {
+            if (this.f13094a == null) {
+                this.f13094a = new RemindersFragmentModule();
+            }
+            C3984v.m10237a(this.f13095b, RemindersFragment.class);
+            return new RemindersFragmentSubcomponentImpl(this.f13094a, this.f13095b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$RemindersFragmentSubcomponentImpl */
+    public final class RemindersFragmentSubcomponentImpl implements RemindersFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<RemindersFragment> f13097a;
+
+        /* renamed from: b */
+        public C5431a<ArrayList<ReminderRepository>> f13098b;
+
+        /* renamed from: c */
+        public C5431a<RemindersViewModelImpl> f13099c;
+
+        /* renamed from: d */
+        public C5431a<RemindersViewModel> f13100d;
+
+        public /* synthetic */ RemindersFragmentSubcomponentImpl(RemindersFragmentModule remindersFragmentModule, RemindersFragment remindersFragment, C41441 r10) {
+            this.f13097a = C4464d.m14952a(remindersFragment);
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f13098b = new RemindersFragmentModule_ProvideReminderRepositoriesFactory(remindersFragmentModule, daggerAppComponent.f12795x1, daggerAppComponent.f12628B1);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent2 = DaggerAppComponent.this;
+            this.f13099c = RemindersViewModelImpl_Factory.m14005a(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent2.f12798y0, daggerAppComponent2.f12794x0, this.f13098b, daggerAppComponent2.f12683U);
+            this.f13100d = C4462b.m14951a(new RemindersFragmentModule_ProvideViewModelFactory(remindersFragmentModule, this.f13097a, this.f13099c));
+        }
+
+        /* renamed from: a */
+        public void inject(RemindersFragment remindersFragment) {
+            remindersFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            RemindersFragment_MembersInjector.m13994a(remindersFragment, (RemindersViewModel) this.f13100d.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$RootedDeviceDetectedActivitySubcomponentBuilder */
+    public final class RootedDeviceDetectedActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.C4140xcc3072e0.RootedDeviceDetectedActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public RootedDeviceDetectedActivityModule f13102a;
+
+        /* renamed from: b */
+        public RootedDeviceDetectedActivity f13103b;
+
+        public /* synthetic */ RootedDeviceDetectedActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(RootedDeviceDetectedActivity rootedDeviceDetectedActivity) {
+            if (rootedDeviceDetectedActivity != null) {
+                this.f13103b = rootedDeviceDetectedActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public RootedDeviceDetectedActivitySubcomponent build() {
+            if (this.f13102a == null) {
+                this.f13102a = new RootedDeviceDetectedActivityModule();
+            }
+            C3984v.m10237a(this.f13103b, RootedDeviceDetectedActivity.class);
+            return new RootedDeviceDetectedActivitySubcomponentImpl(this.f13102a, this.f13103b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$RootedDeviceDetectedActivitySubcomponentImpl */
+    public final class RootedDeviceDetectedActivitySubcomponentImpl implements RootedDeviceDetectedActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<RootedDeviceDetectedActivity> f13105a;
+
+        /* renamed from: b */
+        public C5431a<RootedDeviceDetectedViewModelImpl> f13106b = new RootedDeviceDetectedViewModelImpl_Factory(ObservableImpl_Factory.f15471a, ExecuteOnceUiCommandSource_Factory.f15468a);
+
+        /* renamed from: c */
+        public C5431a<RootedDeviceDetectedViewModel> f13107c;
+
+        public /* synthetic */ RootedDeviceDetectedActivitySubcomponentImpl(RootedDeviceDetectedActivityModule rootedDeviceDetectedActivityModule, RootedDeviceDetectedActivity rootedDeviceDetectedActivity, C41441 r4) {
+            this.f13105a = C4464d.m14952a(rootedDeviceDetectedActivity);
+            this.f13107c = C4462b.m14951a(new RootedDeviceDetectedActivityModule_ProvideViewModelFactory(rootedDeviceDetectedActivityModule, this.f13105a, this.f13106b));
+        }
+
+        /* renamed from: a */
+        public void inject(RootedDeviceDetectedActivity rootedDeviceDetectedActivity) {
+            rootedDeviceDetectedActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            rootedDeviceDetectedActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            RootedDeviceDetectedActivity_MembersInjector.m14009a(rootedDeviceDetectedActivity, (RootedDeviceDetectedViewModel) this.f13107c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SettingsActivitySubcomponentBuilder */
+    public final class SettingsActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSettingsActivityInjector.SettingsActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public SettingsActivityModule f13109a;
+
+        /* renamed from: b */
+        public SettingsActivity f13110b;
+
+        public /* synthetic */ SettingsActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(SettingsActivity settingsActivity) {
+            if (settingsActivity != null) {
+                this.f13110b = settingsActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public SettingsActivitySubcomponent build() {
+            if (this.f13109a == null) {
+                this.f13109a = new SettingsActivityModule();
+            }
+            C3984v.m10237a(this.f13110b, SettingsActivity.class);
+            return new SettingsActivitySubcomponentImpl(this.f13109a, this.f13110b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SettingsActivitySubcomponentImpl */
+    public final class SettingsActivitySubcomponentImpl implements SettingsActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<SettingsActivity> f13112a;
+
+        /* renamed from: b */
+        public C5431a<SettingsViewModelImpl> f13113b;
+
+        /* renamed from: c */
+        public C5431a<SettingsViewModel> f13114c;
+
+        public /* synthetic */ SettingsActivitySubcomponentImpl(SettingsActivityModule settingsActivityModule, SettingsActivity settingsActivity, C41441 r6) {
+            this.f13112a = C4464d.m14952a(settingsActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            this.f13113b = new SettingsViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12684U0, daggerAppComponent.f12683U);
+            this.f13114c = C4462b.m14951a(new SettingsActivityModule_ProvideViewModelFactory(settingsActivityModule, this.f13112a, this.f13113b));
+        }
+
+        /* renamed from: a */
+        public void inject(SettingsActivity settingsActivity) {
+            settingsActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            settingsActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            SettingsActivity_MembersInjector.m14091a(settingsActivity, (SettingsViewModel) this.f13114c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SplashActivitySubcomponentBuilder */
+    public final class SplashActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSplashActivityInjector.SplashActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public SplashActivityModule f13116a;
+
+        /* renamed from: b */
+        public SplashActivity f13117b;
+
+        public /* synthetic */ SplashActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(SplashActivity splashActivity) {
+            if (splashActivity != null) {
+                this.f13117b = splashActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public SplashActivitySubcomponent build() {
+            if (this.f13116a == null) {
+                this.f13116a = new SplashActivityModule();
+            }
+            C3984v.m10237a(this.f13117b, SplashActivity.class);
+            return new SplashActivitySubcomponentImpl(this.f13116a, this.f13117b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SplashActivitySubcomponentImpl */
+    public final class SplashActivitySubcomponentImpl implements SplashActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<SplashActivity> f13119a;
+
+        /* renamed from: b */
+        public C5431a<SplashViewModelImpl> f13120b;
+
+        /* renamed from: c */
+        public C5431a<SplashViewModel> f13121c;
+
+        public /* synthetic */ SplashActivitySubcomponentImpl(SplashActivityModule splashActivityModule, SplashActivity splashActivity, C41441 r13) {
+            this.f13119a = C4464d.m14952a(splashActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            C5431a<ProfileRepository> aVar = daggerAppComponent.f12794x0;
+            C5431a<DetectRootedDevice> aVar2 = daggerAppComponent.f12703a1;
+            C5431a e = daggerAppComponent.f12687V0;
+            DaggerAppComponent daggerAppComponent2 = DaggerAppComponent.this;
+            SplashViewModelImpl_Factory splashViewModelImpl_Factory = new SplashViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, aVar, aVar2, e, daggerAppComponent2.f12707b1, daggerAppComponent2.f12715d1, daggerAppComponent2.f12718e0);
+            this.f13120b = splashViewModelImpl_Factory;
+            this.f13121c = C4462b.m14951a(new SplashActivityModule_ProvideViewModelFactory(splashActivityModule, this.f13119a, this.f13120b));
+        }
+
+        /* renamed from: a */
+        public void inject(SplashActivity splashActivity) {
+            splashActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            splashActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            SplashActivity_MembersInjector.m14099a(splashActivity, (SplashViewModel) this.f13121c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SubjectDetailActivitySubcomponentBuilder */
+    public final class SubjectDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeSubjectDetailActivityInjector.SubjectDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public SubjectDetailActivityModule f13123a;
+
+        /* renamed from: b */
+        public SubjectDetailActivity f13124b;
+
+        public /* synthetic */ SubjectDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(SubjectDetailActivity subjectDetailActivity) {
+            if (subjectDetailActivity != null) {
+                this.f13124b = subjectDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public SubjectDetailActivitySubcomponent build() {
+            if (this.f13123a == null) {
+                this.f13123a = new SubjectDetailActivityModule();
+            }
+            C3984v.m10237a(this.f13124b, SubjectDetailActivity.class);
+            return new SubjectDetailActivitySubcomponentImpl(this.f13123a, this.f13124b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SubjectDetailActivitySubcomponentImpl */
+    public final class SubjectDetailActivitySubcomponentImpl implements SubjectDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<SubjectDetailActivity> f13126a;
+
+        /* renamed from: b */
+        public C5431a<SubjectDetailViewModelImpl> f13127b;
+
+        /* renamed from: c */
+        public C5431a<SubjectDetailViewModel> f13128c;
+
+        public /* synthetic */ SubjectDetailActivitySubcomponentImpl(SubjectDetailActivityModule subjectDetailActivityModule, SubjectDetailActivity subjectDetailActivity, C41441 r14) {
+            this.f13126a = C4464d.m14952a(subjectDetailActivity);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            C5431a<AuthenticationService> aVar = daggerAppComponent.f12798y0;
+            C5431a<ProfileRepository> aVar2 = daggerAppComponent.f12794x0;
+            C5431a<Application> aVar3 = daggerAppComponent.f12683U;
+            C5431a f = daggerAppComponent.f12763p1;
+            DaggerAppComponent daggerAppComponent2 = DaggerAppComponent.this;
+            SubjectDetailViewModelImpl_Factory subjectDetailViewModelImpl_Factory = new SubjectDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, aVar, aVar2, aVar3, f, daggerAppComponent2.f12666O0, daggerAppComponent2.f12779t1, daggerAppComponent2.f12633D0);
+            this.f13127b = subjectDetailViewModelImpl_Factory;
+            this.f13128c = C4462b.m14951a(new SubjectDetailActivityModule_ProvideViewModelFactory(subjectDetailActivityModule, this.f13126a, this.f13127b));
+        }
+
+        /* renamed from: a */
+        public void inject(SubjectDetailActivity subjectDetailActivity) {
+            subjectDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            subjectDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            SubjectDetailActivity_MembersInjector.m14319a(subjectDetailActivity, (SubjectDetailViewModel) this.f13128c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SubjectsFragmentSubcomponentBuilder */
+    public final class SubjectsFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeSubjectsFragmentInjector.SubjectsFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public SubjectsFragmentModule f13130a;
+
+        /* renamed from: b */
+        public SubjectsFragment f13131b;
+
+        public /* synthetic */ SubjectsFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(SubjectsFragment subjectsFragment) {
+            if (subjectsFragment != null) {
+                this.f13131b = subjectsFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public SubjectsFragmentSubcomponent build() {
+            if (this.f13130a == null) {
+                this.f13130a = new SubjectsFragmentModule();
+            }
+            C3984v.m10237a(this.f13131b, SubjectsFragment.class);
+            return new SubjectsFragmentSubcomponentImpl(this.f13130a, this.f13131b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$SubjectsFragmentSubcomponentImpl */
+    public final class SubjectsFragmentSubcomponentImpl implements SubjectsFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<SubjectsFragment> f13133a;
+
+        /* renamed from: b */
+        public C5431a<SubjectsViewModelImpl> f13134b;
+
+        /* renamed from: c */
+        public C5431a<SubjectsViewModel> f13135c;
+
+        public /* synthetic */ SubjectsFragmentSubcomponentImpl(SubjectsFragmentModule subjectsFragmentModule, SubjectsFragment subjectsFragment, C41441 r10) {
+            this.f13133a = C4464d.m14952a(subjectsFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            SubjectsViewModelImpl_Factory subjectsViewModelImpl_Factory = new SubjectsViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12779t1);
+            this.f13134b = subjectsViewModelImpl_Factory;
+            this.f13135c = C4462b.m14951a(new SubjectsFragmentModule_ProvideViewModelFactory(subjectsFragmentModule, this.f13133a, this.f13134b));
+        }
+
+        /* renamed from: a */
+        public void inject(SubjectsFragment subjectsFragment) {
+            subjectsFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            SubjectsFragment_MembersInjector.m14174a(subjectsFragment, (SubjectsViewModel) this.f13135c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TimeTableFragmentSubcomponentBuilder */
+    public final class TimeTableFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTimeTableFragmentInjector.TimeTableFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public TimeTableFragmentModule f13137a;
+
+        /* renamed from: b */
+        public TimeTableFragment f13138b;
+
+        public /* synthetic */ TimeTableFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(TimeTableFragment timeTableFragment) {
+            if (timeTableFragment != null) {
+                this.f13138b = timeTableFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public TimeTableFragmentSubcomponent build() {
+            if (this.f13137a == null) {
+                this.f13137a = new TimeTableFragmentModule();
+            }
+            C3984v.m10237a(this.f13138b, TimeTableFragment.class);
+            return new TimeTableFragmentSubcomponentImpl(this.f13137a, this.f13138b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TimeTableFragmentSubcomponentImpl */
+    public final class TimeTableFragmentSubcomponentImpl implements TimeTableFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<TimeTableFragment> f13140a;
+
+        /* renamed from: b */
+        public C5431a<TimeTableViewModelImpl> f13141b;
+
+        /* renamed from: c */
+        public C5431a<TimeTableViewModel> f13142c;
+
+        public /* synthetic */ TimeTableFragmentSubcomponentImpl(TimeTableFragmentModule timeTableFragmentModule, TimeTableFragment timeTableFragment, C41441 r10) {
+            this.f13140a = C4464d.m14952a(timeTableFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            TimeTableViewModelImpl_Factory timeTableViewModelImpl_Factory = new TimeTableViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12794x0, daggerAppComponent.f12646H1);
+            this.f13141b = timeTableViewModelImpl_Factory;
+            this.f13142c = C4462b.m14951a(new TimeTableFragmentModule_ProvideViewModelFactory(timeTableFragmentModule, this.f13140a, this.f13141b));
+        }
+
+        /* renamed from: a */
+        public void inject(TimeTableFragment timeTableFragment) {
+            timeTableFragment.f15499Z = DaggerAppComponent.this.mo12484b();
+            TimeTableFragment_MembersInjector.m14415a(timeTableFragment, (TimeTableViewModel) this.f13142c.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TimeTableItemDetailActivitySubcomponentBuilder */
+    public final class TimeTableItemDetailActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeLessonDetailActivityInjector.TimeTableItemDetailActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public TimeTableItemDetailActivityModule f13144a;
+
+        /* renamed from: b */
+        public TimeTableItemDetailActivity f13145b;
+
+        public /* synthetic */ TimeTableItemDetailActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(TimeTableItemDetailActivity timeTableItemDetailActivity) {
+            if (timeTableItemDetailActivity != null) {
+                this.f13145b = timeTableItemDetailActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public TimeTableItemDetailActivitySubcomponent build() {
+            if (this.f13144a == null) {
+                this.f13144a = new TimeTableItemDetailActivityModule();
+            }
+            C3984v.m10237a(this.f13145b, TimeTableItemDetailActivity.class);
+            return new TimeTableItemDetailActivitySubcomponentImpl(this.f13144a, this.f13145b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TimeTableItemDetailActivitySubcomponentImpl */
+    public final class TimeTableItemDetailActivitySubcomponentImpl implements TimeTableItemDetailActivitySubcomponent {
+
+        /* renamed from: a */
+        public C5431a<TimeTableItemDetailActivity> f13147a;
+
+        /* renamed from: b */
+        public C5431a<C2676c> f13148b;
+
+        /* renamed from: c */
+        public C5431a<TimeTableItemDetailViewModelImpl> f13149c;
+
+        /* renamed from: d */
+        public C5431a<TimeTableItemDetailViewModel> f13150d;
+
+        public /* synthetic */ TimeTableItemDetailActivitySubcomponentImpl(TimeTableItemDetailActivityModule timeTableItemDetailActivityModule, TimeTableItemDetailActivity timeTableItemDetailActivity, C41441 r14) {
+            this.f13147a = C4464d.m14952a(timeTableItemDetailActivity);
+            this.f13148b = new TimeTableItemDetailActivityModule_ProvideRxActivityResultFactory(timeTableItemDetailActivityModule, this.f13147a);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent = DaggerAppComponent.this;
+            TimeTableItemDetailViewModelImpl_Factory timeTableItemDetailViewModelImpl_Factory = new TimeTableItemDetailViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, daggerAppComponent.f12798y0, daggerAppComponent.f12683U, daggerAppComponent.f12794x0, daggerAppComponent.f12795x1, daggerAppComponent.f12628B1, daggerAppComponent.f12646H1, this.f13148b);
+            this.f13149c = timeTableItemDetailViewModelImpl_Factory;
+            this.f13150d = C4462b.m14951a(new TimeTableItemDetailActivityModule_ProvideViewModelFactory(timeTableItemDetailActivityModule, this.f13147a, this.f13149c));
+        }
+
+        /* renamed from: a */
+        public void inject(TimeTableItemDetailActivity timeTableItemDetailActivity) {
+            timeTableItemDetailActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            timeTableItemDetailActivity.f15497w = DaggerAppComponent.this.mo12481a();
+            TimeTableItemDetailActivity_MembersInjector.m14567a(timeTableItemDetailActivity, (TimeTableItemDetailViewModel) this.f13150d.get());
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TmgiFormActivitySubcomponentBuilder */
+    public final class TmgiFormActivitySubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeActivityModule_ContributeTgmiFormActivityInjector.TmgiFormActivitySubcomponent.Builder {
+
+        /* renamed from: a */
+        public TmgiFormActivity f13152a;
+
+        public /* synthetic */ TmgiFormActivitySubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(TmgiFormActivity tmgiFormActivity) {
+            if (tmgiFormActivity != null) {
+                this.f13152a = tmgiFormActivity;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public TmgiFormActivitySubcomponent build() {
+            C3984v.m10237a(this.f13152a, TmgiFormActivity.class);
+            return new TmgiFormActivitySubcomponentImpl(this.f13152a);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TmgiFormActivitySubcomponentImpl */
+    public final class TmgiFormActivitySubcomponentImpl implements TmgiFormActivitySubcomponent {
+        public /* synthetic */ TmgiFormActivitySubcomponentImpl(TmgiFormActivity tmgiFormActivity) {
+        }
+
+        /* renamed from: a */
+        public void inject(TmgiFormActivity tmgiFormActivity) {
+            tmgiFormActivity.f15496v = DaggerAppComponent.this.mo12484b();
+            tmgiFormActivity.f15497w = DaggerAppComponent.this.mo12481a();
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TmgiFormFragmentSubcomponentBuilder */
+    public final class TmgiFormFragmentSubcomponentBuilder extends p289hu.ekreta.ellenorzo.p290di.ContributeFragmentModule_ContributeTmgiFormFragmentInjector.TmgiFormFragmentSubcomponent.Builder {
+
+        /* renamed from: a */
+        public TmgiFormFragmentModule f13155a;
+
+        /* renamed from: b */
+        public TmgiFormFragment f13156b;
+
+        public /* synthetic */ TmgiFormFragmentSubcomponentBuilder(C41441 r2) {
+        }
+
+        /* renamed from: a */
+        public void seedInstance(TmgiFormFragment tmgiFormFragment) {
+            if (tmgiFormFragment != null) {
+                this.f13156b = tmgiFormFragment;
+                return;
+            }
+            throw new NullPointerException();
+        }
+
+        public TmgiFormFragmentSubcomponent build() {
+            if (this.f13155a == null) {
+                this.f13155a = new TmgiFormFragmentModule();
+            }
+            C3984v.m10237a(this.f13156b, TmgiFormFragment.class);
+            return new TmgiFormFragmentSubcomponentImpl(DaggerAppComponent.this, this.f13155a, this.f13156b, null);
+        }
+    }
+
+    /* renamed from: hu.ekreta.ellenorzo.di.DaggerAppComponent$TmgiFormFragmentSubcomponentImpl */
+    public final class TmgiFormFragmentSubcomponentImpl implements TmgiFormFragmentSubcomponent {
+
+        /* renamed from: a */
+        public C5431a<TmgiFormFragment> f13158a;
+
+        /* renamed from: b */
+        public C5431a<TmgiFormViewModelImpl> f13159b;
+
+        /* renamed from: c */
+        public C5431a<TmgiFormViewModel> f13160c;
+
+        /* renamed from: d */
+        public final /* synthetic */ DaggerAppComponent f13161d;
+
+        public /* synthetic */ TmgiFormFragmentSubcomponentImpl(DaggerAppComponent daggerAppComponent, TmgiFormFragmentModule tmgiFormFragmentModule, TmgiFormFragment tmgiFormFragment, C41441 r19) {
+            this.f13161d = daggerAppComponent;
+            this.f13158a = C4464d.m14952a(tmgiFormFragment);
+            ObservableImpl_Factory observableImpl_Factory = ObservableImpl_Factory.f15471a;
+            ExecuteOnceUiCommandSource_Factory executeOnceUiCommandSource_Factory = ExecuteOnceUiCommandSource_Factory.f15468a;
+            DaggerAppComponent daggerAppComponent2 = this.f13161d;
+            C5431a<AuthenticationService> aVar = daggerAppComponent2.f12798y0;
+            C5431a a = daggerAppComponent2.f12712c2;
+            DaggerAppComponent daggerAppComponent3 = this.f13161d;
+            TmgiFormViewModelImpl_Factory tmgiFormViewModelImpl_Factory = new TmgiFormViewModelImpl_Factory(observableImpl_Factory, executeOnceUiCommandSource_Factory, aVar, a, daggerAppComponent3.f12768q2, daggerAppComponent3.f12776s2, daggerAppComponent3.f12794x0, daggerAppComponent3.f12784u2, daggerAppComponent3.f12697Y1, daggerAppComponent3.f12655K1, daggerAppComponent3.f12691W1, daggerAppComponent3.f12666O0);
+            this.f13159b = tmgiFormViewModelImpl_Factory;
+            this.f13160c = C4462b.m14951a(new TmgiFormFragmentModule_ProvideViewModelFactory(tmgiFormFragmentModule, this.f13158a, this.f13159b));
+        }
+
+        /* renamed from: a */
+        public void inject(TmgiFormFragment tmgiFormFragment) {
+            tmgiFormFragment.f15499Z = this.f13161d.mo12484b();
+            TmgiFormFragment_MembersInjector.m11214a(tmgiFormFragment, (TmgiFormViewModel) this.f13160c.get());
+        }
+    }
+
+    public /* synthetic */ DaggerAppComponent(AppModule appModule, eKretaApp ekretaapp, C41441 r12) {
+        this.f12680T = C4464d.m14952a(ekretaapp);
+        this.f12683U = C4462b.m14951a(this.f12680T);
+        this.f12686V = new AppModule_ProvideGlobalMobileApiBaseUrlFactory(appModule);
+        this.f12689W = new AppModule_ProvideRetrofitBuilderFactory(appModule);
+        this.f12692X = C4462b.m14951a(new AppModule_ProvidePackageInfoFactory(appModule, this.f12683U));
+        this.f12695Y = C4462b.m14951a(new AppModule_ProvideAppVersionNameFactory(appModule, this.f12692X));
+        this.f12698Z = C4462b.m14951a(new AppModule_ProvidesUserAgentStringFactory(appModule, this.f12692X, this.f12695Y));
+        this.f12702a0 = new AppModule_ProvideOkHttpClientBuilderFactory(appModule, this.f12698Z);
+        this.f12706b0 = new AppModule_ProvideIdpServiceUrlFactory(appModule);
+        this.f12710c0 = C4462b.m14951a(new AppModule_ProvideIdpFactory(appModule, this.f12706b0, this.f12689W, this.f12702a0));
+        this.f12714d0 = C4462b.m14951a(new AppModule_ProvideKeyStoreAdapterFactory(appModule, this.f12683U));
+        this.f12718e0 = C4462b.m14951a(new AppModule_ProvideSharedPreferencesFactory(appModule, this.f12683U));
+        this.f12722f0 = new RealmSecureStoreImpl_Factory(this.f12714d0, this.f12718e0);
+        this.f12726g0 = C4462b.m14951a(this.f12722f0);
+        this.f12730h0 = C4462b.m14951a(new AppModule_ProvideRealmConfigFactory(appModule, this.f12683U, this.f12726g0));
+        this.f12734i0 = new ProfileDaoImpl_Factory(this.f12730h0);
+        this.f12738j0 = C4462b.m14951a(this.f12734i0);
+        this.f12742k0 = new GuardianDaoImpl_Factory(this.f12730h0);
+        this.f12746l0 = C4462b.m14951a(this.f12742k0);
+        this.f12750m0 = new C4461a();
+        this.f12754n0 = new NotificationDaoImpl_Factory(this.f12730h0);
+        this.f12758o0 = C4462b.m14951a(this.f12754n0);
+        this.f12762p0 = new FirebaseContainerImpl_Factory(this.f12683U);
+        this.f12766q0 = C4462b.m14951a(this.f12762p0);
+        this.f12770r0 = new AppModule_ProvideApiKeyFactory(appModule);
+        this.f12774s0 = new NotificationRepositoryImpl_Factory(this.f12750m0, this.f12758o0, this.f12766q0, this.f12770r0);
+        this.f12778t0 = C4462b.m14951a(this.f12774s0);
+        this.f12782u0 = new DeleteProfileStrategyImpl_Factory(this.f12778t0, this.f12738j0);
+        this.f12786v0 = C4462b.m14951a(this.f12782u0);
+        this.f12790w0 = new ProfileRepositoryImpl_Factory(this.f12738j0, this.f12746l0, this.f12786v0);
+        this.f12794x0 = C4462b.m14951a(this.f12790w0);
+        this.f12798y0 = new C4461a();
+        this.f12801z0 = C4462b.m14951a(new AppModule_ProvideMobileApiV3Factory(appModule, this.f12702a0, this.f12689W, this.f12798y0));
+        this.f12624A0 = new SchoolYearCalendarDaoImpl_Factory(this.f12730h0);
+        this.f12627B0 = C4462b.m14951a(this.f12624A0);
+        this.f12630C0 = new SchoolYearCalendarRepositoryImpl_Factory(this.f12801z0, this.f12627B0);
+        this.f12633D0 = C4462b.m14951a(this.f12630C0);
+        this.f12636E0 = new AppModule_ProvideEUgyintezesBasePointUrlFactory(appModule);
+        AppModule_ProvideEAdminApiFactory appModule_ProvideEAdminApiFactory = new AppModule_ProvideEAdminApiFactory(appModule, this.f12636E0, this.f12689W, this.f12702a0, this.f12798y0);
+        this.f12639F0 = C4462b.m14951a(appModule_ProvideEAdminApiFactory);
+        this.f12642G0 = new ProfileServiceImpl_Factory(this.f12801z0, this.f12639F0);
+        this.f12645H0 = C4462b.m14951a(this.f12642G0);
+        this.f12648I0 = new GroupDaoImpl_Factory(this.f12730h0);
+        this.f12651J0 = C4462b.m14951a(this.f12648I0);
+        this.f12654K0 = new GroupRepositoryImpl_Factory(this.f12651J0, this.f12645H0);
+        this.f12657L0 = C4462b.m14951a(this.f12654K0);
+        this.f12660M0 = new UpdateProfileStrategyImpl_Factory(this.f12794x0, this.f12657L0, this.f12778t0, this.f12786v0);
+        this.f12663N0 = C4462b.m14951a(this.f12660M0);
+        this.f12666O0 = C4462b.m14951a(DateTimeFactoryImpl_Factory.f15406a);
+        this.f12669P0 = new AppModule_ProvideAuthorizedRolesFactory(appModule);
+        AuthenticationServiceImpl_Factory authenticationServiceImpl_Factory = new AuthenticationServiceImpl_Factory(this.f12710c0, this.f12794x0, this.f12633D0, this.f12645H0, this.f12663N0, this.f12666O0, this.f12669P0, this.f12766q0);
+        this.f12672Q0 = authenticationServiceImpl_Factory;
+        C4461a.m14949a(this.f12798y0, C4462b.m14951a(this.f12672Q0));
+        C5431a<GlobalMobileApi> aVar = this.f12750m0;
+        AppModule_ProvideGlobalMobileApiFactory appModule_ProvideGlobalMobileApiFactory = new AppModule_ProvideGlobalMobileApiFactory(appModule, this.f12686V, this.f12689W, this.f12702a0, this.f12798y0);
+        C4461a.m14949a(aVar, C4462b.m14951a(appModule_ProvideGlobalMobileApiFactory));
+        this.f12675R0 = new InstituteRepositoryImpl_Factory(this.f12750m0, this.f12770r0);
+        this.f12678S0 = C4462b.m14951a(this.f12675R0);
+        this.f12681T0 = C4462b.m14951a(new AppModule_ProvideAppVersionCodeFactory(appModule, this.f12692X));
+        mo12482a(appModule);
+    }
+
+    /* renamed from: c */
+    public final Map<Class<?>, C5431a<C4450b<?>>> mo12485c() {
+        LinkedHashMap c = C3984v.m10304c(45);
+        c.put(LoginActivity.class, this.f12701a);
+        c.put(InstitutePickerActivity.class, this.f12705b);
+        c.put(SplashActivity.class, this.f12709c);
+        c.put(MainActivity.class, this.f12713d);
+        c.put(ProfileListActivity.class, this.f12717e);
+        c.put(ProfileDetailActivity.class, this.f12721f);
+        c.put(SettingsActivity.class, this.f12725g);
+        c.put(SubjectDetailActivity.class, this.f12729h);
+        c.put(EvaluationDetailsActivity.class, this.f12733i);
+        c.put(TimeTableItemDetailActivity.class, this.f12737j);
+        c.put(MessageDetailActivity.class, this.f12741k);
+        c.put(NoteDetailsActivity.class, this.f12745l);
+        c.put(NoticeBoardItemDetailActivity.class, this.f12749m);
+        c.put(DailyOmissionsActivity.class, this.f12753n);
+        c.put(OmissionDetailActivity.class, this.f12757o);
+        c.put(HomeworkCommentFormActivity.class, this.f12761p);
+        c.put(ClassMasterActivity.class, this.f12765q);
+        c.put(HomeworkDetailActivity.class, this.f12769r);
+        c.put(AnnouncedTestDetailActivity.class, this.f12773s);
+        c.put(RootedDeviceDetectedActivity.class, this.f12777t);
+        c.put(NotSupportedAppActivity.class, this.f12781u);
+        c.put(CasesFragment.class, this.f12785v);
+        c.put(CaseDetailsActivity.class, this.f12789w);
+        c.put(TmgiFormActivity.class, this.f12793x);
+        c.put(DecisionDetailActivity.class, this.f12797y);
+        c.put(NewMessageActivity.class, this.f12800z);
+        c.put(MoreFragment.class, this.f12623A);
+        c.put(AveragesFragment.class, this.f12626B);
+        c.put(SubjectsFragment.class, this.f12629C);
+        c.put(HalfYearFragment.class, this.f12632D);
+        c.put(EndOfYearFragment.class, this.f12635E);
+        c.put(QuarterlyFragment.class, this.f12638F);
+        c.put(TimeTableFragment.class, this.f12641G);
+        c.put(NotesFragment.class, this.f12644H);
+        c.put(RemindersFragment.class, this.f12647I);
+        c.put(OmissionsPerDayFragment.class, this.f12650J);
+        c.put(MessagesFragment.class, this.f12653K);
+        c.put(NoticeBoardFragment.class, this.f12656L);
+        c.put(HomeFragment.class, this.f12659M);
+        c.put(AboutFragment.class, this.f12662N);
+        c.put(HomeworksFragment.class, this.f12665O);
+        c.put(AnnouncedTestsFragment.class, this.f12668P);
+        c.put(TmgiFormFragment.class, this.f12671Q);
+        c.put(ClassMastersFragment.class, this.f12674R);
+        c.put(EllenorzoFirebaseMessagingService.class, this.f12677S);
+        if (c.size() != 0) {
+            return Collections.unmodifiableMap(c);
+        }
+        return Collections.emptyMap();
+    }
+
+    /* renamed from: a */
+    public void inject(eKretaApp ekretaapp) {
+        C3984v.m10235a((C4451b) ekretaapp, new DispatchingAndroidInjector<>(mo12485c(), Collections.emptyMap()));
+        C3984v.m10279b((C4451b) ekretaapp, new DispatchingAndroidInjector<>(mo12485c(), Collections.emptyMap()));
+        C3984v.m10327d((C4451b) ekretaapp, mo12481a());
+        C3984v.m10344e((C4451b) ekretaapp, new DispatchingAndroidInjector<>(mo12485c(), Collections.emptyMap()));
+        C3984v.m10306c((C4451b) ekretaapp, new DispatchingAndroidInjector<>(mo12485c(), Collections.emptyMap()));
+        C3984v.m10234a((C4451b) ekretaapp);
+        C3984v.m10236a((C4458b) ekretaapp, mo12484b());
+    }
+
+    /* renamed from: b */
+    public final DispatchingAndroidInjector<Fragment> mo12484b() {
+        return new DispatchingAndroidInjector<>(mo12485c(), Collections.emptyMap());
+    }
+
+    /* renamed from: a */
+    public final DispatchingAndroidInjector<android.app.Fragment> mo12481a() {
+        return new DispatchingAndroidInjector<>(mo12485c(), Collections.emptyMap());
+    }
+
+    /* renamed from: a */
+    public final void mo12482a(AppModule appModule) {
+        this.f12684U0 = new AppModule_ProvideAppVersionNumberFactory(appModule, this.f12695Y, this.f12681T0);
+        this.f12687V0 = new ConfigurationProvider_Factory(this.f12683U, this.f12695Y, this.f12681T0);
+        this.f12690W0 = new PowerSaverCheckerImpl_Factory(this.f12683U, this.f12718e0, this.f12687V0);
+        this.f12693X0 = C4462b.m14951a(this.f12690W0);
+        this.f12696Y0 = C4462b.m14951a(new AppModule_ProvideRootBeerFactory(appModule, this.f12683U));
+        this.f12699Z0 = new DetectRootedDeviceImpl_Factory(this.f12696Y0);
+        this.f12703a1 = C4462b.m14951a(this.f12699Z0);
+        this.f12707b1 = new AppModule_ProvideBuildConfigIsInDebugModeFactory(appModule);
+        this.f12711c1 = new RealmWrapperImpl_Factory(this.f12730h0);
+        this.f12715d1 = C4462b.m14951a(this.f12711c1);
+        this.f12719e1 = new OmissionDaoImpl_Factory(this.f12730h0);
+        this.f12723f1 = C4462b.m14951a(this.f12719e1);
+        this.f12727g1 = new OmissionRepositoryImpl_Factory(this.f12801z0, this.f12723f1);
+        this.f12731h1 = C4462b.m14951a(this.f12727g1);
+        this.f12735i1 = new MessageDaoImpl_Factory(this.f12730h0);
+        this.f12739j1 = C4462b.m14951a(this.f12735i1);
+        this.f12743k1 = new MessageRepositoryImpl_Factory(this.f12639F0, this.f12739j1);
+        this.f12747l1 = C4462b.m14951a(this.f12743k1);
+        this.f12751m1 = new SubjectDaoImpl_Factory(this.f12730h0);
+        this.f12755n1 = C4462b.m14951a(this.f12751m1);
+        this.f12759o1 = new SubjectsRepositoryImpl_Factory(this.f12801z0, this.f12755n1, this.f12794x0, this.f12657L0);
+        this.f12763p1 = C4462b.m14951a(this.f12759o1);
+        this.f12767q1 = new EvaluationDaoImpl_Factory(this.f12730h0);
+        this.f12771r1 = C4462b.m14951a(this.f12767q1);
+        this.f12775s1 = new EvaluationRepositoryImpl_Factory(this.f12801z0, this.f12771r1);
+        this.f12779t1 = C4462b.m14951a(this.f12775s1);
+        this.f12783u1 = new HomeworkDaoImpl_Factory(this.f12730h0);
+        this.f12787v1 = C4462b.m14951a(this.f12783u1);
+        this.f12791w1 = new HomeworkRepositoryImpl_Factory(this.f12801z0, this.f12666O0, this.f12787v1);
+        this.f12795x1 = C4462b.m14951a(this.f12791w1);
+        this.f12799y1 = new AnnouncedTestDaoImpl_Factory(this.f12730h0);
+        this.f12802z1 = C4462b.m14951a(this.f12799y1);
+        this.f12625A1 = new AnnouncedTestRepositoryImpl_Factory(this.f12801z0, this.f12802z1, this.f12666O0);
+        this.f12628B1 = C4462b.m14951a(this.f12625A1);
+        this.f12631C1 = new TimeTableItemDaoImpl_Factory(this.f12730h0);
+        this.f12634D1 = C4462b.m14951a(this.f12631C1);
+        this.f12637E1 = new TimeTableItemServiceImpl_Factory(this.f12801z0);
+        this.f12640F1 = C4462b.m14951a(this.f12637E1);
+        this.f12643G1 = new TimeTableItemRepositoryImpl_Factory(this.f12634D1, this.f12640F1);
+        this.f12646H1 = C4462b.m14951a(this.f12643G1);
+        this.f12649I1 = C4462b.m14951a(FileAdapterImpl_Factory.f13286a);
+        this.f12652J1 = new AttachmentServiceImpl_Factory(this.f12649I1, this.f12639F0);
+        this.f12655K1 = C4462b.m14951a(this.f12652J1);
+        this.f12658L1 = new ClassMasterDaoImpl_Factory(this.f12730h0);
+        this.f12661M1 = C4462b.m14951a(this.f12658L1);
+        this.f12664N1 = new ClassMasterRepositoryImpl_Factory(this.f12661M1, this.f12651J0, this.f12801z0);
+        this.f12667O1 = C4462b.m14951a(this.f12664N1);
+        this.f12670P1 = C4462b.m14951a(CaseFactoryImpl_Factory.f11513a);
+        this.f12673Q1 = new CaseDaoImpl_Factory(this.f12730h0, this.f12670P1);
+        this.f12676R1 = C4462b.m14951a(this.f12673Q1);
+        this.f12679S1 = new CaseRepositoryImpl_Factory(this.f12639F0, this.f12676R1, this.f12670P1);
+        this.f12682T1 = C4462b.m14951a(this.f12679S1);
+        this.f12685U1 = new SignerRepositoryImpl_Factory(this.f12639F0);
+        this.f12688V1 = C4462b.m14951a(this.f12685U1);
+        this.f12691W1 = C4462b.m14951a(new AppModule_ProvideContentResolverFactory(appModule, this.f12683U));
+        this.f12694X1 = new AttachmentRepositoryImpl_Factory(this.f12639F0);
+        this.f12697Y1 = C4462b.m14951a(this.f12694X1);
+        this.f12700Z1 = new DecisionRepositoryImpl_Factory(this.f12639F0);
+        this.f12704a2 = C4462b.m14951a(this.f12700Z1);
+        this.f12708b2 = new CaseTypeRepositoryImpl_Factory(this.f12639F0);
+        this.f12712c2 = C4462b.m14951a(this.f12708b2);
+        this.f12716d2 = new NewMessageServiceImpl_Factory(this.f12639F0);
+        this.f12720e2 = C4462b.m14951a(this.f12716d2);
+        this.f12724f2 = new NoteDaoImpl_Factory(this.f12730h0);
+        this.f12728g2 = C4462b.m14951a(this.f12724f2);
+        this.f12732h2 = new NotesRepositoryImpl_Factory(this.f12801z0, this.f12728g2);
+        this.f12736i2 = C4462b.m14951a(this.f12732h2);
+        this.f12740j2 = new MessagesServiceImpl_Factory(this.f12639F0);
+        this.f12744k2 = C4462b.m14951a(this.f12740j2);
+        this.f12748l2 = new NoticeBoardItemDaoImpl_Factory(this.f12730h0);
+        this.f12752m2 = C4462b.m14951a(this.f12748l2);
+        this.f12756n2 = new NoticeBoardItemRepositoryImpl_Factory(this.f12801z0, this.f12752m2);
+        this.f12760o2 = C4462b.m14951a(this.f12756n2);
+        this.f12764p2 = new TmgiCaseTypeRepositoryImpl_Factory(this.f12639F0);
+        this.f12768q2 = C4462b.m14951a(this.f12764p2);
+        this.f12772r2 = new ChildrenRepositoryImpl_Factory(this.f12639F0);
+        this.f12776s2 = C4462b.m14951a(this.f12772r2);
+        this.f12780t2 = new TmgiRepositoryImpl_Factory(this.f12639F0);
+        this.f12784u2 = C4462b.m14951a(this.f12780t2);
+        this.f12788v2 = C4462b.m14951a(new AppModule_ProvideNotificationManagerFactory(appModule, this.f12683U));
+        NotificationStrategyImpl_Factory notificationStrategyImpl_Factory = new NotificationStrategyImpl_Factory(this.f12794x0, this.f12778t0, this.f12683U, this.f12788v2, this.f12766q0);
+        this.f12792w2 = notificationStrategyImpl_Factory;
+        this.f12796x2 = C4462b.m14951a(this.f12792w2);
+    }
+}
