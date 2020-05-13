@@ -1,4 +1,4 @@
-# newKreta-decompiled
+# ekreta-decompiled
 
 interesting files:
 
