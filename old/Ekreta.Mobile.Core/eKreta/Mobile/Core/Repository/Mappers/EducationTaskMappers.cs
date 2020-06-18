@@ -1,0 +1,34 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: Ekreta.Mobile.Core.Repository.Mappers.EducationTaskMappers
+// Assembly: Ekreta.Mobile.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5AA13053-CF9F-480D-A76A-8A5D6C4EE194
+// Assembly location: C:\fakepath\\Desktop\Ekreta.Mobile.Core.dll
+
+using Ekreta.Mobile.Core.Models;
+using Ekreta.Mobile.Core.Repository.RealmRepository;
+
+namespace Ekreta.Mobile.Core.Repository.Mappers
+{
+  public static class EducationTaskMappers
+  {
+    public static EducationTask Map(this EducationTaskRealm source)
+    {
+      return new EducationTask()
+      {
+        Uid = source.Uid,
+        Leiras = source.Leiras,
+        Nev = source.Nev
+      };
+    }
+
+    public static EducationTaskRealm Map(this EducationTask source)
+    {
+      return new EducationTaskRealm()
+      {
+        Uid = source.Uid,
+        Leiras = source.Leiras,
+        Nev = source.Nev
+      };
+    }
+  }
+}

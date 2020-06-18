@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Evaluation_Model_CreatingTime" xml:space="preserve">
+    <value>Rögzítve</value>
+  </data>
+  <data name="PersonalDataSheet_Page_MothersName" xml:space="preserve">
+    <value>Anyja neve</value>
+  </data>
+  <data name="RootedDevice_Message" xml:space="preserve">
+    <value>Sajnáljuk, de az alkalmazás biztonsági okokból nem használható rootolt vagy jailbrakelt telefonon. Kérjük állítsa vissza a gyári beállításokat, majd próbálja újra.</value>
+  </data>
+  <data name="Page_Profiles_Title" xml:space="preserve">
+    <value>Profilok</value>
+  </data>
+  <data name="ProtectedAppsCheckerCancel" xml:space="preserve">
+    <value>Később</value>
+  </data>
+  <data name="Message_Sender" xml:space="preserve">
+    <value>Feladó</value>
+  </data>
+  <data name="PushNotification_Snackbar_Open" xml:space="preserve">
+    <value>Megnyitás</value>
+  </data>
+  <data name="ActionSheet_Email_Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Statistics_AllAbsences" xml:space="preserve">
+    <value>Összes mulasztás: {0} óra.</value>
+  </data>
+  <data name="Lesson_Model_Teacher" xml:space="preserve">
+    <value>Tanár neve</value>
+  </data>
+  <data name="AbsencesToJustify_Page_Title" xml:space="preserve">
+    <value>Igazolandó</value>
+  </data>
+  <data name="PersonalDataSheet_Page_AddressData" xml:space="preserve">
+    <value>Lakcím adatok</value>
+  </data>
+  <data name="HomeWorkStudentDetail_UpdateUnSucessful_Text" xml:space="preserve">
+    <value>Nem sikerült frissíteni a házi feladatot.</value>
+  </data>
+  <data name="MenuItem_Profiles_Title" xml:space="preserve">
+    <value>Profil váltás/szerkesztés</value>
+  </data>
+  <data name="LoginPage_LoginButton_Text" xml:space="preserve">
+    <value>Bejelentkezés</value>
+  </data>
+  <data name="Page_Statistics_Title" xml:space="preserve">
+    <value>Statisztikák</value>
+  </data>
+  <data name="Alert_Ok_NewUpdateAvailable_Button" xml:space="preserve">
+    <value>Igen</value>
+  </data>
+  <data name="MessageDetail_Page_Title" xml:space="preserve">
+    <value>Üzenet</value>
+  </data>
+  <data name="FormTeacher_Title" xml:space="preserve">
+    <value>Osztályfőnök</value>
+  </data>
+  <data name="Settings_Dashboard_Description" xml:space="preserve">
+    <value>Az opcióval beállítható, hogy a főoldalon hány napra visszamenőlegesen jelenjenek meg a tanulói események.</value>
+  </data>
+  <data name="ProfilesPage_Tutelary" xml:space="preserve">
+    <value>Gondviselő</value>
+  </data>
+  <data name="Common_Achievements_Succeeded" xml:space="preserve">
+    <value>Teljesített</value>
+  </data>
+  <data name="Alert_TitleDuplicateUserError_Text" xml:space="preserve">
+    <value>Figyelem!</value>
+  </data>
+  <data name="Alert_Title_NewUpdateAvailable_Text" xml:space="preserve">
+    <value>Frissítés</value>
+  </data>
+  <data name="Push_NeedEnable_Title" xml:space="preserve">
+    <value>Értesítések letiltva</value>
+  </data>
+  <data name="Uzenet_Targy_Title" xml:space="preserve">
+    <value>Tárgy</value>
+  </data>
+  <data name="EvaluationsSubject_TabPage_Title" xml:space="preserve">
+    <value>Tárgy</value>
+  </data>
+  <data name="InstitutePickerPage_SearchBar_Placeholder" xml:space="preserve">
+    <value>Keresés...</value>
+  </data>
+  <data name="Lessons_Page_Title" xml:space="preserve">
+    <value>Órarend</value>
+  </data>
+  <data name="Settings_Notification_Description" xml:space="preserve">
+    <value>A funkció bekapcsolásával a rendszer értesítéseket küld az alábbiakról:
+-Értékelések
+-Mulasztások
+-Feljegyzések
+-Üzenetek
+-Házi feladatok
+-Bejelentett számonkérések</value>
+  </data>
+  <data name="Lesson_Model_ClassRoom" xml:space="preserve">
+    <value>Tanterem</value>
+  </data>
+  <data name="HomeWorkStudentDetail_UpdateUnSucessful_Title" xml:space="preserve">
+    <value>Hiba!</value>
+  </data>
+  <data name="PersonalDataSheet_Page_NameOfBirth" xml:space="preserve">
+    <value>Születési név</value>
+  </data>
+  <data name="Kollegium" xml:space="preserve">
+    <value>Kollégium</value>
+  </data>
+  <data name="Common_NoInternet_Title" xml:space="preserve">
+    <value>Figyelem</value>
+  </data>
+  <data name="Common_Delete_Profile_Message" xml:space="preserve">
+    <value>Biztosan törölni akarod a profilt?</value>
+  </data>
+  <data name="Exam_Model_SzamonkeresModja" xml:space="preserve">
+    <value>Számonkérés módja</value>
+  </data>
+  <data name="ToolbarItem_Sms_Text" xml:space="preserve">
+    <value>Sms</value>
+  </data>
+  <data name="Lesson_Model_Count" xml:space="preserve">
+    <value>A tanóra óraszáma</value>
+  </data>
+  <data name="Rating_EvaulationLikeTitle" xml:space="preserve">
+    <value>Tetszik</value>
+  </data>
+  <data name="EvaluationDetail_Page_Title" xml:space="preserve">
+    <value>Értékelés</value>
+  </data>
+  <data name="Lesson_Model_State" xml:space="preserve">
+    <value>Tanóra állapota</value>
+  </data>
+  <data name="Lesson_Model_Theme" xml:space="preserve">
+    <value>A tanóra témája</value>
+  </data>
+  <data name="MenuItem_Absences_Title" xml:space="preserve">
+    <value>Mulasztások</value>
+  </data>
+  <data name="Evaluation_Model_Teacher" xml:space="preserve">
+    <value>Tanár</value>
+  </data>
+  <data name="RootContentPage_AchievementSummary_Title" xml:space="preserve">
+    <value>Célok összesítése</value>
+  </data>
+  <data name="ActiveProfile_Role_Student" xml:space="preserve">
+    <value>Tanuló</value>
+  </data>
+  <data name="PersonalDataSheet_Page_TutelaryEmail" xml:space="preserve">
+    <value>E-mail cím</value>
+  </data>
+  <data name="PersonalDataSheet_Page_TutelaryPhone" xml:space="preserve">
+    <value>Telefonszám</value>
+  </data>
+  <data name="LoginPage_Welcome_Title" xml:space="preserve">
+    <value>Üdvözöljük!</value>
+  </data>
+  <data name="HomeWorks_ListIsEmpty" xml:space="preserve">
+    <value>Ezen a héten nincsenek rögzített házi feladatok. Juhéé!</value>
+  </data>
+  <data name="Button_SelectInstitute_Text" xml:space="preserve">
+    <value>Válasszon intézményt</value>
+  </data>
+  <data name="NoteDetail_Page_Title" xml:space="preserve">
+    <value>Feljegyzés</value>
+  </data>
+  <data name="FormTeacher_Model_Subject" xml:space="preserve">
+    <value>Üzenet tárgya</value>
+  </data>
+  <data name="Entry_UserName_Placeholder" xml:space="preserve">
+    <value>Felhasználónév *</value>
+  </data>
+  <data name="Note_Model_CreatingTime" xml:space="preserve">
+    <value>Rögzítve</value>
+  </data>
+  <data name="AchievementEditorPage_SubjectPicker_Title" xml:space="preserve">
+    <value>Válassz tantárgyat</value>
+  </data>
+  <data name="LoginPage_ReLogin_Description" xml:space="preserve">
+    <value>A szinkronizáció nem sikerült, kérjük jelentkezzen be ismét</value>
+  </data>
+  <data name="AchievementsPage_NoElement" xml:space="preserve">
+    <value>Még nem tűztél ki magadnak egyetlen célt sem. Kattints a + gombra, válaszd ki a tantárgyat, add meg, hogy milyen átlagot szeretnél elérni és kövesd a célod alakulását.</value>
+  </data>
+  <data name="RootContentPage_EmptyList_Current_Day" xml:space="preserve">
+    <value>Eseménymentes volt a mai nap.</value>
+  </data>
+  <data name="HomeWorkStudentDetail_Update_NoInternet" xml:space="preserve">
+    <value>A házi feladat állapota csak működő internetkapcsolat esetén módosítható!</value>
+  </data>
+  <data name="ToolbarItem_NewProfile_Text" xml:space="preserve">
+    <value>Új profil</value>
+  </data>
+  <data name="Absence_Model_LessonStartTime" xml:space="preserve">
+    <value>A mulasztás dátuma</value>
+  </data>
+  <data name="PersonalDataSheet_Page_PersonalData" xml:space="preserve">
+    <value>Személyes adatok</value>
+  </data>
+  <data name="Profile_Access_Right" xml:space="preserve">
+    <value>Jogosultság:</value>
+  </data>
+  <data name="Other_Evaluation_Model_Value" xml:space="preserve">
+    <value>Egyéb értékelések</value>
+  </data>
+  <data name="Common_NoInternet_Message" xml:space="preserve">
+    <value>Nincs internetkapcsolatod. Kérlek ellenőrizd a beállításaid és próbálkozz újra.</value>
+  </data>
+  <data name="FormTeacher_Page_Title" xml:space="preserve">
+    <value>Osztályfőnök</value>
+  </data>
+  <data name="FAQLogin" xml:space="preserve">
+    <value>Nem tud bejelentkezni? - Gyakran Ismételt Kérdések</value>
+  </data>
+  <data name="Uzenet_Szoveg_Title" xml:space="preserve">
+    <value>Szöveg</value>
+  </data>
+  <data name="Exam_Model_SzamonkeresMegnevezese" xml:space="preserve">
+    <value>Számonkérés megnevezése</value>
+  </data>
+  <data name="ProtectedAppsCheckerContent" xml:space="preserve">
+    <value>Az értesítések megfelelő működéséhez az Ön telefonja esetében külön engedélyezni kell az alkalmazáshoz tartozó háttérfolyamatokat! Kérjük ellenőrizze a beállítást!</value>
+  </data>
+  <data name="MenuItem_Achievements_Title" xml:space="preserve">
+    <value>Célkitűzések</value>
+  </data>
+  <data name="AchievementsPage_IsLowLevel" xml:space="preserve">
+    <value>Kitűzted</value>
+  </data>
+  <data name="Information_Page_Title" xml:space="preserve">
+    <value>Információk</value>
+  </data>
+  <data name="Lesson_Model_StartTime" xml:space="preserve">
+    <value>Tanóra kezdete</value>
+  </data>
+  <data name="MessageDetailViewMessageMayTruncated_Title" xml:space="preserve">
+    <value>Nincs internetkapcsolat!</value>
+  </data>
+  <data name="Settings_Dashboard_Title" xml:space="preserve">
+    <value>Főoldal beállítása</value>
+  </data>
+  <data name="Lessons_ListIsEmpty" xml:space="preserve">
+    <value>A mai napon nincs órád!</value>
+  </data>
+  <data name="AchievementsPage_IsCompleted" xml:space="preserve">
+    <value>Elérted</value>
+  </data>
+  <data name="Information_Page_Empty_List" xml:space="preserve">
+    <value>Nincsenek megjelenítendő információk</value>
+  </data>
+  <data name="Absence_Model_CreatingTime" xml:space="preserve">
+    <value>Rögzítve</value>
+  </data>
+  <data name="Common_Achievements_All" xml:space="preserve">
+    <value>Összes</value>
+  </data>
+  <data name="Rating_PopupAcceptPrivacyPolicySecondPart" xml:space="preserve">
+    <value>Adatvédelmi tájékoztatóban</value>
+  </data>
+  <data name="Uzenet_Csatolmanyok_Title" xml:space="preserve">
+    <value>Csatolt dokumentumok</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>ProfilesPage_Student</value>
+  </data>
+  <data name="HomeWorks_Page_Offline_Title" xml:space="preserve">
+    <value>Házi feladatok (Offline)</value>
+  </data>
+  <data name="Alert_MessageDuplicateUserError_Text" xml:space="preserve">
+    <value>A felhasználó profilja már létezik a készüléken. Nem lehet újra hozzáadni.</value>
+  </data>
+  <data name="Common_EmptyHomework_Title" xml:space="preserve">
+    <value>Figyelem</value>
+  </data>
+  <data name="MenuItem_WallNews_Title" xml:space="preserve">
+    <value>Faliújság</value>
+  </data>
+  <data name="Common_Delete_Confirm" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="Achievements_Page_Title" xml:space="preserve">
+    <value>Célkitűzések</value>
+  </data>
+  <data name="Common_NoServer_Message" xml:space="preserve">
+    <value>Nem sikerült kapcsolódni a KRÉTA rendszerhez. Kérjük próbálja újra később!</value>
+  </data>
+  <data name="MenuItem_Homeworks_Title" xml:space="preserve">
+    <value>Házi feladatok</value>
+  </data>
+  <data name="Lesson_Model_HomeWork" xml:space="preserve">
+    <value>Házi feladat</value>
+  </data>
+  <data name="Absence_Model_SubjectCategory" xml:space="preserve">
+    <value>Tantárgykategória</value>
+  </data>
+  <data name="AbsenceDetail_Page_Title" xml:space="preserve">
+    <value>Mulasztás</value>
+  </data>
+  <data name="Evaluation_Model_Value" xml:space="preserve">
+    <value>Értékelés</value>
+  </data>
+  <data name="Evaluation_Model_Theme" xml:space="preserve">
+    <value>Az értékelés témája</value>
+  </data>
+  <data name="Common_Achievements_Achieved" xml:space="preserve">
+    <value>Elért</value>
+  </data>
+  <data name="AbsencesUnjustified_Page_Title" xml:space="preserve">
+    <value>Igazolatlan</value>
+  </data>
+  <data name="Common_CachedData_Toast" xml:space="preserve">
+    <value>Kérlek várj még a frissítéssel! 
+A hátralévő idő: {0} perc.</value>
+  </data>
+  <data name="MenuItem_Lessons_Title" xml:space="preserve">
+    <value>Órarend</value>
+  </data>
+  <data name="Common_EmptyHomework_Message" xml:space="preserve">
+    <value>A házi feladat nem rögzíthető. Kérlek add meg a házi feladat szövegét.</value>
+  </data>
+  <data name="Lessons_Page_Offline_Title" xml:space="preserve">
+    <value>Órarend (Offline)</value>
+  </data>
+  <data name="MenuItem_Notes_Title" xml:space="preserve">
+    <value>Feljegyzések</value>
+  </data>
+  <data name="VersionNumber" xml:space="preserve">
+    <value>Verzió:</value>
+  </data>
+  <data name="SubjectAverage_Model_ClassValue" xml:space="preserve">
+    <value>Aktuális osztály átlag</value>
+  </data>
+  <data name="Confirm_Cancel_Text" xml:space="preserve">
+    <value>Nem</value>
+  </data>
+  <data name="AchievementEditor_Page_Detail" xml:space="preserve">
+    <value>Új cél kitűzése</value>
+  </data>
+  <data name="Messages_Page_Title" xml:space="preserve">
+    <value>Üzenetek</value>
+  </data>
+  <data name="Exam_Model_BejelentesDatuma" xml:space="preserve">
+    <value>Bejelentés dátuma</value>
+  </data>
+  <data name="Lesson_Model_HomeWorkDate" xml:space="preserve">
+    <value>határidő: </value>
+  </data>
+  <data name="Rating_PopupAcceptPrivacyPolicyThirdPart" xml:space="preserve">
+    <value> leírtakat.</value>
+  </data>
+  <data name="Exam_Model_Tanar" xml:space="preserve">
+    <value>Tanár</value>
+  </data>
+  <data name="RootContentPage_EmptyList_Multiple_Day" xml:space="preserve">
+    <value>Eseménymentes volt az elmúlt {0} nap.</value>
+  </data>
+  <data name="Exam_Model_Datum" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
+  <data name="Lesson_Model_EndTime" xml:space="preserve">
+    <value>Tanóra vége</value>
+  </data>
+  <data name="GDPR_Connection_Error_Title" xml:space="preserve">
+    <value>Kapcsolódási hiba!</value>
+  </data>
+  <data name="Achievements_Page_ToolbarItem_New" xml:space="preserve">
+    <value>Új</value>
+  </data>
+  <data name="Common_Error_Message_Subtitle" xml:space="preserve">
+    <value>Amennyiben a probléma továbbra is fennáll, kérjük jelezze az iskolájának!</value>
+  </data>
+  <data name="ActionSheet_Cancel_Text" xml:space="preserve">
+    <value>Mégsem</value>
+  </data>
+  <data name="Settings_Push_Registration_Success" xml:space="preserve">
+    <value>Sikeresen feliratkoztál az értesítésekre.</value>
+  </data>
+  <data name="HomeWorks_Details_Page_Tab_Detail_Title" xml:space="preserve">
+    <value>Részletek</value>
+  </data>
+  <data name="RootContentPage_Title" xml:space="preserve">
+    <value>Főoldal</value>
+  </data>
+  <data name="Absence_Model_Subject" xml:space="preserve">
+    <value>Tantárgy</value>
+  </data>
+  <data name="Rating_EvaulationAnotherTime" xml:space="preserve">
+    <value>Máskor</value>
+  </data>
+  <data name="Common_GoBackLater" xml:space="preserve">
+    <value>Nézz vissza holnap!</value>
+  </data>
+  <data name="Alert_Message_NewUpdateAvailable_Text" xml:space="preserve">
+    <value>Elérhető a KRÉTA applikáció új verziója. Frissíti az alkalmazást?</value>
+  </data>
+  <data name="Events_Page_Title" xml:space="preserve">
+    <value>Faliújság</value>
+  </data>
+  <data name="AbsencesJustified_Page_Title" xml:space="preserve">
+    <value>Igazolt</value>
+  </data>
+  <data name="Alert_MessageLoginError_Text" xml:space="preserve">
+    <value>Érvénytelen diák/gondviselő felhasználónév vagy jelszó! Hibakód:</value>
+  </data>
+  <data name="EvaluationsQuarterYear_TabPage_Title" xml:space="preserve">
+    <value>Negyedéves</value>
+  </data>
+  <data name="Alert_Message_NoUserRole" xml:space="preserve">
+    <value>A felhasználóhoz nincs szerepkör rendelve. Kérjük jelezze a hibát az intézménynek.</value>
+  </data>
+  <data name="HomeworkDetail_Offile_Page_Title" xml:space="preserve">
+    <value>Házi feladat (Offline)</value>
+  </data>
+  <data name="DatabaseError_Description" xml:space="preserve">
+    <value>Lokális adatok törlése szükséges!</value>
+  </data>
+  <data name="Evaluation_Model_Weight" xml:space="preserve">
+    <value>Az értékelés súlya</value>
+  </data>
+  <data name="Absence_Model_JustificationType" xml:space="preserve">
+    <value>Az igazolás típusa</value>
+  </data>
+  <data name="PushNotification_CannotOpen_Text" xml:space="preserve">
+    <value>Az üzenet betöltése nem sikerült.</value>
+  </data>
+  <data name="Rating_PopupSaveButtonText" xml:space="preserve">
+    <value>Üzenet küldése</value>
+  </data>
+  <data name="AchievementsPage_ListIsEmpty" xml:space="preserve">
+    <value>Tűzz ki egy célt</value>
+  </data>
+  <data name="Settings_Push_Delete_Failed" xml:space="preserve">
+    <value>Nem sikerült leiratkoznod az értesítésekről.</value>
+  </data>
+  <data name="HomeWorks_Page_Title" xml:space="preserve">
+    <value>Házi feladatok</value>
+  </data>
+  <data name="Event_Model_Content" xml:space="preserve">
+    <value>Szöveg</value>
+  </data>
+  <data name="LoginPage_Welcome_Description" xml:space="preserve">
+    <value>A diák(ok) elektronikus ellenőrzőjébe történő belépéshez válassza ki az intézményét, adja meg a diák/gondviselő felhasználónevét és jelszavát!</value>
+  </data>
+  <data name="Rating_EvaulationDislikeTitle" xml:space="preserve">
+    <value>Nem Tetszik</value>
+  </data>
+  <data name="RootedDevice_Button_Title" xml:space="preserve">
+    <value>Kilépés</value>
+  </data>
+  <data name="PersonalDataSheet_Page_TutelaryData" xml:space="preserve">
+    <value>Gondviselői adatok</value>
+  </data>
+  <data name="PersonalDataSheet_Page_TutelaryName" xml:space="preserve">
+    <value>Gondviselő neve</value>
+  </data>
+  <data name="AchievementEditor_Page_Title" xml:space="preserve">
+    <value>Új cél</value>
+  </data>
+  <data name="RootContentPage_LastAbsences_Title" xml:space="preserve">
+    <value>Legutóbbi mulasztások</value>
+  </data>
+  <data name="ToolbarItem_Email_Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Rating_NoProfileInvoke" xml:space="preserve">
+    <value>Can't invoke rating flow without profile</value>
+  </data>
+  <data name="Common_Error_Message_NoInternet_Title" xml:space="preserve">
+    <value>Nincs internetkapcsolatod.</value>
+  </data>
+  <data name="EvaluationsList_TabPage_Title" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
+  <data name="RootContentPage_AbsenceCount" xml:space="preserve">
+    <value>db tanóra</value>
+  </data>
+  <data name="EvaluationsHalfYear_TabPage_Title" xml:space="preserve">
+    <value>Félév</value>
+  </data>
+  <data name="NeedUpdatePage_Button_Text" xml:space="preserve">
+    <value>Frissítés</value>
+  </data>
+  <data name="FormTeacher_Model_Name" xml:space="preserve">
+    <value>Osztályfőnök</value>
+  </data>
+  <data name="AchievementsPage_IsAlmostCompleted" xml:space="preserve">
+    <value>Jól haladsz</value>
+  </data>
+  <data name="Uzenet_Cimzettek_Title" xml:space="preserve">
+    <value>Címzett</value>
+  </data>
+  <data name="MessageDetailViewMessageMayTruncated" xml:space="preserve">
+    <value>Előfordulhat, hogy nem a teljes üzenetet látja, ugyanis az üzenet teljes szövege csak aktív internetkapcsolat esetén jelenik meg.</value>
+  </data>
+  <data name="InstitutePickerPage_NoElement" xml:space="preserve">
+    <value>Nem találtunk a keresési feltételeknek megfelelő intézményt. Ellenőrizd, hogy mit írtál a keresőbe és próbáld meg újra.</value>
+  </data>
+  <data name="Common_Delete_Title" xml:space="preserve">
+    <value>Házi feladat törlése</value>
+  </data>
+  <data name="FormTeacher_Select" xml:space="preserve">
+    <value>Válasszon osztályfőnököt!</value>
+  </data>
+  <data name="Settings_Notification_Title" xml:space="preserve">
+    <value>Értesítés beállítása</value>
+  </data>
+  <data name="EGYMI" xml:space="preserve">
+    <value>Egységes Gyógypedagógiai Módszertani Intézmény</value>
+  </data>
+  <data name="Common_NoServer_Title" xml:space="preserve">
+    <value>Sikertelen kapcsolatfelvétel</value>
+  </data>
+  <data name="FAQLink" xml:space="preserve">
+    <value>https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=4065021</value>
+  </data>
+  <data name="MenuItem_FormTeacher_Title" xml:space="preserve">
+    <value>Osztályfőnök értesítése</value>
+  </data>
+  <data name="Absence_Model_Teacher" xml:space="preserve">
+    <value>Tanár</value>
+  </data>
+  <data name="MenuItem_Statistics_Title" xml:space="preserve">
+    <value>Statisztika</value>
+  </data>
+  <data name="MenuItem_Messages_Title" xml:space="preserve">
+    <value>Üzenetek</value>
+  </data>
+  <data name="PersonalDataSheet_Page_Name" xml:space="preserve">
+    <value>Név</value>
+  </data>
+  <data name="LessonDetail_Page_Title" xml:space="preserve">
+    <value>Tanóra</value>
+  </data>
+  <data name="Lesson_Model_Date" xml:space="preserve">
+    <value>Dátum</value>
+  </data>
+  <data name="Absences_Page_Title" xml:space="preserve">
+    <value>Mulasztások</value>
+  </data>
+  <data name="Evaluation_Model_Type" xml:space="preserve">
+    <value>Az értékelés típusa</value>
+  </data>
+  <data name="Evaluation_Model_Mode" xml:space="preserve">
+    <value>Az értékelés módja</value>
+  </data>
+  <data name="Evaluation_Model_Form" xml:space="preserve">
+    <value>Az értékelés formája</value>
+  </data>
+  <data name="Evaluation_Model_Date" xml:space="preserve">
+    <value>Az értékelés dátuma</value>
+  </data>
+  <data name="MenuItem_Settings_Title" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="MenuItem_PersonalDataSheet_Title" xml:space="preserve">
+    <value>Személyes adatlap</value>
+  </data>
+  <data name="Rating_PopupTitle" xml:space="preserve">
+    <value>Kérjük írja meg nekünk mi nem tetszik az alkalmazásban!</value>
+  </data>
+  <data name="Rating_EvaulationPopupDescription" xml:space="preserve">
+    <value>Kérjük értékelje az alkalmazást!</value>
+  </data>
+  <data name="Note_Model_Type" xml:space="preserve">
+    <value>Típus</value>
+  </data>
+  <data name="Note_Model_Date" xml:space="preserve">
+    <value>A feljegyzés dátuma</value>
+  </data>
+  <data name="Felnottkepzes" xml:space="preserve">
+    <value>Felnőttképzés</value>
+  </data>
+  <data name="PersonalDataSheet_Page_PlaceOfBirth" xml:space="preserve">
+    <value>Születési hely</value>
+  </data>
+  <data name="Evaluations_Page_Title" xml:space="preserve">
+    <value>Értékelések</value>
+  </data>
+  <data name="Alert_InstituteError_Text" xml:space="preserve">
+    <value>Hibás intézményi URL. Kérjük jelezze a hibát az intézménynek.</value>
+  </data>
+  <data name="Common_Delete_Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="ActiveProfile_Role_Tutelary" xml:space="preserve">
+    <value>Gondviselő</value>
+  </data>
+  <data name="RootContentPage_LastNotes_Title" xml:space="preserve">
+    <value>Legutóbbi feljegyzések</value>
+  </data>
+  <data name="Button_ComposeMessage_Text" xml:space="preserve">
+    <value>Üzenet küldése</value>
+  </data>
+  <data name="Absence_Model_NumberOfLessons" xml:space="preserve">
+    <value>A mulasztás tanórájának száma</value>
+  </data>
+  <data name="Exams_Page_Title" xml:space="preserve">
+    <value>Számonkérések</value>
+  </data>
+  <data name="Confirm_Ok_Text" xml:space="preserve">
+    <value>Igen</value>
+  </data>
+  <data name="Common_Error_Message_Title" xml:space="preserve">
+    <value>Nem sikerült kapcsolódni a KRÉTA rendszerhez. Kérjük próbálja újra később!</value>
+  </data>
+  <data name="Message_Subject" xml:space="preserve">
+    <value>Tárgy</value>
+  </data>
+  <data name="Common_NoElement" xml:space="preserve">
+    <value>Még nem rögzítettek egyetlen elemet sem.</value>
+  </data>
+  <data name="MenuItem_Exams_Title" xml:space="preserve">
+    <value>Számonkérések</value>
+  </data>
+  <data name="Privacy_policy" xml:space="preserve">
+    <value>Adatkezelési Tájékoztató</value>
+  </data>
+  <data name="HomeWorks_Page_Filter_Active" xml:space="preserve">
+    <value>Kész házi feladatok elrejtve</value>
+  </data>
+  <data name="Achievement_Model_StartAverage" xml:space="preserve">
+    <value>Induló átlag</value>
+  </data>
+  <data name="Achievement_Model_TargetAverage" xml:space="preserve">
+    <value>Cél átlag</value>
+  </data>
+  <data name="Alert_Message_Institute" xml:space="preserve">
+    <value>Intézmény URL hiba!</value>
+  </data>
+  <data name="GDPR_Connection_Error_Message" xml:space="preserve">
+    <value>Az adatkezelési tájékoztató megtekintéséhez internetkapcsolat szükséges!</value>
+  </data>
+  <data name="WallNewsDetail_Page_Title" xml:space="preserve">
+    <value>Faliújság</value>
+  </data>
+  <data name="Alert_ButtonOk_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Page_NewProfile_Detail" xml:space="preserve">
+    <value>Új profil létrehozása</value>
+  </data>
+  <data name="RootContentPage_LastEvaluations_Title" xml:space="preserve">
+    <value>Legutóbbi értékelések</value>
+  </data>
+  <data name="AlapfokuMuveszetoktatas" xml:space="preserve">
+    <value>Alapfokú művészetoktatás</value>
+  </data>
+  <data name="NeedUpdatePage_UpdateInfo_Text" xml:space="preserve">
+    <value>Az Ön által használt KRÉTA applikáció verziója már nem támogatott. Kérjük frissítse az alkalmazást.</value>
+  </data>
+  <data name="Entry_Password_Placeholder" xml:space="preserve">
+    <value>Jelszó *</value>
+  </data>
+  <data name="Common_Achievements_UnSucceeded" xml:space="preserve">
+    <value>Teljesítetlen</value>
+  </data>
+  <data name="ActionSheet_Select_Text" xml:space="preserve">
+    <value>Kiválasztás</value>
+  </data>
+  <data name="Alert_Message_UserRole" xml:space="preserve">
+    <value>Az alkalmazás diákok/gondviselők számára készült. Tanári belépéshez kérjük töltse le a KRÉTA Napló applikációt!</value>
+  </data>
+  <data name="Exam_Model_HetNapja" xml:space="preserve">
+    <value>Hét napja</value>
+  </data>
+  <data name="Achievement_Model_CurrentAverage" xml:space="preserve">
+    <value>Aktuális átlag</value>
+  </data>
+  <data name="Common_BackButton_Text" xml:space="preserve">
+    <value>Vissza</value>
+  </data>
+  <data name="HomeWork_Create_Success" xml:space="preserve">
+    <value>Sikeresen hozzáadtad a Házi feladatot az órához!</value>
+  </data>
+  <data name="Rating_PopupAcceptPrivacyPolicyFirstPart" xml:space="preserve">
+    <value>Tudomásul vettem az </value>
+  </data>
+  <data name="Absence_Model_JustificationState" xml:space="preserve">
+    <value>A mulasztás igazoltsága</value>
+  </data>
+  <data name="Page_NewProfile_Title" xml:space="preserve">
+    <value>Új profil</value>
+  </data>
+  <data name="Rating_EvaulationPopupTitle" xml:space="preserve">
+    <value>Szívesen vennénk a visszajelzését!</value>
+  </data>
+  <data name="InternetConnectionEnabled_Title" xml:space="preserve">
+    <value>Az internet kapcsolat létrejött.</value>
+  </data>
+  <data name="ProfilesPage_Student" xml:space="preserve">
+    <value>Tanuló</value>
+  </data>
+  <data name="Confirm_Message_Text" xml:space="preserve">
+    <value>Biztosan szeretnéd törölni?</value>
+  </data>
+  <data name="InstitutePickerPage_ListIsEmpty" xml:space="preserve">
+    <value>Nincs találat</value>
+  </data>
+  <data name="Settings_Push_Delete_Success" xml:space="preserve">
+    <value>Sikeresen leiratkoztál az értesítésekről.</value>
+  </data>
+  <data name="ToolbarItem_Save_Text" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
+  <data name="SubjectAverage_Model_Value" xml:space="preserve">
+    <value>Aktuális átlag</value>
+  </data>
+  <data name="MenuItem_Evaluations_Title" xml:space="preserve">
+    <value>Értékelések</value>
+  </data>
+  <data name="NotExistedElement_Message" xml:space="preserve">
+    <value>Kérem navigáljon vissza a kezdőoldalra, hogy frissítse az órát. Amennyibben el szeretné menteni a szöveget kattinson a Mégse gombra!</value>
+  </data>
+  <data name="Uzenet_Felado_Title" xml:space="preserve">
+    <value>Feladó</value>
+  </data>
+  <data name="Absence_Model_Type" xml:space="preserve">
+    <value>A mulasztás típusa</value>
+  </data>
+  <data name="Absence_Model_Mode" xml:space="preserve">
+    <value>A mulasztás módja</value>
+  </data>
+  <data name="ExamsDetail_Page_Title" xml:space="preserve">
+    <value>Számonkérés</value>
+  </data>
+  <data name="HomeWorkDetail_Update_IsTutelary" xml:space="preserve">
+    <value>A házi feladat állapota csak tanulói profillal módosítható!</value>
+  </data>
+  <data name="HomeWorkDetailCannotDownloadWOInternet" xml:space="preserve">
+    <value>Nincs internetkapcsolat! A házi feladat szövege csak aktív internetkapcsolat esetén jelenik meg.</value>
+  </data>
+  <data name="HomeWorks_Details_Page_Tab_HomeWorks_Title" xml:space="preserve">
+    <value>Házi feladatok</value>
+  </data>
+  <data name="Confirm_Title_Text" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="Common_Delete_Profile_Title" xml:space="preserve">
+    <value>Profil törlése</value>
+  </data>
+  <data name="Alert_TitleLoginError_Text" xml:space="preserve">
+    <value>Sikertelen bejelentkezés</value>
+  </data>
+  <data name="ProtectedAppsCheckerTitle" xml:space="preserve">
+    <value>Figyelem!</value>
+  </data>
+  <data name="HomeWorkDetail_Add_NoInternet" xml:space="preserve">
+    <value>Internet kapcsolat nélkül nem tudsz felvenni új Házi feladatot!</value>
+  </data>
+  <data name="ActionSheet_Sms_Text" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="Settings_Push_Registration_Failed" xml:space="preserve">
+    <value>Nem sikerült feliratkoznod az értesítésekre.</value>
+  </data>
+  <data name="AchievementEditor_Page_ToolbarItem_Save" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
+  <data name="HomeWorkDetail_Delete_NoInternet" xml:space="preserve">
+    <value>Internet kapcsolat nélkül nem tudsz törölni Házi feladatot!</value>
+  </data>
+  <data name="Common_ListIsEmpty" xml:space="preserve">
+    <value>A lista üres.</value>
+  </data>
+  <data name="Absence_Model_DelayTimeMinutes" xml:space="preserve">
+    <value>A késés mértéke</value>
+  </data>
+  <data name="Settings_Page_Title" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="Page_Main_Title" xml:space="preserve">
+    <value>eKreta</value>
+  </data>
+  <data name="Alapkepzes" xml:space="preserve">
+    <value>Alapképzés</value>
+  </data>
+  <data name="WallNews_Page_Title" xml:space="preserve">
+    <value>Faliújság</value>
+  </data>
+  <data name="ToolbarItem_Call_Text" xml:space="preserve">
+    <value>Hívás</value>
+  </data>
+  <data name="EvaluationsEndYear_TabPage_Title" xml:space="preserve">
+    <value>Év vége</value>
+  </data>
+  <data name="Note_Model_Content" xml:space="preserve">
+    <value>Szöveg</value>
+  </data>
+  <data name="Exam_Model_Oraszam" xml:space="preserve">
+    <value>Óraszám</value>
+  </data>
+  <data name="RootContentPage_PushMessage_ItemNotFound" xml:space="preserve">
+    <value>Értesítéshez tartozó bejegyzés már nem létezik!</value>
+  </data>
+  <data name="NotExistedElement_Title" xml:space="preserve">
+    <value>Az elem nem található!</value>
+  </data>
+  <data name="Page_Institutes_Title" xml:space="preserve">
+    <value>Intézmények</value>
+  </data>
+  <data name="Label_Title_Text" xml:space="preserve">
+    <value>eKreta Mobile App</value>
+  </data>
+  <data name="Rating_EmailSubject" xml:space="preserve">
+    <value>Alkalmazásból érkezett vélemény</value>
+  </data>
+  <data name="Exam_Model_Tantargy" xml:space="preserve">
+    <value>Tantárgy</value>
+  </data>
+  <data name="Evaluation_Model_Subject" xml:space="preserve">
+    <value>Tantárgy</value>
+  </data>
+  <data name="Alert_Cancel_NewUpdateAvailable_Button" xml:space="preserve">
+    <value>Később</value>
+  </data>
+  <data name="DatabaseError_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Events_Page_Offline_Title" xml:space="preserve">
+    <value>Faliújság (Offline)</value>
+  </data>
+  <data name="FormTeacher_Model_Message" xml:space="preserve">
+    <value>Üzenet tartalma</value>
+  </data>
+  <data name="Notes_Page_Title" xml:space="preserve">
+    <value>Feljegyzések</value>
+  </data>
+  <data name="MenuItem_Events_Title" xml:space="preserve">
+    <value>Faliújság</value>
+  </data>
+  <data name="Rating_PopupDescription" xml:space="preserve">
+    <value>Vélemény:</value>
+  </data>
+  <data name="HomeworkDetail_Page_Title" xml:space="preserve">
+    <value>Házi feladat</value>
+  </data>
+  <data name="Push_NeedEnable" xml:space="preserve">
+    <value>Figyelem! Az értesítések az operációs rendszerben le vannak tiltva!</value>
+  </data>
+  <data name="PersonalDataSheet_Page_DateOfBirthUtc" xml:space="preserve">
+    <value>Születési idő</value>
+  </data>
+  <data name="Common_NewsItem_Received" xml:space="preserve">
+    <value>{0} darab új értesítése érkezett.</value>
+  </data>
+  <data name="Push_SubscribedNeedEnable" xml:space="preserve">
+    <value>Értesítés beállítása sikertelen! Az értesítések az operációs rendszerben le vannak tiltva!</value>
+  </data>
+  <data name="ProtectedAppsCheckerAccept" xml:space="preserve">
+    <value>Beállítás</value>
+  </data>
+  <data name="RootedDevice_Title" xml:space="preserve">
+    <value>Nem biztonságos az alkalmazás használata.</value>
+  </data>
+  <data name="PersonalDataSheet_Page_Title" xml:space="preserve">
+    <value>Személyes adatlap</value>
+  </data>
+  <data name="Exams_Page_Offline_Title" xml:space="preserve">
+    <value>Számonkérések (Offline)</value>
+  </data>
+  <data name="ProtectedAppsErrorContent" xml:space="preserve">
+    <value>Automatikus átirányítás nem sikerült! Kérjük keresse meg az ezzel kapcsolatos engedélyezést az eszköz beállításai között.</value>
+  </data>
+  <data name="MenuItem_GYIK_Title" xml:space="preserve">
+    <value>Gyakran Ismételt Kérdések</value>
+  </data>
+  <data name="DatabaseError_Title" xml:space="preserve">
+    <value>Váratlan adathiba!</value>
+  </data>
+  <data name="Common_Delete_Message" xml:space="preserve">
+    <value>Biztosan törölni akarod a házi feladatot?</value>
+  </data>
+  <data name="InternetConnectionDisabled_Title" xml:space="preserve">
+    <value>Az internet kapcsolat megszakadt.</value>
+  </data>
+  <data name="Text_Offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="EventDetail_Page_Title" xml:space="preserve">
+    <value>Faliújság</value>
+  </data>
+  <data name="Note_Model_Teacher" xml:space="preserve">
+    <value>Tanár</value>
+  </data>
+  <data name="Common_Alert_Title" xml:space="preserve">
+    <value>Figyelem!</value>
+  </data>
+  <data name="Evaluation_Model_SubjectCategory" xml:space="preserve">
+    <value>Tantárgy kategória</value>
+  </data>
+  <data name="ProtectedAppsAcceptButtonText" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Common_Error_Message_NoInternet_Subtitle" xml:space="preserve">
+    <value>Kérlek ellenőrizd a beállításaid és próbálkozz újra.</value>
+  </data>
+  <data name="Alert_NoUserRoleError_Text" xml:space="preserve">
+    <value>Hiba</value>
+  </data>
+  <data name="NotExistedElement_Navigate" xml:space="preserve">
+    <value>Vissza a kezdőoldalra</value>
+  </data>
+  <data name="ProtectedAppsErrorTitle" xml:space="preserve">
+    <value>Figyelem!</value>
+  </data>
+  <data name="SubjectAverage_Model_Subject" xml:space="preserve">
+    <value>Tantárgy</value>
+  </data>
+</root>

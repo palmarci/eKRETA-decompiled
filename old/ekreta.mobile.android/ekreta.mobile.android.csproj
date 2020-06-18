@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\fakepath\\Desktop\ekreta.mobile.android.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2A231A3-645F-4276-BADB-CE0174AA3001}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ekreta.mobile.android</AssemblyName>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>eKreta.Mobile.Droid</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ekreta.Mobile.Core">
+      <HintPath>lib\Ekreta.Mobile.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ProcessedByFody.cs" />
+    <Compile Include="eKreta\Mobile\ListViewCustomRenderer\ListViewCustomRenderer.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="MainApplication.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="Setup.cs" />
+    <Compile Include="SplashScreenActivity.cs" />
+    <Compile Include="Renderers\AndroidLabelRenderer.cs" />
+    <Compile Include="Renderers\CustomSearchBarRenderer.cs" />
+    <Compile Include="Renderers\FlatButtonRenderer.cs" />
+    <Compile Include="Renderers\HtmlLabelRenderer.cs" />
+    <Compile Include="Renderers\ScrollableWebViewRendererAndroid.cs" />
+    <Compile Include="Renderers\StrikeThroughLabelRenderer.cs" />
+    <Compile Include="Renderers\ViewCellItemSelectedCustomRenderer.cs" />
+    <Compile Include="Platform\DeviceSpecification.cs" />
+    <Compile Include="Platform\ProtectedAppsChecker.cs" />
+    <Compile Include="Platform\Localization\Localize.cs" />
+    <Compile Include="Platform\Styles\PlatformStyleProvider.cs" />
+    <Compile Include="Platform\Security\SecurityService.cs" />
+    <Compile Include="Platform\PushNotification\AndroidPushNotificationHandler.cs" />
+    <Compile Include="Platform\PushNotification\FirebaseIdService.cs" />
+    <Compile Include="Platform\PushNotification\FirebaseMessageService.cs" />
+    <Compile Include="Platform\PushNotification\AbstractNotificationBuilder.cs" />
+    <Compile Include="Platform\PushNotification\NotificationBroadcastReceiver.cs" />
+    <Compile Include="Platform\PushNotification\NotificationBuilder.cs" />
+    <Compile Include="Platform\PushNotification\NotificationFactory.cs" />
+    <Compile Include="Platform\PushNotification\OreoNotificationBuilder.cs" />
+    <Compile Include="Platform\PushNotification\PushNotificationPlatformSpecificService.cs" />
+    <Compile Include="Platform\PermissionManager\PermissionManager.cs" />
+    <Compile Include="Platform\Monitoring\GoogleMobileAnalyticsProvider.cs" />
+    <Compile Include="Platform\Monitoring\HockeyAppMobileAnalyticsProvider.cs" />
+    <Compile Include="Platform\Keystore\AndroidKeyStore.cs" />
+    <Compile Include="Platform\FirebaseAnalytics\FirebaseAnalytics.cs" />
+    <Compile Include="Platform\FirebaseAnalytics\FirebaseRemoteConfigurationService.cs" />
+    <Compile Include="Platform\DataViewer\DataViewer.cs" />
+    <Compile Include="Platform\DataViewer\GenericFileProvider.cs" />
+    <Compile Include="Helpers\MvvmCrossHelper.cs" />
+    <Compile Include="Helpers\PackageInfo.cs" />
+    <Compile Include="Effects\ShowHidePassEffect.cs" />
+    <Compile Include="Effects\OnDrawableTouchListener.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
